@@ -1,0 +1,25 @@
+
+CREATE DATABASE auto CHARACTER SET utf8;
+CREATE USER 'auto'@'localhost' IDENTIFIED BY 'auto';
+GRANT ALL PRIVILEGES ON auto.* TO 'auto'@'localhost';
+use auto;
+DROP TABLE IF EXISTS entries;
+CREATE TABLE entries (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    author_id INT NOT NULL REFERENCES authors(id),
+    slug VARCHAR(100) NOT NULL UNIQUE,
+    title VARCHAR(512) NOT NULL,
+    markdown MEDIUMTEXT NOT NULL,
+    html MEDIUMTEXT NOT NULL,
+    published DATETIME NOT NULL,
+    updated TIMESTAMP NOT NULL,
+    KEY (published)
+);
+
+DROP TABLE IF EXISTS authors;
+CREATE TABLE authors (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL,
+    hashed_password VARCHAR(100) NOT NULL
+);

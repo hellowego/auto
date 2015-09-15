@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <title>发现 - WeCenter 社交化问答社区程序</title>
+    <meta name="keywords" content="wecenter,知识社区,企业社区,社交问答,问答社区,企业社交,开源社区程序,社交社区程序,开源问答程序,问答网站,social question,微信,微信公众平台,微信开发,微信开发社区,微信应用" />
+    <meta name="description" content="WeCenter 是一款知识型的社交化问答社区程序，专注于社区内容的整理、归类和检索，并通过连接微信公众平台，移动APP进行内容分发。" />
+    
+    <!--[if IE]></base><![endif]-->
+    <link href="{{ static_url("test/img/favicon.ico") }}" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="{{ static_url("test/css/bootstrap.css") }}"  />
+    <link rel="stylesheet" type="text/css" href="{{ static_url("test/css/icon.css") }} " />
+    <link href="{{ static_url("test/css/common.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ static_url("test/css/link.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ static_url("test/css/style.css") }}" rel="stylesheet" type="text/css" />
+    
+    
+
+
+    <!-- second -->
+    <script src="http://wenda.wecenter.com/static/js/jquery.2.js?v=20150818" type="text/javascript"></script>
+    <script src="http://wenda.wecenter.com/static/js/jquery.form.js?v=20150818" type="text/javascript"></script>
+    <script src="http://wenda.wecenter.com/static/js/plug_module/plug-in_module.js?v=20150818" type="text/javascript"></script>
+    <script src="http://wenda.wecenter.com/static/js/aws.js?v=20150818" type="text/javascript"></script>
+    <script src="http://wenda.wecenter.com/static/js/aw_template.js?v=20150818" type="text/javascript"></script>
+    <script src="http://wenda.wecenter.com/static/js/app.js?v=20150818" type="text/javascript"></script>
+    <script type="text/javascript" src="http://wenda.wecenter.com/static/js/compatibility.js"></script>
+    <!--[if lte IE 8]>
+   <script type="text/javascript" src="http://wenda.wecenter.com/static/js/respond.js"></script>
+<![endif]-->
+</head>
+<noscript unselectable="on" id="noscript">
+    <div class="aw-404 aw-404-wrap container">
+        <img src="http://wenda.wecenter.com/static/common/no-js.jpg">
+        <p>你的浏览器禁用了JavaScript, 请开启后刷新浏览器获得更好的体验!</p>
+    </div>
+</noscript>
+
+<body>
+    <div class="aw-top-menu-wrap">
+        <div class="container">
+            <!-- logo -->
+            <div class="aw-logo hidden-xs">
+                <a href="http://www.hellowego.com"></a>
+            </div>
+            <!-- end logo -->
+            <!-- 搜索框 -->
+            <div class="aw-search-box  hidden-xs hidden-sm">
+                <form class="navbar-search" action="http://wenda.wecenter.com/search/" id="global_search_form" method="post">
+                    <input class="form-control search-query" type="text" placeholder="搜索问题、话题或人" autocomplete="off" name="q" id="aw-search-query" />
+                    <span title="搜索" id="global_search_btns" onClick="$('#global_search_form').submit();"><i class="icon icon-search"></i></span>
+                    <div class="aw-dropdown">
+                        <div class="mod-body">
+                            <p class="title">输入关键字进行搜索</p>
+                            <ul class="aw-dropdown-list hide"></ul>
+                            <p class="search"><span>搜索:</span>
+                                <a onClick="$('#global_search_form').submit();"></a>
+                            </p>
+                        </div>
+                        <div class="mod-footer">
+                            <a href="javascript:;" onClick="$('#header_publish').click();" class="pull-right btn btn-mini btn-success publish">发起问题</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- end 搜索框 -->
+            <!-- 导航 -->
+            <div class="aw-top-nav navbar">
+                <div class="navbar-header">
+                    <button class="navbar-toggle pull-left">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="http://wenda.wecenter.com/home/"><i class="icon icon-home"></i> 动态</a></li>
+                        <li><a href="http://wenda.wecenter.com" class="active"><i class="icon icon-list"></i> 发现</a></li>
+                        <!-- <li><a href="http://wenda.wecenter.com/question/" class="">问题</a></li>
+
+               <li><a href="http://wenda.wecenter.com/article/" class="">文章</a></li> -->
+                        <li><a href="http://wenda.wecenter.com/topic/"><i class="icon icon-topic"></i> 话题</a></li>
+                        <li>
+                            <a href="http://wenda.wecenter.com/notifications/" class=""><i class="icon icon-bell"></i> 通知</a>
+                            <span class="badge badge-important" style="display:none" id="notifications_unread">0</span>
+                            <div class="aw-dropdown pull-right hidden-xs">
+                                <div class="mod-body">
+                                    <ul id="header_notification_list"></ul>
+                                </div>
+                                <div class="mod-footer">
+                                    <a href="http://wenda.wecenter.com/notifications/">查看全部</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="http://wenda.wecenter.com/help/"><i class="icon icon-bulb"></i> 帮助</a></li>
+                        <li>
+                            <a style="font-weight:bold;">· · ·</a>
+                            <div class="dropdown-list pull-right">
+                                <ul id="extensions-nav-list">
+                                    <li><a href="http://wenda.wecenter.com/project/"><i class="icon icon-activity"></i> 活动</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- end 导航 -->
+            <!-- 用户栏 -->
+            <div class="aw-user-nav">
+                <!-- 登陆&注册栏 -->
+                <a href="http://wenda.wecenter.com/people/hi" class="aw-user-nav-dropdown">
+                    <img alt="hi" src="http://wenda.wecenter.com/static/common/avatar-mid-img.png" />
+                </a>
+                <div class="aw-dropdown dropdown-list pull-right">
+                    <ul class="aw-dropdown-list">
+                        <li><a href="http://wenda.wecenter.com/inbox/"><i class="icon icon-inbox"></i> 私信<span class="badge badge-important hide" id="inbox_unread">0</span></a></li>
+                        <li class="hidden-xs"><a href="http://wenda.wecenter.com/account/setting/profile/"><i class="icon icon-setting"></i> 设置</a></li>
+                        <li><a href="http://wenda.wecenter.com/account/logout/"><i class="icon icon-logout"></i> 退出</a></li>
+                    </ul>
+                </div>
+                <!-- end 登陆&注册栏 -->
+            </div>
+            <!-- end 用户栏 -->
+            <!-- 发起 -->
+            <div class="aw-publish-btn">
+                <a id="header_publish" href="http://wenda.wecenter.com/publish/" class="btn-primary" onclick="AWS.dialog('publish', {'category_enable':'0', 'category_id':'0', 'topic_title':''}); return false;"><i class="icon icon-ask"></i>发起</a>
+                <div class="dropdown-list pull-right">
+                    <ul>
+                        <li>
+                            <form method="post" action="http://wenda.wecenter.com/publish/">
+                                <a onclick="$(this).parents('form').submit();">问题</a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end 发起 -->
+        </div>
+    </div>
+    
+    <!-- Escape time: 0.10892605781555 -->
+    <!-- / DO NOT REMOVE -->
+</body>
+
+</html>
