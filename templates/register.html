@@ -145,7 +145,7 @@ $(document).ready(function ()
                                 {
                                     if (result.errno == -1)
                                     {
-                                        _this.parent().find('.aw-reg-tips').detach();
+                                        // _this.parent().find('.aw-reg-tips').detach();
                                         _this.parent().append('<span class="aw-reg-tips aw-reg-err"><i class="aw-icon i-err"></i>' + result.err + '</span>');
                                     }
                                     else
@@ -168,10 +168,43 @@ $(document).ready(function ()
                             }
                             else
                             {
-                                $(this).parent().find('.aw-reg-tips').detach();
-                                $(this).parent().append('<span class="aw-reg-tips aw-reg-right"><i class="aw-icon i-followed"></i>hello</span>');
+                                var obj=$(this).parent();
 
-                                
+                                $.ajax({
+                                    type : "post",
+                                    url : "/check_email",
+                                    data : "email="+ $(this).val(),
+                                    datatype : "json",
+                                    complete:function(result) {
+                                        // alert(result.responseText);
+                                        // var msg = jQuery.parseJSON(result);
+                                        var msg = jQuery.parseJSON(result.responseText); 
+                                        // alert("email error: " + msg.errno);
+                                        if (msg.errno == -1)
+                                        {
+
+                                            try {
+                                                $(this).parent().find('.aw-reg-tips').detach();
+                                                obj.append('<span class="aw-reg-tips aw-reg-err"><i class="aw-icon i-err"></i>' + msg.err + '</span>');
+                                                
+                                            }
+                                            catch (_ex) //可以省略_ex参数
+                                            {
+                                                alert(_ex); //打印错误
+                                            }
+                                           
+                                            return;
+                                            alert(msg.err);
+                                            
+                                        }
+                                        else
+                                        {
+                                            $(this).parent().find('.aw-reg-tips').detach();
+                                            $(this).parent().append('<span class="aw-reg-tips aw-reg-right"><i class="aw-icon i-followed"></i>' + msg.err + '</span>');
+                                        }
+                                    }
+
+                                });
                             }
                             return;
 

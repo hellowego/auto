@@ -138,8 +138,10 @@ class CheckUsernameHandler(BaseHandler):
     @gen.coroutine
     def post(self):
         user_name = self.get_argument("username")
-        
-        if user_name == 'hi' :
+        countnum = self.db.get("SELECT COUNT(1) FROM authors WHERE name = %s", user_name)
+        print countnum
+        print 'countnum'
+        if countnum['COUNT(1)'] == 1 :
             result = {"errno" : -1, "err" : "用户名已被注册"}
         else :
             result = {"errno" : 1, "err" : ""}
@@ -152,11 +154,15 @@ class CheckEmailHandler(BaseHandler):
     @gen.coroutine
     def post(self):
         email = self.get_argument("email")
-        
-        if user_name == 'hellowego@gmail.com' :
+        print email
+        countnum = self.db.get("SELECT COUNT(1) FROM authors WHERE email = %s", email)
+        if countnum['COUNT(1)'] == 1 :
             result = {"errno" : -1, "err" : "邮箱已被注册"}
+            print result
         else :
-            result = {"errno" : 1, "err" : ""}
+            result = {"errno" : 1, "err" : "邮箱已被注册1"}
+
+        # return result
 
         self.write(result)        
 
