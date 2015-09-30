@@ -3,9 +3,12 @@ var AWS =
 	//全局loading
 	loading: function (type)
 	{
+
 		if (!$('#aw-loading').length)
 		{
+			// alert(_t('网络链接异常51')+ AW_TEMPLATE.loadingBox);
 			$('#aw-ajax-box').append(AW_TEMPLATE.loadingBox);
+
 		}
 
 		if (type == 'show')
@@ -131,27 +134,35 @@ var AWS =
 
 	ajax_post: function(formEl, processer, type) // 表单对象，用 jQuery 获取，回调函数名
 	{
+
+
 		// 若有编辑器的话就更新编辑器内容再提交
 		if (typeof CKEDITOR != 'undefined')
 		{
+			alert(_t('网络链接异常1'));
 			for ( instance in CKEDITOR.instances ) {
 				CKEDITOR.instances[instance].updateElement();
 			}
 		}
+		
 
 		if (typeof (processer) != 'function')
 		{
+			alert(_t('网络链接异常2'));
 			var processer = AWS.ajax_processer;
 
 			AWS.loading('show');
 		}
 
+
 		if (!type)
 		{
+			alert(_t('网络链接异常3'));
 			var type = 'default';
 		}
 		else if (type == 'reply_question')
 		{
+			alert(_t('网络链接异常4'));
 			AWS.loading('show');
 
 			$('.btn-reply').addClass('disabled');
@@ -163,9 +174,12 @@ var AWS =
 			}
 		}
 
+
 		var custom_data = {
 			_post_type: 'ajax'
 		};
+		
+		// alert(_t('网络链接异常5'));
 
 		formEl.ajaxSubmit(
 		{
@@ -173,6 +187,7 @@ var AWS =
 			data: custom_data,
 			success: function (result)
 			{
+				// alert(_t('网络链接异常6'));
 				processer(type, result);
 			},
 			error: function (error)
@@ -198,19 +213,24 @@ var AWS =
 				}
 			}
 		});
+		// alert(_t('网络链接异常5'));
 	},
 
 	// ajax提交callback
 	ajax_processer: function (type, result)
 	{
+		
 		AWS.loading('hide');
+		// alert(_t('网络链接异常5') + result.errno);
 
 		if (typeof (result.errno) == 'undefined')
 		{
+			// alert(_t('网络链接异常5'));
 			AWS.alert(result);
 		}
 		else if (result.errno != 1)
 		{
+			// alert(_t('网络链接异常5'));
 			switch (type)
 			{
 				case 'default':
@@ -227,6 +247,7 @@ var AWS =
 				case 'error_message':
 					if (!$('.error_message').length)
 					{
+						// alert(_t('网络链接异常5'));
 						alert(result.err);
 					}
 					else if ($('.error_message em').length)

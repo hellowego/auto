@@ -132,6 +132,21 @@ class RegisterHandler(BaseHandler):
         print user_name
         print email
         print password
+        if not user_name :
+            result = {"errno" : -1, "err" : "用户名为空"}
+        if not email :
+            result = {"errno" : -1, "err" : "邮箱为空"}
+        if not password :
+            result = {"errno" : -1, "err" : "密码为空"}
+
+        hashed_password = yield executor.submit(
+            bcrypt.hashpw, tornado.escape.utf8(password),
+            bcrypt.gensalt())
+        author_id = self.db.execute(
+            "INSERT INTO authors (email, name, hashed_password) "
+            "VALUES (%s, %s, %s)",
+            email, user_name, hashed_password)
+        self.write(result)
         
 class CheckUsernameHandler(BaseHandler):
     
@@ -232,6 +247,7 @@ class AuthCreateHandler(BaseHandler):
     def get(self):
         self.render("create_author.html")
 
+    @classmethod
     @gen.coroutine
     def post(self):
         if self.any_author_exists():
