@@ -247,7 +247,7 @@ class AuthCreateHandler(BaseHandler):
     def get(self):
         self.render("create_author.html")
 
-    @classmethod
+    
     @gen.coroutine
     def post(self):
         if self.any_author_exists():

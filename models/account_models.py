@@ -41,7 +41,7 @@ class AutoUser(BaseModel):
 			return False
 
 	@classmethod
-	def checkUser(cls, username):
+	def checkUsername(cls, username):
 		'''
 		检查用户名是否已经被注册
 		'''
