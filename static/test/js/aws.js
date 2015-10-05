@@ -293,6 +293,7 @@ var AWS =
 				}
 				else
 				{
+					alert(_t('网络链接异常5') + result.rsm.url);
 					window.location = decodeURIComponent(result.rsm.url);
 				}
 			}

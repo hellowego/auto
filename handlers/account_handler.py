@@ -2,6 +2,7 @@
 #-*- coding: UTF-8 -*- 
 
 import sys
+import re
 from baseHandler import BaseHandler
 from tornado import gen
 sys.path.append("..")
@@ -16,21 +17,28 @@ class RegisterHandler(BaseHandler):
 
 	@gen.coroutine
 	def post(self):
-		user_name = self.get_argument("user_name")
+		username = self.get_argument("user_name")
 		email = self.get_argument("email")
 		password = self.get_argument("password")
-		print user_name
+		print username
 		print email
 		print password
-		result = check(cls,user_name, email, password)
-		result = {"errno" : -1, "err" : "用户名为空"}
+
+		result = self.check( username, email, password)
+		# result = {"errno" : -1, "err" : "用户名为空"}
+		# rsm = {"url":"/home/first_login-TRUE"}
+		rsm = {"url":"/"}
+		result = {"rsm" : rsm, "errno" : 1, "err" : ""}
+		bl = AutoUser.addUser(username, email, password)
+
 		
 
 		self.write(result)
 
-	def check(cls, username, email, password):
+	
+	def check(self, username, email, password):
 		# not null check
-		if not user_name :
+		if not username :
 			result = {"errno" : -1, "err" : "用户名为空"}
 			return result
 		if not email :
@@ -40,15 +48,35 @@ class RegisterHandler(BaseHandler):
 			result = {"errno" : -1, "err" : "密码为空"}
 			return result
 
-		bl = AutoUser.checkUsername(user_name)
+		bl = AutoUser.checkUsername(username)
 		if bl :
 			result = {"errno" : -1, "err" : "用户名已被注册"}
+			return result
+
+		bl = self.validateEmail(email)
+
+		if not bl:
+			result = {"errno" : -1, "err" : "邮箱格式不正确"}
 			return result
 
 		bl = AutoUser.checkEmail(email)
 		if bl :
 			result = {"errno" : -1, "err" : "邮箱已被注册"}
 			return result
+
+		result = {"errno" : 1, "err" : "注册成功"}
+		return result
+
+		
+
+	@classmethod
+	def validateEmail(cls, email):
+		if len(email) > 7:
+			if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email) != None:
+				return True
+		return False
+
+
 
 
 
@@ -93,8 +121,10 @@ if __name__ == "__main__":
 	# 	print u.hashed_password;
 	# else:
 	# 	print 'wrong username or password'
-	u = AutoUser.checkEmail("hellowego@gmail.com");
-	if u:
-		print 'register'
-	else:
-		print 'not register'
+	# u = AutoUser.checkEmail("hellowego@gmail.com");
+	# if u:
+	#	print 'register'
+	#else:
+	#	print 'not register'
+	bl = RegisterHandler.check( 'hi', "hello@gmail.com", '111')
+	print bl

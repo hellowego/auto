@@ -70,6 +70,17 @@ class AutoUser(BaseModel):
 
 		print 'hi'
 
+	@classmethod
+	def addUser(cls, username, email, password):
+		hashed_password = bcrypt.hashpw(tornado.escape.utf8(password), bcrypt.gensalt())
+		print hashed_password
+		ret = cls(name = username, email = email, hashed_password = hashed_password)
+		session = DBSession()
+		session.add(ret)
+		session.commit()
+		session.close()
+		return True
+
 if __name__ == "__main__":
 	print 'hi'
 	# u = AutoUser.queryUser("hello1", '1');
@@ -78,7 +89,8 @@ if __name__ == "__main__":
 	# 	print u.hashed_password;
 	# else:
 	# 	print 'wrong username or password'
-	u = AutoUser.checkEmail("hellowego@gmail.com");
+	# u = AutoUser.checkEmail("hellowego@gmail.com");
+	u = AutoUser.addUser('hi', 'aa1@a.com', '1')
 	if u:
 		print 'register'
 	else:
