@@ -13,7 +13,7 @@ from models.account_models import AutoUser
 
 class RegisterHandler(BaseHandler):
 	def get(self):
-		self.render("register.html")
+		self.render("account/register.html")
 
 	@gen.coroutine
 	def post(self):
@@ -77,7 +77,17 @@ class RegisterHandler(BaseHandler):
 		return False
 
 
+class LoginHandler(BaseHandler):
+	"""docstring for LoginHandler"""
+	def get(self):
+		self.render("account/login.html")
 
+	def post(self):
+		username = self.get_argument("user_name")
+		password = self.get_argument("password")
+		print username
+		print password
+		
 
 
 
