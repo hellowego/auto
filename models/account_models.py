@@ -51,7 +51,7 @@ class AutoUser(BaseModel):
 		if not u:
 			return False
 		else:
-			return True
+			return u
 
 		print 'hi'
 
@@ -66,9 +66,40 @@ class AutoUser(BaseModel):
 		if not u:
 			return False
 		else:
-			return True
+			return u
 
 		print 'hi'
+
+	@classmethod
+	def checkPassword(cls, password, hashed_password_db):
+		'''
+		判断用户输入的密码是否正确
+		'''
+		hashed_password = bcrypt.hashpw(password, tornado.escape.utf8(hashed_password_db))
+		if hashed_password == hashed_password_db :
+			return True
+		else:
+			return False
+
+
+	@classmethod
+	def checkUser(cls, usernameOrEmail, password):
+		'''
+		用户登录时判断
+		'''
+		bl = False
+		u = AutoUser.checkUsername(usernameOrEmail)
+		if not u:
+			u = AutoUser.checkEmail(usernameOrEmail)
+			if not u:
+				return False
+			
+		bl = AutoUser.checkPassword(password, u.hashed_password)
+		if bl :
+			print 'right'
+		else :
+			print 'wrong'
+
 
 	@classmethod
 	def addUser(cls, username, email, password):
