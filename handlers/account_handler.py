@@ -31,6 +31,7 @@ class RegisterHandler(BaseHandler):
 		result = {"rsm" : rsm, "errno" : 1, "err" : ""}
 		bl = AutoUser.addUser(username, email, password)
 
+
 		
 
 		self.write(result)
@@ -87,7 +88,20 @@ class LoginHandler(BaseHandler):
 		password = self.get_argument("password")
 		print username
 		print password
+		bl = AutoUser.checkUserLogin(username, password)
+		if bl :
+			print 'right'
+			rsm = {"url":"/"}
+			result = {"rsm" : rsm, "errno" : 1, "err" : ""}
+		else :
+			print 'wrong'
+			result = {"errno" : -1, "err" : "用户名或者密码错误"}
+
 		
+		
+		
+
+		self.write(result)
 
 
 
