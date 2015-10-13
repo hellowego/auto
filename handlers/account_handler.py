@@ -97,10 +97,6 @@ class LoginHandler(BaseHandler):
 			print 'wrong'
 			result = {"errno" : -1, "err" : "用户名或者密码错误"}
 
-		
-		
-		
-
 		self.write(result)
 
 

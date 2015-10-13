@@ -6,6 +6,7 @@
 from tornado.web import RequestHandler, Application, url
 from handlers.main_handler import IndexHandler
 from handlers.account_handler import RegisterHandler, CheckUsernameHandler, CheckEmailHandler, LoginHandler
+from handlers.exploreHandler import ExploreHandler
 
 
 
@@ -15,6 +16,7 @@ urls = [
 	(r"/login", LoginHandler),
 	(r"/check_username", CheckUsernameHandler),
 	(r"/check_email", CheckEmailHandler),
+	(r"/explore", ExploreHandler),
 	]
 
 
