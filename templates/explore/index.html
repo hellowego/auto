@@ -9,15 +9,14 @@
 <title>WeCenter</title>
 <meta name="keywords" content="WeCenter,知识社区,社交社区,问答社区" />
 <meta name="description" content="WeCenter 社交化知识社区"  />
-<base href="http://localhost:8080/" /><!--[if IE]></base><![endif]-->
-<link href="http://localhost:8080/static/css/default/img/favicon.ico?v=20150818" rel="shortcut icon" type="image/x-icon" />
 
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/icon.css" />
 
-<link href="http://localhost:8080/static/css/default/common.css?v=20150818" rel="stylesheet" type="text/css" />
-<link href="http://localhost:8080/static/css/default/link.css?v=20150818" rel="stylesheet" type="text/css" />
-<link href="http://localhost:8080/static/js/plug_module/style.css?v=20150818" rel="stylesheet" type="text/css" />
+<link href="{{ static_url("test/img/favicon.ico") }}" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="{{ static_url("test/css/bootstrap.css") }}"  />
+    <link rel="stylesheet" type="text/css" href="{{ static_url("test/css/icon.css") }} " />
+    <link href="{{ static_url("test/css/common.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ static_url("test/css/link.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ static_url("test/css/style.css") }}" rel="stylesheet" type="text/css" />
 
 
 <script type="text/javascript">
@@ -37,13 +36,17 @@
 	var G_ADVANCED_EDITOR_ENABLE = "Y";
 
 	</script>
-<script src="http://localhost:8080/static/js/jquery.2.js?v=20150818" type="text/javascript"></script>
-<script src="http://localhost:8080/static/js/jquery.form.js?v=20150818" type="text/javascript"></script>
-<script src="http://localhost:8080/static/js/plug_module/plug-in_module.js?v=20150818" type="text/javascript"></script>
-<script src="http://localhost:8080/static/js/aws.js?v=20150818" type="text/javascript"></script>
-<script src="http://localhost:8080/static/js/aw_template.js?v=20150818" type="text/javascript"></script>
-<script src="http://localhost:8080/static/js/app.js?v=20150818" type="text/javascript"></script>
-<script type="text/javascript" src="http://localhost:8080/static/js/compatibility.js"></script>
+
+
+<script src="{{ static_url("test/js/jquery.2.js") }}" type="text/javascript"></script>
+    <script src="{{ static_url("test/js/jquery.form.js") }}" type="text/javascript"></script>
+    <script src="{{ static_url("test/js/plug-in_module.js") }}" type="text/javascript"></script>
+    <script src="{{ static_url("test/js/aws.js") }}" type="text/javascript"></script>
+    <script src="{{ static_url("test/js/aw_template.js") }}" type="text/javascript"></script>
+    <script src="{{ static_url("test/js/app.js") }}" type="text/javascript"></script>
+    <script src="{{ static_url("test/js/compatibility.js") }}" type="text/javascript"></script>
+
+
 <!--[if lte IE 8]>
 	<script type="text/javascript" src="http://localhost:8080/static/js/respond.js"></script>
 <![endif]-->
