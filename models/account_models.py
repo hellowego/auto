@@ -41,6 +41,13 @@ class AutoUser(BaseModel):
 			return False
 
 	@classmethod
+	def queryAllUsers(cls):
+		# 创建session对象:
+		session = DBSession()
+		u = session.query(cls).all()
+		return u
+			
+	@classmethod
 	def checkUsername(cls, username):
 		'''
 		检查用户名是否已经被注册

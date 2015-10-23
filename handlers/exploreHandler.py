@@ -11,4 +11,9 @@ from models.account_models import AutoUser
 
 class ExploreHandler(BaseHandler):
 	def get(self):
-		self.render("explore/index.html")
+		question = {'context': 123}
+		# print question.context
+		u = AutoUser.queryAllUsers()
+		questions = {'hi','hello'}
+		answer = 'hi'
+		self.render("explore/index.html", questions=u, answer=answer)

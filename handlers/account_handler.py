@@ -9,7 +9,9 @@ sys.path.append("..")
 from models.account_models import AutoUser
 
 
-
+class OcxTestHandler(BaseHandler):
+	def get(self):
+		self.render("account/ShowOCX_img.html")
 
 class RegisterHandler(BaseHandler):
 	def get(self):
