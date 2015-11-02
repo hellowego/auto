@@ -13,7 +13,7 @@ import tornado.web
 import urls
 from tornado.options import define, options
 from handlers.questionHandler import QuestionModule
-define("port", default=8889, help="run on the given port", type=int)
+define("port", default=8888, help="run on the given port", type=int)
 
 
 class Application(tornado.web.Application):

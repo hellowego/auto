@@ -13,3 +13,4 @@ class QuestionModule(tornado.web.UIModule):
 	def render(self, question, answer):
 		# question = 'hello'
 		return self.render_string("modules/question.html", question=question, answer=answer)
+		
