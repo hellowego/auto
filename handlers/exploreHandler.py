@@ -7,6 +7,7 @@ from baseHandler import BaseHandler
 from tornado import gen
 sys.path.append("..")
 from models.account_models import AutoUser
+from models.question_models import Question
 
 
 class ExploreHandler(BaseHandler):
@@ -14,6 +15,7 @@ class ExploreHandler(BaseHandler):
 		question = {'context': 123}
 		# print question.context
 		u = AutoUser.queryAllUsers()
+		q = Question.queryAllQuestions()
 		questions = {'hi','hello'}
 		answer = 'hi'
-		self.render("explore/index.html", questions=u, answer=answer)
+		self.render("explore/index.html", questions=q)

@@ -51,7 +51,13 @@ class Question(BaseModel):
     received_email_id = Column(Integer, nullable=False)  
     chapter_id         = Column(Integer, nullable=False)
     sort = Column(TINYINT, nullable=False)
-  
+
+    @classmethod
+    def queryAllQuestions(cls):
+        session = DBSession()
+        questions = session.query(cls)
+        return questions
+
 
 
 if __name__ == "__main__":
