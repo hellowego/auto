@@ -59,6 +59,13 @@ class Question(BaseModel):
         return questions
 
 
+    @classmethod
+    def queryById(cls, questionId):
+        session = DBSession()
+        question = session.query(cls).filter(cls.question_id == questionId).first()
+        return question
+
+
 
 if __name__ == "__main__":
     # 创建session对象:
