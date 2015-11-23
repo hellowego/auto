@@ -1,249 +1,92 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
-<meta name="renderer" content="webkit" />
-<title>WeCenter</title>
-<meta name="keywords" content="WeCenter,知识社区,社交社区,问答社区" />
-<meta name="description" content="WeCenter 社交化知识社区"  />
-
-
-<link href="{{ static_url("test/img/favicon.ico") }}" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="{{ static_url("test/css/bootstrap.css") }}"  />
-    <link rel="stylesheet" type="text/css" href="{{ static_url("test/css/icon.css") }} " />
-    <link href="{{ static_url("test/css/common.css") }}" rel="stylesheet" type="text/css" />
-    <link href="{{ static_url("test/css/link.css") }}" rel="stylesheet" type="text/css" />
-    <link href="{{ static_url("test/css/style.css") }}" rel="stylesheet" type="text/css" />
-
-
-<script type="text/javascript">
-	var _733543260B22B920B124842E8DA584D9="";
-	var G_POST_HASH=_733543260B22B920B124842E8DA584D9;
-	var G_INDEX_SCRIPT = "";
-	var G_SITE_NAME = "WeCenter";
-	var G_BASE_URL = "http://localhost:8080";
-	var G_STATIC_URL = "http://localhost:8080/static";
-	var G_UPLOAD_URL = "http://localhost:8080/uploads";
-	var G_USER_ID = "";
-	var G_USER_NAME = "";
-	var G_UPLOAD_ENABLE = "N";
-	var G_UNREAD_NOTIFICATION = 0;
-	var G_NOTIFICATION_INTERVAL = 100000;
-	var G_CAN_CREATE_TOPIC = "";
-	var G_ADVANCED_EDITOR_ENABLE = "Y";
-
-	</script>
-
-
-<script src="{{ static_url("test/js/jquery.2.js") }}" type="text/javascript"></script>
-    <script src="{{ static_url("test/js/jquery.form.js") }}" type="text/javascript"></script>
-    <script src="{{ static_url("test/js/plug-in_module.js") }}" type="text/javascript"></script>
-    <script src="{{ static_url("test/js/aws.js") }}" type="text/javascript"></script>
-    <script src="{{ static_url("test/js/aw_template.js") }}" type="text/javascript"></script>
-    <script src="{{ static_url("test/js/app.js") }}" type="text/javascript"></script>
-    <script src="{{ static_url("test/js/compatibility.js") }}" type="text/javascript"></script>
-
-
-<!--[if lte IE 8]>
-	<script type="text/javascript" src="http://localhost:8080/static/js/respond.js"></script>
-<![endif]-->
-</head>
-<noscript unselectable="on" id="noscript">
-    <div class="aw-404 aw-404-wrap container">
-        <img src="http://localhost:8080/static/common/no-js.jpg">
-        <p>你的浏览器禁用了JavaScript, 请开启后刷新浏览器获得更好的体验!</p>
-    </div>
-</noscript>
-<body>
-	<div class="aw-top-menu-wrap">
-		<div class="container">
-			<!-- logo -->
-			<div class="aw-logo hidden-xs">
-				<a href="http://localhost:8080"></a>
-			</div>
-			<!-- end logo -->
-			<!-- 搜索框 -->
-			<div class="aw-search-box  hidden-xs hidden-sm">
-				<form class="navbar-search" action="http://localhost:8080/search/" id="global_search_form" method="post">
-					<input class="form-control search-query" type="text" placeholder="搜索问题、话题或人" autocomplete="off" name="q" id="aw-search-query" />
-					<span title="搜索" id="global_search_btns" onClick="$('#global_search_form').submit();"><i class="icon icon-search"></i></span>
-					<div class="aw-dropdown">
-						<div class="mod-body">
-							<p class="title">输入关键字进行搜索</p>
-							<ul class="aw-dropdown-list hide"></ul>
-							<p class="search"><span>搜索:</span><a onClick="$('#global_search_form').submit();"></a></p>
-						</div>
-						<div class="mod-footer">
-							<a href="http://localhost:8080/publish" onClick="$('#header_publish').click();" class="pull-right btn btn-mini btn-success publish">发起问题</a>
-						</div>
-					</div>
-				</form>
-			</div>
-			<!-- end 搜索框 -->
-			<!-- 导航 -->
-			<div class="aw-top-nav navbar">
-				<div class="navbar-header">
-				  <button  class="navbar-toggle pull-left">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				  </button>
-				</div>
-				<nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
-				  <ul class="nav navbar-nav">
-										<li><a href="" class="active"><i class="icon icon-list"></i> 发现</a></li>
-
-					<!-- <li><a href="http://localhost:8080/question/" class="">问题</a></li>
-
-					<li><a href="http://localhost:8080/article/" class="">文章</a></li> -->
-
-					<li><a href="http://localhost:8080/topic/" ><i class="icon icon-topic"></i> 话题</a></li>
-															<li>
-						<a style="font-weight:bold;">· · ·</a>
-						<div class="dropdown-list pull-right">
-							<ul id="extensions-nav-list">
-																							</ul>
-						</div>
-					</li>
-				  </ul>
-				</nav>
-			</div>
-			<!-- end 导航 -->
-			<!-- 用户栏 -->
-			<div class="aw-user-nav">
-				<!-- 登陆&注册栏 -->
-									<a class="login btn btn-normal btn-primary" href="http://localhost:8080/account/login/">登录</a>
-					<a class="register btn btn-normal btn-success" href="http://localhost:8080/account/register/">注册</a>								<!-- end 登陆&注册栏 -->
-			</div>
-			<!-- end 用户栏 -->
-			<!-- 发起 -->
-						<!-- end 发起 -->
-		</div>
-	</div>
-	
+{% extends "../base.html" %} 
+{% block body %}
 
 <div class="aw-container-wrap">
-	<div class="container category">
-	<div class="row">
-	<div class="col-sm-12">
-						<dl>
-			<dt><img src="http://localhost:8080/static/css/default/img/default_class_imgs.png" alt="默认分类" /></dt>
-			<dd>
-				<p class="title"><a href="http://localhost:8080/explore/category-1">默认分类</a></p>
-				<span>默认分类描述</span>
-			</dd>
-					</dl>
-											</div>
-</div>
-</div>
-	<div class="container">
-		<div class="row">
-			<div class="aw-content-wrap clearfix">
-				<div class="col-sm-12 col-md-9 aw-main-content">
-					<!-- 新消息通知 -->
-					<div class="aw-mod aw-notification-box hide" id="index_notification">
-						<div class="mod-head common-head">
-							<h2>
+    <div class="container category">
+        <div class="row">
+            <div class="col-sm-12">
+                <dl>
+                    <dt><img src="http://localhost:8080/static/css/default/img/default_class_imgs.png" alt="默认分类" /></dt>
+                    <dd>
+                        <p class="title"><a href="http://localhost:8080/explore/category-1">默认分类</a></p>
+                        <span>默认分类描述</span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="aw-content-wrap clearfix">
+                <div class="col-sm-12 col-md-9 aw-main-content">
+                    <!-- 新消息通知 -->
+                    <div class="aw-mod aw-notification-box hide" id="index_notification">
+                        <div class="mod-head common-head">
+                            <h2>
 								<span class="pull-right"><a href="http://localhost:8080/account/setting/privacy/#notifications" class="text-color-999"><i class="icon icon-setting"></i> 通知设置</a></span>
 								<i class="icon icon-bell"></i>新通知<em class="badge badge-important" name="notification_unread_num"></em>
 							</h2>
-						</div>
-						<div class="mod-body">
-							<ul id="notification_list"></ul>
-						</div>
-						<div class="mod-footer clearfix">
-							<a href="javascript:;" onclick="AWS.Message.read_notification(false, 0, false);" class="pull-left btn btn-mini btn-gray">我知道了</a>
-							<a href="http://localhost:8080/notifications/" class="pull-right btn btn-mini btn-success">查看所有</a>
-						</div>
-					</div>
-					<!-- end 新消息通知 -->
-					<!-- tab切换 -->
-					<ul class="nav nav-tabs aw-nav-tabs active hidden-xs">
-						<li><a href="http://localhost:8080/sort_type-unresponsive">等待回复</a></li>
-						<li><a href="http://localhost:8080/sort_type-hot__day-7" id="sort_control_hot">热门</a></li>
-						<li><a href="http://localhost:8080/is_recommend-1">推荐</a></li>
-						<li class="active"><a href="">最新</a></li>
-
-						<h2 class="hidden-xs"><i class="icon icon-list"></i> 发现</h2>
-					</ul>
-					<!-- end tab切换 -->
-
-					
-					<div class="aw-mod aw-explore-list">
-						<div class="mod-body">
-							<div class="aw-common-list">
-								{% for question in questions %}
-									{% module Question(question) %}
-								{% end %}
-							</div>
-						</div>
-						<div class="mod-footer">
-													</div>
-					</div>
-				</div>
-
-				<!-- 侧边栏 -->
-				<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs hidden-sm">
-										<div class="aw-mod aw-text-align-justify">
-	<div class="mod-head">
-		<a href="http://localhost:8080/topic/channel-hot" class="pull-right">更多 &gt;</a>
-		<h3>热门话题</h3>
-	</div>
-	<div class="mod-body">
-							</div>
+                        </div>
+                        <div class="mod-body">
+                            <ul id="notification_list"></ul>
+                        </div>
+                        <div class="mod-footer clearfix">
+                            <a href="javascript:;" onclick="AWS.Message.read_notification(false, 0, false);" class="pull-left btn btn-mini btn-gray">我知道了</a>
+                            <a href="http://localhost:8080/notifications/" class="pull-right btn btn-mini btn-success">查看所有</a>
+                        </div>
+                    </div>
+                    <!-- end 新消息通知 -->
+                    <!-- tab切换 -->
+                    <ul class="nav nav-tabs aw-nav-tabs active hidden-xs">
+                        <li><a href="http://localhost:8080/sort_type-unresponsive">等待回复</a></li>
+                        <li><a href="http://localhost:8080/sort_type-hot__day-7" id="sort_control_hot">热门</a></li>
+                        <li><a href="http://localhost:8080/is_recommend-1">推荐</a></li>
+                        <li class="active"><a href="">最新</a></li>
+                        <h2 class="hidden-xs"><i class="icon icon-list"></i> 发现</h2>
+                    </ul>
+                    <!-- end tab切换 -->
+                    <div class="aw-mod aw-explore-list">
+                        <div class="mod-body">
+                            <div class="aw-common-list">
+                                {% for question in questions %} {% module Question(question) %} {% end %}
+                            </div>
+                        </div>
+                        <div class="mod-footer">
+                        </div>
+                    </div>
+                </div>
+                <!-- 侧边栏 -->
+                <div class="col-sm-12 col-md-3 aw-side-bar hidden-xs hidden-sm">
+                    <div class="aw-mod aw-text-align-justify">
+                        <div class="mod-head">
+                            <a href="http://localhost:8080/topic/channel-hot" class="pull-right">更多 &gt;</a>
+                            <h3>热门话题</h3>
+                        </div>
+                        <div class="mod-body">
+                        </div>
+                    </div>
+                    <div class="aw-mod aw-text-align-justify">
+                        <div class="mod-head">
+                            <a href="http://localhost:8080/people/" class="pull-right">更多 &gt;</a>
+                            <h3>热门用户</h3>
+                        </div>
+                        <div class="mod-body">
+                            <dl>
+                                <dt class="pull-left aw-border-radius-5">
+                                    <a href="http://localhost:8080/people/admin"><img alt="" src="http://localhost:8080/static/common/avatar-mid-img.png" /></a>
+                                </dt>
+                                <dd class="pull-left">
+                                    <a href="http://localhost:8080/people/admin" data-id="1" class="aw-user-name">admin						</a>
+                                    <p class="signature"></p>
+                                    <p><b>0</b> 个问题, <b>0</b> 次赞同</p>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <!-- end 侧边栏 -->
+            </div>
+        </div>
+    </div>
 </div>
-					<div class="aw-mod aw-text-align-justify">
-	<div class="mod-head">
-		<a href="http://localhost:8080/people/" class="pull-right">更多 &gt;</a>
-		<h3>热门用户</h3>
-	</div>
-	<div class="mod-body">
-					
-		<dl>
-			<dt class="pull-left aw-border-radius-5">
-				<a href="http://localhost:8080/people/admin"><img alt="" src="http://localhost:8080/static/common/avatar-mid-img.png" /></a>
-			</dt>
-			<dd class="pull-left">
-				<a href="http://localhost:8080/people/admin" data-id="1" class="aw-user-name">admin						</a>
-				<p class="signature"></p>
-				<p><b>0</b> 个问题, <b>0</b> 次赞同</p>
-			</dd>
-		</dl>
-					</div>
-</div>				</div>
-				<!-- end 侧边栏 -->
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="aw-footer-wrap">
-	<div class="aw-footer">
-		Copyright © 2015, All Rights Reserved</span>
-
-		<span class="hidden-xs">Powered By <a href="http://www.wecenter.com/?copyright" target="blank">WeCenter 3.1.4</a></span>
-
-			</div>
-</div>
-
-<a class="aw-back-top hidden-xs" href="javascript:;" onclick="$.scrollTo(1, 600, {queue:true});"><i class="icon icon-up"></i></a>
-
-
-<!-- DO NOT REMOVE -->
-<div id="aw-ajax-box" class="aw-ajax-box"></div>
-
-<div style="display:none;" id="__crond">
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$('#__crond').html(unescape('%3Cimg%20src%3D%22' + G_BASE_URL + '/crond/run/1444656512%22%20width%3D%221%22%20height%3D%221%22%20/%3E'));
-		});
-	</script>
-</div>
-
-<!-- Escape time: 0.087581872940063 --><!-- / DO NOT REMOVE -->
-
-</body>
-</html>
+{% end %}

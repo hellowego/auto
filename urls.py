@@ -13,8 +13,8 @@ from handlers.questionHandler import QuestionHandler
 
 urls = [
 	url(r'/', IndexHandler, name='index'),
-	(r"/register", RegisterHandler),
-	(r"/login", LoginHandler),
+	(r"/account/register", RegisterHandler),
+	(r"/account/login", LoginHandler),
 	(r"/check_username", CheckUsernameHandler),
 	(r"/check_email", CheckEmailHandler),
 	(r"/explore", ExploreHandler),
