@@ -46,6 +46,16 @@ class AutoUser(BaseModel):
 		session = DBSession()
 		u = session.query(cls).all()
 		return u
+
+	@classmethod
+	def queryByUserId(cls, userid):
+		session = DBSession()
+		u = session.query(cls).filter(cls.id==id).first()
+		if not u:
+			return False
+		else:
+			return u
+
 			
 	@classmethod
 	def checkUsername(cls, username):

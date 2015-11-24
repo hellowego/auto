@@ -105,12 +105,14 @@
             </div>
             <!-- end 导航 -->
             <!-- 用户栏 -->
-            <div class="aw-user-nav">
-                <!-- 登陆&注册栏 -->
-                <a class="login btn btn-normal btn-primary" href="http://localhost:8888/account/login">登录</a>
-                <a class="register btn btn-normal btn-success" href="http://localhost:8888/account/register">注册</a>
-                <!-- end 登陆&注册栏 -->
-            </div>
+            {% if current_user %}
+                <div class="aw-user-nav">
+                    <!-- 登陆&注册栏 -->
+                    <a class="login btn btn-normal btn-primary" href="http://localhost:8888/account/login">登录</a>
+                    <a class="register btn btn-normal btn-success" href="http://localhost:8888/account/register">注册</a>
+                    <!-- end 登陆&注册栏 -->
+                </div>
+            {% end %}
             <!-- end 用户栏 -->
             <!-- 发起 -->
             <!-- end 发起 -->
