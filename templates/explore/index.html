@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <dl>
-                    <dt><img src="http://localhost:8080/static/css/default/img/default_class_imgs.png" alt="默认分类" /></dt>
+                    <dt><img src="{{ static_url("test/img/default_class_imgs.png") }}  " alt="默认分类" /></dt>
                     <dd>
                         <p class="title"><a href="http://localhost:8080/explore/category-1">默认分类</a></p>
                         <span>默认分类描述</span>
@@ -73,7 +73,7 @@
                         <div class="mod-body">
                             <dl>
                                 <dt class="pull-left aw-border-radius-5">
-                                    <a href="http://localhost:8080/people/admin"><img alt="" src="http://localhost:8080/static/common/avatar-mid-img.png" /></a>
+                                    <a href="http://localhost:8080/people/admin"><img alt="" src=" {{ static_url("test/img/avatar-mid-img.png") }} " /></a>
                                 </dt>
                                 <dd class="pull-left">
                                     <a href="http://localhost:8080/people/admin" data-id="1" class="aw-user-name">admin						</a>

@@ -105,7 +105,25 @@
             </div>
             <!-- end 导航 -->
             <!-- 用户栏 -->
-            {% if current_user %}
+            {% if  current_user %}
+                <!-- 用户栏 -->
+                <div class="aw-user-nav">
+                    <!-- 登陆&注册栏 -->
+                    <a href="/people/admin" class="aw-user-nav-dropdown">
+                        <img alt="admin" src="{{ static_url("test/img/avatar-mid-img.png") }} " />
+                    </a>
+                    <div class="aw-dropdown dropdown-list pull-right">
+                        <ul class="aw-dropdown-list">
+                            <li><a href="/inbox/"><i class="icon icon-inbox"></i> 私信<span class="badge badge-important hide" id="inbox_unread">0</span></a></li>
+                            <li class="hidden-xs"><a href="/account/setting/profile/"><i class="icon icon-setting"></i> 设置</a></li>
+                            <li class="hidden-xs"><a href="/admin/"><i class="icon icon-job"></i> 管理</a></li>
+                            <li><a href="/account/logout"><i class="icon icon-logout"></i> 退出</a></li>
+                        </ul>
+                    </div>
+                    <!-- end 登陆&注册栏 -->
+                </div>
+                <!-- end 用户栏 -->
+            {% else %}
                 <div class="aw-user-nav">
                     <!-- 登陆&注册栏 -->
                     <a class="login btn btn-normal btn-primary" href="http://localhost:8888/account/login">登录</a>

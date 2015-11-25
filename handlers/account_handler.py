@@ -7,11 +7,9 @@ from baseHandler import BaseHandler
 from tornado import gen
 sys.path.append("..")
 from models.account_models import AutoUser
+from models.question_models import Question
 
 
-class OcxTestHandler(BaseHandler):
-	def get(self):
-		self.render("account/ShowOCX_img.html")
 
 class RegisterHandler(BaseHandler):
 	def get(self):
@@ -90,18 +88,25 @@ class LoginHandler(BaseHandler):
 		password = self.get_argument("password")
 		print username
 		print password
-		bl = AutoUser.checkUserLogin(username, password)
-		if bl :
+		u = AutoUser.checkUserLogin(username, password)
+		if u :
 			print 'right'
-			rsm = {"url":"/"}
+			rsm = {"url":"/explore"}
 			result = {"rsm" : rsm, "errno" : 1, "err" : ""}
+			self.set_secure_cookie("current_user", str(u.id))
+			print "current_user" ," ", str(u.id)
+
 		else :
 			print 'wrong'
 			result = {"errno" : -1, "err" : "用户名或者密码错误"}
 
 		self.write(result)
 
-
+class LogoutHandler(BaseHandler):
+	def get(self):
+		self.clear_cookie("current_user")
+		q = Question.queryAllQuestions()
+		self.redirect("/explore")
 
 
 class CheckUsernameHandler(BaseHandler):

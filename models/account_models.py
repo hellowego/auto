@@ -50,9 +50,9 @@ class AutoUser(BaseModel):
 	@classmethod
 	def queryByUserId(cls, userid):
 		session = DBSession()
-		u = session.query(cls).filter(cls.id==id).first()
+		u = session.query(cls).filter(cls.id==userid).first()
 		if not u:
-			return False
+			return None
 		else:
 			return u
 
@@ -112,7 +112,7 @@ class AutoUser(BaseModel):
 				return False
 		# print 'hi'	
 		bl = AutoUser.checkPassword(password, u.hashed_password)
-		return bl
+		return u
 		
 
 
@@ -136,7 +136,8 @@ if __name__ == "__main__":
 	# else:
 	# 	print 'wrong username or password'
 	# u = AutoUser.checkEmail("hellowego@gmail.com");
-	u = AutoUser.addUser('hi', 'aa1@a.com', '1')
+	# u = AutoUser.addUser('hi', 'aa1@a.com', '1')
+	u = AutoUser.queryByUserId(1)
 	if u:
 		print 'register'
 	else:
