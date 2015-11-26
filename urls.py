@@ -12,7 +12,7 @@ from handlers.questionHandler import QuestionHandler
 
 
 urls = [
-	url(r'/', IndexHandler, name='index'),
+	url(r'/', ExploreHandler),
 	(r"/account/register", RegisterHandler),
 	(r"/account/login", LoginHandler),
 	(r"/account/logout", LogoutHandler),
