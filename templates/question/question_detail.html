@@ -1,178 +1,192 @@
-{% extends "../base.html" %}
-
-
-{% block body %}
-	
-	
-
+{% extends "../base.html" %} {% block body %}
 <div class="aw-container-wrap">
-		<div class="container">
-		<div class="row">
-			<div class="aw-content-wrap clearfix">
-				<div class="col-sm-12 col-md-9 aw-main-content">
-					<!-- 话题推荐bar -->
-										<!-- 话题推荐bar -->
-					<!-- 话题bar -->
-					<div class="aw-mod aw-topic-bar" id="question_topic_editor" data-type="question" data-id="1">
-						<div class="tag-bar clearfix">
-														
-													</div>
-					</div>
-					<!-- end 话题bar -->
-					<div class="aw-mod aw-question-detail aw-item">
-						<div class="mod-head">
-							<h1>
+    <div class="container">
+        <div class="row">
+            <div class="aw-content-wrap clearfix">
+                <div class="col-sm-12 col-md-9 aw-main-content">
+                    <!-- 话题推荐bar -->
+                    <!-- 话题推荐bar -->
+                    <!-- 话题bar -->
+                    <div class="aw-mod aw-topic-bar" id="question_topic_editor" data-type="question" data-id="1">
+                        <div class="tag-bar clearfix">
+                        </div>
+                    </div>
+                    <!-- end 话题bar -->
+                    <div class="aw-mod aw-question-detail aw-item">
+                        <div class="mod-head">
+                            <h1>
 								首页在哪？							</h1>
-
-													</div>
-						<div class="mod-body">
-							<div class="content markitup-box">
-								{{question.question_detail}}
-															</div>
-																				</div>
-						<div class="mod-footer">
-							<div class="meta">
-								<span class="text-color-999">2015-10-11</span>
-
-								<a data-id="1" data-type="question" class="aw-add-comment text-color-999 " data-comment-count="0" data-first-click="hide"><i class="icon icon-comment"></i>添加评论</a>
-
-								
-																
-																<div class="pull-right more-operate">
-									
-									<!-- <a class="text-color-999"  onclick="AWS.dialog('shareOut', {item_type:'question', item_id:1});"> -->
-									<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
-										<i class="icon icon-share"></i>分享									</a>
-									<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
-										<ul class="aw-dropdown-list">
-											<li><a onclick="AWS.User.share_out({webid: 'tsina', content: $(this).parents('.aw-question-detail').find('.markitup-box')});"><i class="icon icon-weibo"></i> 微博</a></li>
-											<li><a onclick="AWS.User.share_out({webid: 'qzone', content: $(this).parents('.aw-question-detail')});"><i class="icon icon-qzone"></i> QZONE</a></li>
-											<li><a onclick="AWS.User.share_out({webid: 'weixin', content: $(this).parents('.aw-question-detail')});"><i class="icon icon-wechat"></i> 微信</a></li>
-										</ul>
-									</div>
-
-																	</div>
-							</div>
+                        </div>
+                        <div class="mod-body">
+                            <div class="content markitup-box">
+                                {{question.question_detail}}
+                            </div>
+                        </div>
+                        <div class="mod-footer">
+                            <div class="meta">
+                                <span class="text-color-999">2015-10-11</span>
+                                <a data-id="1" data-type="question" class="aw-add-comment text-color-999 " data-comment-count="0" data-first-click="hide"><i class="icon icon-comment"></i>添加评论</a>
+                                <div class="pull-right more-operate">
+                                    <!-- <a class="text-color-999"  onclick="AWS.dialog('shareOut', {item_type:'question', item_id:1});"> -->
+                                    <a class="text-color-999 dropdown-toggle" data-toggle="dropdown">
+                                        <i class="icon icon-share"></i>分享 </a>
+                                    <div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+                                        <ul class="aw-dropdown-list">
+                                            <li><a onclick="AWS.User.share_out({webid: 'tsina', content: $(this).parents('.aw-question-detail').find('.markitup-box')});"><i class="icon icon-weibo"></i> 微博</a></li>
+                                            <li><a onclick="AWS.User.share_out({webid: 'qzone', content: $(this).parents('.aw-question-detail')});"><i class="icon icon-qzone"></i> QZONE</a></li>
+                                            <li><a onclick="AWS.User.share_out({webid: 'weixin', content: $(this).parents('.aw-question-detail')});"><i class="icon icon-wechat"></i> 微信</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 站内邀请 -->
+                        <div class="aw-invite-box hide">
+                            <div class="mod-head clearfix">
+                                <div class="search-box pull-left">
+                                    <input id="invite-input" class="form-control" type="text" placeholder="搜索你想邀请的人..." />
+                                    <div class="aw-dropdown">
+                                        <p class="title">没有找到相关结果</p>
+                                        <ul class="aw-dropdown-list"></ul>
+                                    </div>
+                                    <i class="icon icon-search"></i>
+                                </div>
+                                <div class="invite-list pull-left hide">
+                                    已邀请:
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end 站内邀请 -->
+                        <!-- 相关链接 -->
+                        <div class="aw-question-related-box hide">
+                            <form action="http://localhost:8888/publish/ajax/save_related_link/" method="post" onsubmit="return false" id="related_link_form">
+                                <div class="mod-head">
+                                    <h2>与内容相关的链接</h2>
+                                </div>
+                                <div class="mod-body clearfix">
+                                    <input type="hidden" name="item_id" value="1" />
+                                    <input type="text" class="form-control pull-left" name="link" value="" />
+                                    <a onclick="AWS.ajax_post($('#related_link_form'));" class="pull-left btn btn-success">提交</a>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- end 相关链接 -->
+                    </div>
+                    <div class="aw-mod aw-question-comment">
+                        <div class="mod-head">
+                            <ul class="nav nav-tabs aw-nav-tabs active">
+                                <h2 class="hidden-xs">0 个回复</h2>
+                            </ul>
+                        </div>
+                        <div class="mod-body aw-feed-list">
+                        </div>
+                        <div class="mod-footer">
+                            <div class="aw-load-more-content hide" id="load_uninterested_answers">
+                                <span class="text-color-999 aw-alert-box text-color-999" href="javascript:;" tabindex="-1" onclick="AWS.alert('被折叠的回复是被你或者被大多数用户认为没有帮助的回复');">为什么被折叠?</span>
+                                <a href="javascript:;" class="aw-load-more-content"><span class="hide_answers_count">0</span> 个回复被折叠</a>
+                            </div>
+                            <div class="hide aw-feed-list" id="uninterested_answers_list"></div>
+                        </div>
+                    </div>
+                    <!-- end 问题详细模块 -->
+                    <!-- 回复编辑器 -->
+                    {% if  current_user %}
+						<div class="aw-mod aw-replay-box question">
+						    <a name="answer_form"></a>
+						    <form action="http://wenda.wecenter.com/question/ajax/save_answer/" onsubmit="return false;" method="post" id="answer_form" class="question_answer_form">
+						        <input type="hidden" name="post_hash" value="ff5d221582912818" />
+						        <input type="hidden" name="question_id" value="28120" />
+						        <input type="hidden" name="attach_access_key" value="34aaf3624ad8468448db53cdc5548bc7" />
+						        <div class="mod-head">
+						            <a href="http://wenda.wecenter.com/people/" class="aw-user-name"><img alt="hi" src="http://wenda.wecenter.com/static/common/avatar-mid-img.png" /></a>
+						            <p>
+						                <label class="pull-right">
+						                    <input type="checkbox" value="1" name="anonymous" /> 匿名回复 </label>
+						                <label class="pull-right">
+						                    <input type="checkbox" checked="checked" value="1" name="auto_focus" /> 关注问题 </label>
+						                <label class="pull-right">
+						                    <a href="http://wenda.wecenter.com/integral/rule/" target="_blank">积分规则</a> </label>
+						                hi </p>
+						        </div>
+						        <div class="mod-body">
+						            <div class="aw-mod aw-editor-box">
+						                <div class="mod-head">
+						                    <div class="wmd-panel">
+						                        <textarea class="wmd-input form-control autosize editor" id="wmd-input" rows="15" name="answer_content"></textarea>
+						                    </div>
+						                </div>
+						                <div class="mod-body clearfix">
+						                    <a href="javascript:;" onclick="AWS.ajax_post($('#answer_form'), AWS.ajax_processer, 'reply_question');" class="btn btn-normal btn-success pull-right btn-reply">回复</a>
+						                    <span class="pull-right text-color-999" id="answer_content_message">&nbsp;</span>
+						                    <div class="aw-upload-box">
+						                        <a class="btn btn-default">上传附件</a>
+						                        <div class="upload-container"></div>
+						                        <span class="text-color-999 aw-upload-tips hidden-xs">允许 : jpg,jpeg,png,zip,rar,7z</span>
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						    </form>
 						</div>
-						<!-- 站内邀请 -->
-						<div class="aw-invite-box hide">
-							<div class="mod-head clearfix">
-								<div class="search-box pull-left">
-									<input id="invite-input" class="form-control" type="text"  placeholder="搜索你想邀请的人..."/>
-									<div class="aw-dropdown">
-										<p class="title">没有找到相关结果</p>
-										<ul class="aw-dropdown-list"></ul>
-									</div>
-									<i class="icon icon-search"></i>
-								</div>
-								<div class="invite-list pull-left hide">
-									已邀请:
-																	</div>
-							</div>
-													</div>
-						<!-- end 站内邀请 -->
-						<!-- 相关链接 -->
-						<div class="aw-question-related-box hide">
-							<form action="http://localhost:8888/publish/ajax/save_related_link/" method="post" onsubmit="return false" id="related_link_form">
-								<div class="mod-head">
-									<h2>与内容相关的链接</h2>
-								</div>
-								<div class="mod-body clearfix">
-									<input type="hidden" name="item_id" value="1" />
-									<input type="text" class="form-control pull-left" name="link" value="" />
-
-									<a onclick="AWS.ajax_post($('#related_link_form'));" class="pull-left btn btn-success">提交</a>
-								</div>
-							</form>
-						</div>
-						<!-- end 相关链接 -->
-					</div>
-
-										<div class="aw-mod aw-question-comment">
-						<div class="mod-head">
-							<ul class="nav nav-tabs aw-nav-tabs active">
-								
-								<h2 class="hidden-xs">0 个回复</h2>
-							</ul>
-						</div>
-						<div class="mod-body aw-feed-list">
-													</div>
-						<div class="mod-footer">
-															<div class="aw-load-more-content hide" id="load_uninterested_answers">
-									<span class="text-color-999 aw-alert-box text-color-999" href="javascript:;" tabindex="-1" onclick="AWS.alert('被折叠的回复是被你或者被大多数用户认为没有帮助的回复');">为什么被折叠?</span>
-									<a href="javascript:;" class="aw-load-more-content"><span class="hide_answers_count">0</span> 个回复被折叠</a>
-								</div>
-
-								<div class="hide aw-feed-list" id="uninterested_answers_list"></div>
-													</div>
-
-											</div>
-										<!-- end 问题详细模块 -->
-
-										<!-- 回复编辑器 -->
-					<div class="aw-mod aw-replay-box question">
-						<a name="answer_form"></a>
-												<p align="center">要回复问题请先<a href="http://localhost:8888/account/login/">登录</a>或<a href="http://localhost:8888/account/register/">注册</a></p>
-											</div>
-					<!-- end 回复编辑器 -->
-									</div>
-				<!-- 侧边栏 -->
-				<div class="col-md-3 aw-side-bar hidden-xs hidden-sm">
-					<!-- 发起人 -->
-										<div class="aw-mod">
-						<div class="mod-head">
-							<h3>发起人</h3>
-						</div>
-						<div class="mod-body">
-							<dl>
-								<dt class="pull-left aw-border-radius-5">
-									<a href="http://localhost:8888/people/admin"><img alt="admin" src="{{ static_url("test/img/avatar-mid-img.png") }} " /></a>
-								</dt>
-								<dd class="pull-left">
-									<a class="aw-user-name" href="http://localhost:8888/people/admin" data-id="1">admin</a>
-																											<p></p>
-								</dd>
-							</dl>
-						</div>
-					</div>
-										<!-- end 发起人 -->
-
-					
-					
-					
-					<!-- 问题状态 -->
-					<div class="aw-mod question-status">
-						<div class="mod-head">
-							<h3>问题状态</h3>
-						</div>
-						<div class="mod-body">
-							<ul>
-								<li>最新活动: <span class="aw-text-color-blue">2015-10-11 20:44</span></li>
-								<li>浏览: <span class="aw-text-color-blue">7</span></li>
-								<li>关注: <span class="aw-text-color-blue">1</span> 人</li>
-
-								<li class="aw-border-radius-5" id="focus_users"></li>
-							</ul>
-						</div>
-					</div>
-					<!-- end 问题状态 -->
-				</div>
-				<!-- end 侧边栏 -->
-			</div>
-		</div>
-	</div>
+                    
+                    {% else %}
+	                    <div class="aw-mod aw-replay-box question">
+	                        <a name="answer_form"></a>
+	                        <p align="center">要回复问题请先<a href="http://localhost:8888/account/login">登录</a>或<a href="http://localhost:8888/account/register">注册</a></p>
+	                    </div>
+                    {% end %}
+                    <!-- end 回复编辑器 -->
+                </div>
+                <!-- 侧边栏 -->
+                <div class="col-md-3 aw-side-bar hidden-xs hidden-sm">
+                    <!-- 发起人 -->
+                    <div class="aw-mod">
+                        <div class="mod-head">
+                            <h3>发起人</h3>
+                        </div>
+                        <div class="mod-body">
+                            <dl>
+                                <dt class="pull-left aw-border-radius-5">
+                                    <a href="http://localhost:8888/people/admin"><img alt="admin" src="{{ static_url(" test/img/avatar-mid-img.png ") }} " /></a>
+                                </dt>
+                                <dd class="pull-left">
+                                    <a class="aw-user-name" href="http://localhost:8888/people/admin" data-id="1">admin</a>
+                                    <p></p>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <!-- end 发起人 -->
+                    <!-- 问题状态 -->
+                    <div class="aw-mod question-status">
+                        <div class="mod-head">
+                            <h3>问题状态</h3>
+                        </div>
+                        <div class="mod-body">
+                            <ul>
+                                <li>最新活动: <span class="aw-text-color-blue">2015-10-11 20:44</span></li>
+                                <li>浏览: <span class="aw-text-color-blue">7</span></li>
+                                <li>关注: <span class="aw-text-color-blue">1</span> 人</li>
+                                <li class="aw-border-radius-5" id="focus_users"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end 问题状态 -->
+                </div>
+                <!-- end 侧边栏 -->
+            </div>
+        </div>
+    </div>
 </div>
-
 <script type="text/javascript">
-	var ATTACH_ACCESS_KEY = '5872fd44f7b3246d3b46e1a3c22d505e';
-	var ITEM_IDS = '';
-	var COMMENT_UNFOLD = '';
-	var QUESTION_ID = 1;
-	var UNINTERESTED_COUNT = 5;
-	var ANSWER_EDIT_TIME = 30;
-	var USER_ANSWERED = '';
-	var UPLOAD_ENABLE = 'N';
-	var ANSWER_TYPE = 'answer';
+var ATTACH_ACCESS_KEY = '5872fd44f7b3246d3b46e1a3c22d505e';
+var ITEM_IDS = '';
+var COMMENT_UNFOLD = '';
+var QUESTION_ID = 1;
+var UNINTERESTED_COUNT = 5;
+var ANSWER_EDIT_TIME = 30;
+var USER_ANSWERED = '';
+var UPLOAD_ENABLE = 'N';
+var ANSWER_TYPE = 'answer';
 </script>
-
 {% end %}
