@@ -19,3 +19,18 @@ class QuestionHandler(BaseHandler):
 	def get(self, questionId):
 		question = Question.queryById(questionId)
 		self.render("question/question_detail.html", question=question)
+
+
+
+class AnswerQuestionHandler(BaseHandler):
+	def post(self):
+		answerContent = self.get_argument("answer_Content")
+		questionId = 1
+		userId = self.get_current_user_id()
+		# userid is false need login 
+
+
+
+
+	
+		
