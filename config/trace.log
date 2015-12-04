@@ -1,0 +1,24 @@
+Fri, 04 Dec 2015 15:13:28 logtest.py[line:19] DEBUG This is debug message
+Fri, 04 Dec 2015 15:13:28 logtest.py[line:20] INFO This is info message
+Fri, 04 Dec 2015 15:13:28 logtest.py[line:21] WARNING This is warning message
+Fri, 04 Dec 2015 15:14:31 logtest.py[line:19] DEBUG This is debug message
+Fri, 04 Dec 2015 15:14:31 logtest.py[line:20] INFO This is info message
+Fri, 04 Dec 2015 15:14:31 logtest.py[line:21] WARNING This is warning message
+2015-12-04 15:15:25,651 logtest.py[line:19] DEBUG This is debug message
+2015-12-04 15:15:25,651 logtest.py[line:20] INFO This is info message
+2015-12-04 15:15:25,651 logtest.py[line:21] WARNING This is warning message
+2015-12-04 15:16:54,614 logtest.py[line:19] [DEBUG] This is debug message
+2015-12-04 15:16:54,614 logtest.py[line:20] [INFO] This is info message
+2015-12-04 15:16:54,614 logtest.py[line:21] [WARNING] This is warning message
+2015-12-04 15:17:42,625 logtest.py[line:19] [DEBUG] This is debug message
+2015-12-04 15:17:42,625 logtest.py[line:20] [INFO ] This is info message
+2015-12-04 15:17:42,625 logtest.py[line:21] [WARNING] This is warning message
+2015-12-04 15:18:01,216 logtest.py[line:19] [DEBUG                              ] This is debug message
+2015-12-04 15:18:01,216 logtest.py[line:20] [INFO                               ] This is info message
+2015-12-04 15:18:01,216 logtest.py[line:21] [WARNING                            ] This is warning message
+2015-12-04 15:18:35,131 logtest.py[line:19] [DEBUG     ] This is debug message
+2015-12-04 15:18:35,131 logtest.py[line:20] [INFO      ] This is info message
+2015-12-04 15:18:35,131 logtest.py[line:21] [WARNING   ] This is warning message
+2015-12-04 15:18:54,687 logtest.py[line:19] [DEBUG   ] This is debug message
+2015-12-04 15:18:54,687 logtest.py[line:20] [INFO    ] This is info message
+2015-12-04 15:18:54,687 logtest.py[line:21] [WARNING ] This is warning message

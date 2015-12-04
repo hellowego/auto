@@ -9,7 +9,7 @@ import logging.config
 if __name__ == "__main__":
 	print 'hi'
 	
-	# logging.config.fileConfig("logging.config")
+	logging.config.fileConfig("logger.config")
 	# logger = logging.getLogger("root")
 
 
