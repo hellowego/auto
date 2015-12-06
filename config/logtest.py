@@ -6,6 +6,8 @@ import logging
 import logging.config
 
 
+
+
 if __name__ == "__main__":
 	print 'hi'
 	
@@ -13,8 +15,8 @@ if __name__ == "__main__":
 	# logger = logging.getLogger("root")
 
 
-	# logger = logging.getLogger("trace")
-	logger = logging.getLogger("result")
+	logger = logging.getLogger("trace")
+	# logger = logging.getLogger("result")
 
 	logger.debug('This is debug message')
 	logger.info('This is info message')
