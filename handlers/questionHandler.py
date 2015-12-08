@@ -15,10 +15,27 @@ class QuestionModule(tornado.web.UIModule):
 		return self.render_string("modules/question.html", question=question)
 		
 
+
 class QuestionHandler(BaseHandler):
+	'''
+	具体的一个问题页面
+	'''
 	def get(self, questionId):
 		question = Question.queryById(questionId)
 		self.render("question/question_detail.html", question=question)
+
+
+class AnswerAddHandler(BaseHandler):
+	'''
+	问题回复
+	'''
+	def post(self):
+		answerContent = self.get_argument("answer_Content")
+		print answerContent
+		questionId = 1
+		userId = self.get_current_user_id()
+		# userid is false need login 
+
 
 
 

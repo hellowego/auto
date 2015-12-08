@@ -135,7 +135,7 @@ var AWS =
 	ajax_post: function(formEl, processer, type) // 表单对象，用 jQuery 获取，回调函数名
 	{
 
-		// alert(_t('网络链接异常11'));
+		alert(_t('网络链接异常11111'));
 
 		// 若有编辑器的话就更新编辑器内容再提交
 		if (typeof CKEDITOR != 'undefined')
@@ -163,7 +163,7 @@ var AWS =
 		}
 		else if (type == 'reply_question')
 		{
-			alert(_t('网络链接异常4'));
+			alert(_t('网络链接异常411'));
 			AWS.loading('show');
 
 			$('.btn-reply').addClass('disabled');
