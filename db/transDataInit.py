@@ -6,9 +6,9 @@ import cx_Oracle as orcl
 import pymongo
 import json
 import time
+import datetime
 
 if __name__ == "__main__":
-	
 
 	# mongodb
 	client = pymongo.MongoClient()
@@ -20,6 +20,9 @@ if __name__ == "__main__":
 	collection.drop()
 	signal.drop()
 	dbfetch.drop()
+	db.dealdate.drop()
+	db.dealdate.insert({'datebatchno':'0101', 'updatetime':datetime.datetime.now(), 'movetimes':'0'})
+	db.moverecord.drop()
 	
 
 	
