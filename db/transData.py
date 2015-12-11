@@ -78,7 +78,7 @@ if __name__ == "__main__":
 		cursor = con.cursor()
 		# sql = "SELECT * FROM th_trade_right where id like '010%'"
 		sql = "SELECT * FROM th_trade_right "
-		cursor.execute(sql);
+		cursor.execute(sql)
 		result = cursor.fetchmany(2)
 		# result = cursor.fetchall()
 
