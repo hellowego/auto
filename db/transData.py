@@ -56,6 +56,7 @@ if __name__ == "__main__":
 	# column = ['cardno', 'asn', 'cardtypecode', 'cardsurfacecode', 'manucode', 'chiptypecode', 'appcode', 'appverno', 'deposit', 'cost', 'presupplymoney', 'custrectimecode','selltime', 'sellchannelcode', 'deptno', 'staffno', 'state', 'validenddate', 'usetag','serstarttime', 'serstaketag', 'servicemoney', 'updatestaffno', 'updatetime', 'rsrv1', 'rsrv2','rsrv3', 'remark']
 	# print column
 	
+	
 	for i in range(2):
 		# 获取要搬移数据的日期
 		dealdateItme = db.dealdate.find_one()
