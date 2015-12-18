@@ -17,86 +17,75 @@ import pymongo
 import json
 import time
 import datetime
+import collections
+import gc
 
 if __name__ == "__main__":
-	# print(orcl.clientversion())
-	# conn = cx_Oracle.connect('uopsett_b_xz/uopsett@192.168.109.2/xz_test')
-	# username = "uopsett_b_xz"
-	# passwd = "uopsett"
-	# host = "192.168.109.2"
-	# port = "1521"
-	# sid = "xzttest"
-
-	# username = "uopsett_b_cz"
+	'''
+	dealdate 日期批次表，记录下一个要搬移的日期批次，搬移的总次数
+	signal 记录每次插入mongodb的日志，插入量、开始时间、结束时间、消耗时间、所属的日期批次、插入后的数据量
+	moverecord 记录每个日期批次搬移数目和时间 
+	th_trade_right 消费记录 
+	
+	'''
+	
 	username = "uopsett_b_sz"
 	passwd = "uopsett"
-	# host = "10.0.4.131"
 	host = "172.16.128.250"
 	port = "1521"
-	# sid = "lct"
 	sid = "szt"
 	dsn = orcl.makedsn(host, port, sid)
 	con = orcl.connect(username, passwd, dsn)
 
 	# mongodb
 	client = pymongo.MongoClient()
+	#db = client.test
 	db = client.one
-	# collection = db.tf_f_cardrec
 	collection = db.th_trade_right
 	signal = db.signal
 	dbfetch = db.dbfetch
 	dealdateCollection = db.dealdate
 	
-	# nj th_trade_right
-	column = ['ID','CARDNO','RECTYPE','ICTRADETYPECODE','ASN','CARDTRADENO','SAMNO','PSAMVERNO','POSNO','POSTRADENO','TRADEDATE','TRADETIME','PREMONEY','TRADEMONEY','SMONEY','TRADECOMFEE','BALUNITNO','CALLINGNO','CORPNO','DEPARTNO','CALLINGSTAFFNO','CITYNO','TAC','TACSTATE','MAC','SOURCEID','BATCHNO','DEALTIME','INLISTTIME','INHISTIME','RSRVCHAR']
-	
-	# tp_dealtime
-	#column = ['dealdate', 'dealhour', 'usetage', 'updatetime', 'remark']
-	# tf_f_cardrec
-	# column = ['cardno', 'asn', 'cardtypecode', 'cardsurfacecode', 'manucode', 'chiptypecode', 'appcode', 'appverno', 'deposit', 'cost', 'presupplymoney', 'custrectimecode','selltime', 'sellchannelcode', 'deptno', 'staffno', 'state', 'validenddate', 'usetag','serstarttime', 'serstaketag', 'servicemoney', 'updatestaffno', 'updatetime', 'rsrv1', 'rsrv2','rsrv3', 'remark']
-	# print column
-	
-	
-	for i in range(2):
+	# nj th_trade_right	
+	column = ['ID','CARDNO','ASN','CARDTRADENO','SAMNO','POSNO','TRADEDATE','TRADETIME','PREMONEY','TRADEMONEY','BALUNITNO','BATCHNO','datebatchno']
+		
+	for i in range(12):
 		# 获取要搬移数据的日期
 		dealdateItme = db.dealdate.find_one()
-		dealdateStr = dealdateItme["datebatchno"]
-		print dealdateItme["datebatchno"]
+		dealdateStr = dealdateItme["datebatchno"]		
 		dotimes = dealdateItme["movetimes"]
-		print int(dotimes)
 		movetimes = int(dotimes) + 1
-				
-		count = 1000
-		# 更新转移记录
-		db.moverecord.insert({'datebatchno':dealdateStr, 'count':count, 'movedate':datetime.datetime.now(), 'status':'0'})
+		
 
-		print 'start'
+		print 'start deal: ' + dealdateStr
 		timestart = time.time()
-		print timestart
+		
 
 		# '''
 		cursor = con.cursor()
 		# sql = "SELECT * FROM th_trade_right where id like '010%'"
-		sql = "SELECT * FROM th_trade_right "
+		sql = "SELECT ID,CARDNO,ASN,CARDTRADENO,SAMNO,POSNO,TRADEDATE,TRADETIME,PREMONEY,TRADEMONEY,BALUNITNO,BATCHNO FROM th_trade_right where id like \'" +  dealdateStr + "%\'"
 		cursor.execute(sql)
-		result = cursor.fetchmany(2)
-		# result = cursor.fetchall()
+		#result = cursor.fetchmany(2)
+		result = cursor.fetchall()
 
 		timeFetch = time.time()
 		fetchspan = timeFetch - timestart
-		print("Total: " + str(cursor.rowcount))
-		print 'fetch span:', fetchspan
 		
-
-		dbfetch.insert({'collectionName': 'th_trade_right','begintime':timestart, 'endtime':timeFetch, 'fetchspan':fetchspan, 'total':cursor.rowcount})
+		count = cursor.rowcount
+		
 		l = []
 		i = 0
-		count = 0
-		# 每10w条插入mongodb
+		
+		# 每1w条插入mongodb
 		for row in result:
 			#print(row)
-			# print row[1]
-			d = dict(zip(column,row))
+			#row.append(dealdateStr)
+			# d = collections.OrderedDict()
+			d = collections.OrderedDict(zip(column,row))
+			d['DATEBATCHNO'] = dealdateStr		
+			
+			# print d
 			l.append(d)
 			i += 1
 			# 1w条批量插入
@@ -105,7 +94,7 @@ if __name__ == "__main__":
 				collection.insert(l)
 				endtime = time.time()
 				# dbsize = collection.count()
-				signal.insert({'collectionName': 'th_trade_right','dbsize':collection.count(),"insertNum":10000, 'begintime':begintime, 'endtime':endtime , 'span':endtime - begintime})
+				#signal.insert({'collectionName': 'th_trade_right','datebatchno':dealdateStr,'dbsize':collection.count(),"insertNum":10000, 'begintime':begintime, 'endtime':endtime , 'span':endtime - begintime})
 				l = []
 				i = 0
 			#collection.insert(d)
@@ -115,24 +104,45 @@ if __name__ == "__main__":
 			begintime = time.time()
 			collection.insert(l)
 			endtime = time.time()
-			signal.insert({'collectionName': 'th_trade_right','dbsize':collection.count(),"insertNum":len(l), 'begintime':begintime, 'endtime':endtime , 'span':endtime - begintime})
-		print len(l)
-
-		cursor.close()
-		con.close()
+			#signal.insert({'collectionName': 'th_trade_right','datebatchno':dealdateStr,'dbsize':collection.count(),"insertNum":len(l), 'begintime':begintime, 'endtime':endtime , 'span':endtime - begintime})
 		
-		timeDone = time.time()		
-		print 'insert span:', timeDone - timeFetch
-
+		
+		cursor.close()
+		del result 
+		gc.collect()
+		
+		
+		timeDone = time.time()	
+		insertspan = timeDone - timeFetch
+		totalspan = timeDone - timestart
+		
 		#print(orcl.Date(2015,3,13))
+		dbsize = collection.count()
+		
+		# 插入日期批次转移记录
+		moverecord = collections.OrderedDict()
+		moverecord['datebatchno'] = dealdateStr
+		moverecord['count'] = count	
+		moverecord['dbsize'] = dbsize
+		moverecord['begintime'] = timestart
+		moverecord['fetchtime'] = timeFetch
+		moverecord['fetchspan'] = fetchspan
+		moverecord['insertspan'] = insertspan
+		moverecord['movedate'] = datetime.datetime.now()
+		moverecord['status'] = '0'		
+		db.moverecord.insert(moverecord)
+		
+		#db.moverecord.insert({'datebatchno':dealdateStr, 'count':count, 'movedate':datetime.datetime.now(),'begintime':timestart, 'fetchtime':timeFetch, 'fetchspan':fetchspan,'insertspan':insertspan, 'status':'0'})
 		
 		# 计算下一次搬移的数据的日期
 		dealdate = datetime.datetime.strptime(dealdateStr, '%m%d')
 		oneday = datetime.timedelta(days=1)
 		nextday = dealdate + oneday
 		nextdayStr = datetime.datetime.strftime(nextday, '%m%d') 
-		print "\'"+dealdateStr+ "%\'"
+		print "done: "+dealdateStr+ " count: " + str(count) + ' dbsize: ' + str(dbsize) + " total span: " + str(totalspan)
+		print "next date: " + nextdayStr
 		# 更新处理日期
 		db.dealdate.update({'datebatchno':dealdateStr}, {"$set":{'datebatchno':nextdayStr, 'updatetime':datetime.datetime.now(), 'movetimes':movetimes}})
-
+	
+	con.close()
 		# '''

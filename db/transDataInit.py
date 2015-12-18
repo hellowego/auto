@@ -12,7 +12,8 @@ if __name__ == "__main__":
 
 	# mongodb
 	client = pymongo.MongoClient()
-	db = client.one
+	#db = client.one
+	db = client.test
 	# collection = db.tf_f_cardrec
 	collection = db.th_trade_right
 	signal = db.signal
