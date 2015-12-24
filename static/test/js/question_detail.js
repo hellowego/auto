@@ -17,7 +17,7 @@ $(function()
 	else
 	{
 		ITEM_IDS = ITEM_IDS.split(',');
-		alert($('#wmd-input').rows)
+		// alert($('#wmd-input').rows)
 
 		if ($('#wmd-input').length)
 		{
