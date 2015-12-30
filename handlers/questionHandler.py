@@ -9,6 +9,7 @@ from tornado import gen
 sys.path.append("..")
 from models.account_models import AutoUser
 from models.question_models import Question
+from models.answer_models import Answer
 import traceback
 class QuestionModule(tornado.web.UIModule):
 	def render(self, question):
@@ -22,7 +23,7 @@ class QuestionHandler(BaseHandler):
 	'''
 	def get(self, questionId):
 		question = Question.queryById(questionId)
-		self.render("question/question_detail.html", question=question)
+		self.render("question/question_detail.html", question=question, questionId=questionId)
 
 
 class AnswerAddHandler(BaseHandler):
@@ -40,10 +41,16 @@ class AnswerAddHandler(BaseHandler):
 		# print 'hi'	
 		
 		answerContent = self.get_argument("answer_content")
+		questionId = self.get_argument("question_id")
 		print 'answerContent:', answerContent
-		questionId = 1
+		# questionId = 1
 		userId = self.get_current_user_id()
-		# userid is false need login 
+		print 'userId' , userId
+		# user = self.get_current_user()
+		Answer.addAnswer(questionId, answerContent, userId)
+		
+		result = {"errno" : 1, "err" : ""}
+		self.write(result)
 
 
 

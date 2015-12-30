@@ -21,4 +21,7 @@ class BaseHandler(tornado.web.RequestHandler):
 	def get_current_user_id(self):
 		user_id = self.get_secure_cookie("current_user")
 		print "user_id ", user_id
-		if not user_id: return None
+		if not user_id: 
+			return None
+		else:
+			return user_id
