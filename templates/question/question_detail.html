@@ -84,6 +84,7 @@
                             </ul>
                         </div>
                         <div class="mod-body aw-feed-list">
+							{% for answer in answers %} {% module Answer(answer) %} {% end %}
                         </div>
                         <div class="mod-footer">
                             <div class="aw-load-more-content hide" id="load_uninterested_answers">

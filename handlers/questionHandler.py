@@ -23,7 +23,8 @@ class QuestionHandler(BaseHandler):
 	'''
 	def get(self, questionId):
 		question = Question.queryById(questionId)
-		self.render("question/question_detail.html", question=question, questionId=questionId)
+		answers = ''
+		self.render("question/question_detail.html", question=question, questionId=questionId, answers=answers)
 
 
 class AnswerAddHandler(BaseHandler):

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="generator"
+        content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+        <meta name="renderer" content="webkit" />
+        <title>chrome js 调试方法 - WeCenter</title>
+        <meta name="keywords" content="chrome,js,调试,方法" />
+        <meta name="description" content="chrome js 调试方法 - 加断点调试" />
+        <base href="http://www.afucar.com/" />
+        <!--[if IE]></base><![endif]-->
+        <link href="http://www.afucar.com/static/css/default/img/favicon.ico?v=20150818" rel="shortcut icon" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="http://www.afucar.com/static/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="http://www.afucar.com/static/css/icon.css" />
+        <link href="http://www.afucar.com/static/css/default/common.css?v=20150818" rel="stylesheet" type="text/css" />
+        <link href="http://www.afucar.com/static/css/default/link.css?v=20150818" rel="stylesheet" type="text/css" />
+        <link href="http://www.afucar.com/static/js/plug_module/style.css?v=20150818" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+        var _7EBD350F4809C70587525E57AA2AA9DD="D5B1346090BA4B5E";
+        var G_POST_HASH=_7EBD350F4809C70587525E57AA2AA9DD;
+        var G_INDEX_SCRIPT = "";
+        var G_SITE_NAME = "WeCenter";
+        var G_BASE_URL = "http://www.afucar.com";
+        var G_STATIC_URL = "http://www.afucar.com/static";
+        var G_UPLOAD_URL = "http://54.179.147.230/uploads";
+        var G_USER_ID = "1";
+        var G_USER_NAME = "admin";
+        var G_UPLOAD_ENABLE = "Y";
+        var G_UNREAD_NOTIFICATION = 0;
+        var G_NOTIFICATION_INTERVAL = 100000;
+        var G_CAN_CREATE_TOPIC = "1";
+        var G_ADVANCED_EDITOR_ENABLE = "Y";
+
+        
+</script>
+        <script src="http://www.afucar.com/static/js/jquery.2.js?v=20150818" type="text/javascript"></script>
+        <script src="http://www.afucar.com/static/js/jquery.form.js?v=20150818" type="text/javascript"></script>
+        <script src="http://www.afucar.com/static/js/plug_module/plug-in_module.js?v=20150818" type="text/javascript"></script>
+        <script src="http://www.afucar.com/static/js/aws.js?v=20150818" type="text/javascript"></script>
+        <script src="http://www.afucar.com/static/js/aw_template.js?v=20150818" type="text/javascript"></script>
+        <script src="http://www.afucar.com/static/js/app.js?v=20150818" type="text/javascript"></script>
+        <script src="http://www.afucar.com/static/js/editor/ckeditor/ckeditor.js?v=20150818" type="text/javascript"></script>
+        <script src="http://www.afucar.com/static/js/editor/ckeditor/adapters/jquery.js?v=20150818"
+        type="text/javascript"></script>
+        <script src="http://www.afucar.com/static/js/fileupload.js?v=20150818" type="text/javascript"></script>
+        <script type="text/javascript" src="http://www.afucar.com/static/js/compatibility.js"></script>
+        <!--[if lte IE 8]>
+        <script type="text/javascript" src="http://www.afucar.com/static/js/respond.js"></script>
+<![endif]-->
+        <noscript unselectable="on" id="noscript">
+            <div class="aw-404 aw-404-wrap container">
+                <img src="http://www.afucar.com/static/common/no-js.jpg" />
+                <p>你的浏览器禁用了JavaScript, 请开启后刷新浏览器获得更好的体验!</p>
+            </div>
+        </noscript>
+    </head>
+    <body>
+    <div class="aw-top-menu-wrap">
+        <div class="container">
+            <!-- logo -->
+            <div class="aw-logo hidden-xs">
+                <a href="http://www.afucar.com"></a>
+            </div>
+            <!-- end logo -->
+            <!-- 搜索框 -->
+            <div class="aw-search-box hidden-xs hidden-sm">
+                <form class="navbar-search" action="http://www.afucar.com/search/" id="global_search_form" method="post">
+                <input class="form-control search-query" type="text" placeholder="搜索问题、话题或人" autocomplete="off"
+                name="q" id="aw-search-query" /> 
+                <span title="搜索" id="global_search_btns" onclick="$('#global_search_form').submit();"></span>
+                <div class="aw-dropdown">
+                    <div class="mod-body">
+                        <p class="title">输入关键字进行搜索</p>
+                        <ul class="aw-dropdown-list hide"></ul>
+                        <p class="search">
+                            <span>搜索:</span>
+                            <a onclick="$('#global_search_form').submit();"></a>
+                        </p>
+                    </div>
+                    <div class="mod-footer">
+                        <a href="javascript:;" onclick="$('#header_publish').click();"
+                        class="pull-right btn btn-mini btn-success publish">发起问题</a>
+                    </div>
+                </div></form>
+            </div>
+            <!-- end 搜索框 -->
+            <!-- 导航 -->
+            <div class="aw-top-nav navbar">
+                <div class="navbar-header">
+                    <button class="navbar-toggle pull-left"></button>
+                </div>
+                <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="http://www.afucar.com/home/">动态</a>
+                        </li>
+                        <li>
+                            <a href="" class="">发现</a>
+                        </li>
+                        <!-- <li><a href="http://www.afucar.com/question/" class="active">问题</a></li>
+
+                                        <li><a href="http://www.afucar.com/article/" class="">文章</a></li> -->
+                        <li>
+                            <a href="http://www.afucar.com/topic/">话题</a>
+                        </li>
+                        <li>
+                        <a href="http://www.afucar.com/notifications/" class="">通知</a> 
+                        <span class="badge badge-important" style="display:none" id="notifications_unread">0</span>
+                        <div class="aw-dropdown pull-right hidden-xs">
+                            <div class="mod-body">
+                                <ul id="header_notification_list"></ul>
+                            </div>
+                            <div class="mod-footer">
+                                <a href="http://www.afucar.com/notifications/">查看全部</a>
+                            </div>
+                        </div></li>
+                        <li>
+                            <a style="font-weight:bold;">· · ·</a>
+                            <div class="dropdown-list pull-right">
+                                <ul id="extensions-nav-list"></ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- end 导航 -->
+            <!-- 用户栏 -->
+            <div class="aw-user-nav">
+                <!-- 登陆&注册栏 -->
+                <a href="http://www.afucar.com/people/admin" class="aw-user-nav-dropdown">
+                    <img alt="admin" src="http://www.afucar.com/static/common/avatar-mid-img.png" />
+                </a>
+                <div class="aw-dropdown dropdown-list pull-right">
+                    <ul class="aw-dropdown-list">
+                        <li>
+                            <a href="http://www.afucar.com/inbox/">私信
+                            <span class="badge badge-important hide" id="inbox_unread">0</span></a>
+                        </li>
+                        <li class="hidden-xs">
+                            <a href="http://www.afucar.com/account/setting/profile/">设置</a>
+                        </li>
+                        <li class="hidden-xs">
+                            <a href="http://www.afucar.com/admin/">管理</a>
+                        </li>
+                        <li>
+                            <a href="http://www.afucar.com/account/logout/">退出</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- end 登陆&注册栏 -->
+            </div>
+            <!-- end 用户栏 -->
+            <!-- 发起 -->
+            <div class="aw-publish-btn">
+                <a id="header_publish" href="http://www.afucar.com/publish/" class="btn-primary"
+                onclick="AWS.dialog('publish', {'category_enable':'1', 'category_id':'0', 'topic_title':''}); return false;">发起</a>
+                <div class="dropdown-list pull-right">
+                    <ul>
+                        <li>
+                            <form method="post" action="http://www.afucar.com/publish/">
+                                <a onclick="$(this).parents('form').submit();">问题</a>
+                            </form>
+                        </li>
+                        <li>
+                            <form method="post" action="http://www.afucar.com/publish/article/">
+                                <a onclick="$(this).parents('form').submit();">文章</a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end 发起 -->
+        </div>
+    </div>
+    <div class="aw-container-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="aw-content-wrap clearfix">
+                    <div class="col-sm-12 col-md-9 aw-main-content">
+                        <!-- 话题推荐bar -->
+                        <div class="aw-notopic-sort">没有归属话题, 请帮问题添加话题, 
+                        <a href="javascript:;"
+                        onclick="$('#question_topic_editor .aw-edit-topic').click(); $(this).parents('.aw-notopic-sort').hide();">点此添加话题</a></div>
+                        <!-- 话题推荐bar -->
+                        <!-- 话题bar -->
+                        <div class="aw-mod aw-topic-bar" id="question_topic_editor" data-type="question" data-id="1">
+                            <div class="tag-bar clearfix"></div>
+                        </div>
+                        <!-- end 话题bar -->
+                        <div class="aw-mod aw-question-detail aw-item">
+                            <div class="mod-head">
+                                <h1>chrome js 调试方法</h1>
+                                <div class="operate clearfix">
+                                <a href="javascript:;" onclick="AWS.User.follow($(this), 'question', 1);"
+                                class="follow btn btn-normal btn-success pull-left active">
+                                <span>取消关注</span> 
+                                <em>|</em> 
+                                <b>1</b></a> 
+                                <!-- 下拉菜单 -->
+                                <div class="btn-group pull-left">
+                                    <a class="btn btn-gray dropdown-toggle" data-toggle="dropdown" href="javascript:;">...</a>
+                                    <div class="aw-dropdown pull-right" role="menu" aria-labelledby="dropdownMenu">
+                                        <ul class="aw-dropdown-list">
+                                            <li>
+                                                <a href="http://www.afucar.com/question/1?column=log&amp;rf=false"
+                                                rel="nofollow">修改记录</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;"
+                                                onclick="AWS.ajax_request(G_BASE_URL + '/question/ajax/lock/', 'question_id=1');">锁定问题</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;"
+                                                onclick="AWS.dialog('confirm', {'message' : '确认删除?'}, function(){AWS.ajax_request(G_BASE_URL + '/question/ajax/remove_question/', 'question_id=1');});">
+                                                删除问题</a>
+                                            </li>
+                                            <li class="hidden-xs">
+                                                <a href="javascript:;" onclick="AWS.dialog('redirect', 1);">问题重定向</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" title="112.80.236.130"
+                                                onclick="AWS.alert('系统记录的 IP 地址为: 112.80.236.130');">IP 地址</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;"
+                                                onclick="AWS.ajax_request(G_BASE_URL + '/question/ajax/set_recommend/', 'action=set&amp;question_id=1');">
+                                                推荐问题</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;"
+                                                onclick="AWS.dialog('recommend', {'type': 'question', 'item_id': 1, 'focus_id': ''});">
+                                                添加到帮助中心</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- end 下拉菜单 --></div>
+                            </div>
+                            <div class="mod-body">
+                                <div class="content markitup-box">加断点调试</div>
+                            </div>
+                            <div class="mod-footer">
+                                <div class="meta">
+                                <span class="text-color-999">2015-12-20</span> 
+                                <a data-id="1" data-type="question" class="aw-add-comment text-color-999" data-comment-count="0"
+                                data-first-click="hide">添加评论</a> 
+                                <a class="text-color-999 aw-invite-replay">邀请</a> 
+                                <a class="text-color-999" href="http://www.afucar.com/publish/1">编辑</a> 
+                                <a class="text-color-999 aw-add-question-related hidden-xs"> 相关链接</a>
+                                <div class="pull-right more-operate">
+                                    <!-- <a class="text-color-999"  onclick="AWS.dialog('shareOut', {item_type:'question', item_id:1});"> -->
+                                    <a class="text-color-999 dropdown-toggle" data-toggle="dropdown">分享</a>
+                                    <div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+                                        <ul class="aw-dropdown-list">
+                                            <li>
+                                                <a onclick="AWS.User.share_out({webid: 'tsina', content: $(this).parents('.aw-question-detail').find('.markitup-box')});">
+                                                微博</a>
+                                            </li>
+                                            <li>
+                                                <a onclick="AWS.User.share_out({webid: 'qzone', content: $(this).parents('.aw-question-detail')});">
+                                                QZONE</a>
+                                            </li>
+                                            <li>
+                                                <a onclick="AWS.User.share_out({webid: 'weixin', content: $(this).parents('.aw-question-detail')});">
+                                                微信</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a href="javascript:;" class="text-color-999"
+                                    onclick="AWS.dialog('report', {item_type:'question', item_id:1})">举报</a>
+                                </div></div>
+                            </div>
+                            <!-- 站内邀请 -->
+                            <div class="aw-invite-box hide">
+                                <div class="mod-head clearfix">
+                                    <div class="search-box pull-left">
+                                        <input id="invite-input" class="form-control" type="text"
+                                        placeholder="搜索你想邀请的人..." />
+                                        <div class="aw-dropdown">
+                                            <p class="title">没有找到相关结果</p>
+                                            <ul class="aw-dropdown-list"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="invite-list pull-left hide">已邀请:</div>
+                                </div>
+                            </div>
+                            <!-- end 站内邀请 -->
+                            <!-- 相关链接 -->
+                            <div class="aw-question-related-box hide">
+                                <form action="http://www.afucar.com/publish/ajax/save_related_link/" method="post"
+                                onsubmit="return false" id="related_link_form">
+                                    <div class="mod-head">
+                                        <h2>与内容相关的链接</h2>
+                                    </div>
+                                    <div class="mod-body clearfix">
+                                    <input type="hidden" name="item_id" value="1" /> 
+                                    <input type="text" class="form-control pull-left" name="link" value="" /> 
+                                    <a onclick="AWS.ajax_post($('#related_link_form'));"
+                                    class="pull-left btn btn-success">提交</a></div>
+                                </form>
+                            </div>
+                            <!-- end 相关链接 -->
+                        </div>
+                        <div class="aw-mod aw-question-comment">
+                            <div class="mod-head">
+                                <ul class="nav nav-tabs aw-nav-tabs active">
+                                    <li>
+                                        <a href="http://www.afucar.com/question/1?uid=focus">关注的人</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.afucar.com/question/1?sort_key=add_time&amp;sort=ASC">时间 </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="http://www.afucar.com/question/1&amp;sort_key=agree_count&amp;sort=DESC">票数</a>
+                                    </li>
+                                    <li style="list-style: none; display: inline">
+                                        <h2 class="hidden-xs">4 个回复</h2>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mod-body aw-feed-list">
+                                <div class="aw-item" uninterested_count="0" force_fold="0" id="answer_list_1">
+                                    <div class="mod-head">
+                                    <a class="anchor" name="answer_1"></a> 
+                                    <!-- 用户头像 -->
+                                     
+                                    <a class="aw-user-img aw-border-radius-5" href="http://www.afucar.com/people/admin"
+                                    data-id="1">
+                                        <img src="http://www.afucar.com/static/common/avatar-mid-img.png" alt="" />
+                                    </a> 
+                                    <!-- end 用户头像 -->
+                                    <div class="title">
+                                        <p>
+                                            <a class="aw-user-name" href="http://www.afucar.com/people/admin" data-id="1">admin</a>
+                                        </p>
+                                        <p class="text-color-999 aw-agree-by hide">赞同来自:</p>
+                                    </div></div>
+                                    <div class="mod-body clearfix">
+                                        <!-- 评论内容 -->
+                                        <div class="markitup-box">加function断点</div>
+                                        <!-- end 评论内容 -->
+                                    </div>
+                                    <div class="mod-footer">
+                                        <!-- 社交操作 -->
+                                        <div class="meta clearfix">
+                                        <span class="text-color-999 pull-right">2015-12-22</span> 
+                                        <!-- 投票栏 -->
+                                         
+                                        <span class="operate">
+                                            <a class="agree disabled"> 
+                                            <b class="count">0</b></a>
+                                        </span> 
+                                        <!-- end 投票栏 -->
+                                         
+                                        <span class="operate">
+                                            <a class="aw-add-comment" data-id="1" data-type="answer" data-comment-count="0"
+                                            data-first-click="hide" href="javascript:;"> 0</a>
+                                        </span> 
+                                        <!-- 可显示/隐藏的操作box -->
+                                        <div class="more-operate">
+                                        <a class="text-color-999" href="javascript:;"
+                                        onclick="AWS.dialog('commentEdit', {answer_id:1,attach_access_key:'d4d50920f4b4a268c03afff7a6f40f6b'});">
+                                        编辑</a> 
+                                        <a href="javascript:;" onclick="AWS.User.answer_force_fold($(this), 1);"
+                                        class="text-color-999"> 折叠</a> 
+                                        <a href="javascript:;" onclick="AWS.dialog('favorite', {item_id:1, item_type:'answer'});"
+                                        class="text-color-999"> 收藏</a>
+                                        <div class="btn-group pull-left">
+                                            <a class="text-color-999 dropdown-toggle" data-toggle="dropdown">分享</a>
+                                            <div aria-labelledby="dropdownMenu" role="menu"
+                                            class="aw-dropdown shareout pull-right">
+                                                <ul class="aw-dropdown-list">
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'tsina', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        微博</a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'qzone', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        QZONE</a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'weixin', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        微信</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="javascript:;"
+                                        onclick="AWS.ajax_request(G_BASE_URL + '/question/ajax/set_best_answer/', 'answer_id=1');"
+                                        class="text-color-999">最佳回复</a></div>
+                                        <!-- end 可显示/隐藏的操作box --></div>
+                                        <!-- end 社交操作 -->
+                                    </div>
+                                </div>
+                                <div class="aw-item" uninterested_count="0" force_fold="0" id="answer_list_2">
+                                    <div class="mod-head">
+                                    <a class="anchor" name="answer_2"></a> 
+                                    <!-- 用户头像 -->
+                                     
+                                    <a class="aw-user-img aw-border-radius-5" href="http://www.afucar.com/people/admin"
+                                    data-id="1">
+                                        <img src="http://www.afucar.com/static/common/avatar-mid-img.png" alt="" />
+                                    </a> 
+                                    <!-- end 用户头像 -->
+                                    <div class="title">
+                                        <p>
+                                            <a class="aw-user-name" href="http://www.afucar.com/people/admin" data-id="1">admin</a>
+                                        </p>
+                                        <p class="text-color-999 aw-agree-by hide">赞同来自:</p>
+                                    </div></div>
+                                    <div class="mod-body clearfix">
+                                        <!-- 评论内容 -->
+                                        <div class="markitup-box">asdfsad</div>
+                                        <!-- end 评论内容 -->
+                                    </div>
+                                    <div class="mod-footer">
+                                        <!-- 社交操作 -->
+                                        <div class="meta clearfix">
+                                        <span class="text-color-999 pull-right">2015-12-22</span> 
+                                        <!-- 投票栏 -->
+                                         
+                                        <span class="operate">
+                                            <a class="agree disabled"> 
+                                            <b class="count">0</b></a>
+                                        </span> 
+                                        <!-- end 投票栏 -->
+                                         
+                                        <span class="operate">
+                                            <a class="aw-add-comment" data-id="2" data-type="answer" data-comment-count="0"
+                                            data-first-click="hide" href="javascript:;"> 0</a>
+                                        </span> 
+                                        <!-- 可显示/隐藏的操作box -->
+                                        <div class="more-operate">
+                                        <a class="text-color-999" href="javascript:;"
+                                        onclick="AWS.dialog('commentEdit', {answer_id:2,attach_access_key:'d4d50920f4b4a268c03afff7a6f40f6b'});">
+                                        编辑</a> 
+                                        <a href="javascript:;" onclick="AWS.User.answer_force_fold($(this), 2);"
+                                        class="text-color-999"> 折叠</a> 
+                                        <a href="javascript:;" onclick="AWS.dialog('favorite', {item_id:2, item_type:'answer'});"
+                                        class="text-color-999"> 收藏</a>
+                                        <div class="btn-group pull-left">
+                                            <a class="text-color-999 dropdown-toggle" data-toggle="dropdown">分享</a>
+                                            <div aria-labelledby="dropdownMenu" role="menu"
+                                            class="aw-dropdown shareout pull-right">
+                                                <ul class="aw-dropdown-list">
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'tsina', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        微博</a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'qzone', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        QZONE</a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'weixin', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        微信</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="javascript:;"
+                                        onclick="AWS.ajax_request(G_BASE_URL + '/question/ajax/set_best_answer/', 'answer_id=2');"
+                                        class="text-color-999">最佳回复</a></div>
+                                        <!-- end 可显示/隐藏的操作box --></div>
+                                        <!-- end 社交操作 -->
+                                    </div>
+                                </div>
+                                <div class="aw-item" uninterested_count="0" force_fold="0" id="answer_list_3">
+                                    <div class="mod-head">
+                                    <a class="anchor" name="answer_3"></a> 
+                                    <!-- 用户头像 -->
+                                     
+                                    <a class="aw-user-img aw-border-radius-5" href="http://www.afucar.com/people/admin"
+                                    data-id="1">
+                                        <img src="http://www.afucar.com/static/common/avatar-mid-img.png" alt="" />
+                                    </a> 
+                                    <!-- end 用户头像 -->
+                                    <div class="title">
+                                        <p>
+                                            <a class="aw-user-name" href="http://www.afucar.com/people/admin" data-id="1">admin</a>
+                                        </p>
+                                        <p class="text-color-999 aw-agree-by hide">赞同来自:</p>
+                                    </div></div>
+                                    <div class="mod-body clearfix">
+                                        <!-- 评论内容 -->
+                                        <div class="markitup-box">aaaaa</div>
+                                        <!-- end 评论内容 -->
+                                    </div>
+                                    <div class="mod-footer">
+                                        <!-- 社交操作 -->
+                                        <div class="meta clearfix">
+                                        <span class="text-color-999 pull-right">2015-12-22</span> 
+                                        <!-- 投票栏 -->
+                                         
+                                        <span class="operate">
+                                            <a class="agree disabled"> 
+                                            <b class="count">0</b></a>
+                                        </span> 
+                                        <!-- end 投票栏 -->
+                                         
+                                        <span class="operate">
+                                            <a class="aw-add-comment" data-id="3" data-type="answer" data-comment-count="0"
+                                            data-first-click="hide" href="javascript:;"> 0</a>
+                                        </span> 
+                                        <!-- 可显示/隐藏的操作box -->
+                                        <div class="more-operate">
+                                        <a class="text-color-999" href="javascript:;"
+                                        onclick="AWS.dialog('commentEdit', {answer_id:3,attach_access_key:'d4d50920f4b4a268c03afff7a6f40f6b'});">
+                                        编辑</a> 
+                                        <a href="javascript:;" onclick="AWS.User.answer_force_fold($(this), 3);"
+                                        class="text-color-999"> 折叠</a> 
+                                        <a href="javascript:;" onclick="AWS.dialog('favorite', {item_id:3, item_type:'answer'});"
+                                        class="text-color-999"> 收藏</a>
+                                        <div class="btn-group pull-left">
+                                            <a class="text-color-999 dropdown-toggle" data-toggle="dropdown">分享</a>
+                                            <div aria-labelledby="dropdownMenu" role="menu"
+                                            class="aw-dropdown shareout pull-right">
+                                                <ul class="aw-dropdown-list">
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'tsina', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        微博</a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'qzone', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        QZONE</a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'weixin', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        微信</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="javascript:;"
+                                        onclick="AWS.ajax_request(G_BASE_URL + '/question/ajax/set_best_answer/', 'answer_id=3');"
+                                        class="text-color-999">最佳回复</a></div>
+                                        <!-- end 可显示/隐藏的操作box --></div>
+                                        <!-- end 社交操作 -->
+                                    </div>
+                                </div>
+                                <div class="aw-item" uninterested_count="0" force_fold="0" id="answer_list_4">
+                                    <div class="mod-head">
+                                    <a class="anchor" name="answer_4"></a> 
+                                    <!-- 用户头像 -->
+                                     
+                                    <a class="aw-user-img aw-border-radius-5" href="http://www.afucar.com/people/admin"
+                                    data-id="1">
+                                        <img src="http://www.afucar.com/static/common/avatar-mid-img.png" alt="" />
+                                    </a> 
+                                    <!-- end 用户头像 -->
+                                    <div class="title">
+                                        <p>
+                                            <a class="aw-user-name" href="http://www.afucar.com/people/admin" data-id="1">admin</a>
+                                        </p>
+                                        <p class="text-color-999 aw-agree-by hide">赞同来自:</p>
+                                    </div></div>
+                                    <div class="mod-body clearfix">
+                                        <!-- 评论内容 -->
+                                        <div class="markitup-box">asdfasdf</div>
+                                        <!-- end 评论内容 -->
+                                    </div>
+                                    <div class="mod-footer">
+                                        <!-- 社交操作 -->
+                                        <div class="meta clearfix">
+                                        <span class="text-color-999 pull-right">19 小时前</span> 
+                                        <!-- 投票栏 -->
+                                         
+                                        <span class="operate">
+                                            <a class="agree disabled"> 
+                                            <b class="count">0</b></a>
+                                        </span> 
+                                        <!-- end 投票栏 -->
+                                         
+                                        <span class="operate">
+                                            <a class="aw-add-comment" data-id="4" data-type="answer" data-comment-count="0"
+                                            data-first-click="hide" href="javascript:;"> 0</a>
+                                        </span> 
+                                        <!-- 可显示/隐藏的操作box -->
+                                        <div class="more-operate">
+                                        <a class="text-color-999" href="javascript:;"
+                                        onclick="AWS.dialog('commentEdit', {answer_id:4,attach_access_key:'d4d50920f4b4a268c03afff7a6f40f6b'});">
+                                        编辑</a> 
+                                        <a href="javascript:;" onclick="AWS.User.answer_force_fold($(this), 4);"
+                                        class="text-color-999"> 折叠</a> 
+                                        <a href="javascript:;" onclick="AWS.dialog('favorite', {item_id:4, item_type:'answer'});"
+                                        class="text-color-999"> 收藏</a>
+                                        <div class="btn-group pull-left">
+                                            <a class="text-color-999 dropdown-toggle" data-toggle="dropdown">分享</a>
+                                            <div aria-labelledby="dropdownMenu" role="menu"
+                                            class="aw-dropdown shareout pull-right">
+                                                <ul class="aw-dropdown-list">
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'tsina', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        微博</a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'qzone', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        QZONE</a>
+                                                    </li>
+                                                    <li>
+                                                        <a onclick="AWS.User.share_out({webid: 'weixin', title: $(this).parents('.aw-item').find('.markitup-box').text()});">
+                                                        微信</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="javascript:;"
+                                        onclick="AWS.ajax_request(G_BASE_URL + '/question/ajax/set_best_answer/', 'answer_id=4');"
+                                        class="text-color-999">最佳回复</a></div>
+                                        <!-- end 可显示/隐藏的操作box --></div>
+                                        <!-- end 社交操作 -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mod-footer">
+                                <div class="aw-load-more-content hide" id="load_uninterested_answers">
+                                <span class="text-color-999 aw-alert-box text-color-999" href="javascript:;" tabindex="-1"
+                                onclick="AWS.alert('被折叠的回复是被你或者被大多数用户认为没有帮助的回复');">
+                                为什么被折叠?</span> 
+                                <a href="javascript:;" class="aw-load-more-content">
+                                <span class="hide_answers_count">0</span> 个回复被折叠</a></div>
+                                <div class="hide aw-feed-list" id="uninterested_answers_list"></div>
+                            </div>
+                        </div>
+                        <!-- end 问题详细模块 -->
+                        <!-- 回复编辑器 -->
+                        <div class="aw-mod aw-replay-box question">
+                            <a name="answer_form"></a>
+                            <form action="http://www.afucar.com/question/ajax/save_answer/" onsubmit="return false;" method="post"
+                            id="answer_form" class="question_answer_form">
+                            <input type="hidden" name="post_hash" value="f3cb547339b90809" /> 
+                            <input type="hidden" name="question_id" value="1" /> 
+                            <input type="hidden" name="attach_access_key" value="d4d50920f4b4a268c03afff7a6f40f6b" />
+                            <div class="mod-head">
+                                <a href="http://www.afucar.com/people/" class="aw-user-name">
+                                    <img alt="admin" src="http://www.afucar.com/static/common/avatar-mid-img.png" />
+                                </a>
+                                <p>
+                                <label class="pull-right">
+                                <input type="checkbox" value="1" name="anonymous" /> 匿名回复</label> admin</p>
+                            </div>
+                            <div class="mod-body">
+                                <div class="aw-mod aw-editor-box">
+                                    <div class="mod-head">
+                                        <div class="wmd-panel">
+                                            <textarea class="wmd-input form-control autosize editor" id="wmd-input" rows="15"
+                                            name="answer_content"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="mod-body clearfix">
+                                    <a href="javascript:;"
+                                    onclick="AWS.ajax_post($('#answer_form'), AWS.ajax_processer, 'reply_question');"
+                                    class="btn btn-normal btn-success pull-right btn-reply">回复</a> 
+                                    <span class="pull-right text-color-999" id="answer_content_message">�</span>
+                                    <div class="aw-upload-box">
+                                        <a class="btn btn-default">上传附件</a>
+                                        <div class="upload-container"></div>
+                                        <span class="text-color-999 aw-upload-tips hidden-xs">允许 :
+                                        jpg,jpeg,png,gif,zip,doc,docx,rar,pdf,psd</span>
+                                    </div></div>
+                                </div>
+                            </div></form>
+                        </div>
+                        <!-- end 回复编辑器 -->
+                    </div>
+                    <!-- 侧边栏 -->
+                    <div class="col-md-3 aw-side-bar hidden-xs hidden-sm">
+                        <!-- 发起人 -->
+                        <div class="aw-mod">
+                            <div class="mod-head">
+                                <h3>发起人</h3>
+                            </div>
+                            <div class="mod-body">
+                                <dl>
+                                    <dt class="pull-left aw-border-radius-5">
+                                        <a href="http://www.afucar.com/people/admin">
+                                            <img alt="admin" src="http://www.afucar.com/static/common/avatar-mid-img.png" />
+                                        </a>
+                                    </dt>
+                                    <dd class="pull-left">
+                                        <a class="aw-user-name" href="http://www.afucar.com/people/admin" data-id="1">admin</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <!-- end 发起人 -->
+                        <!-- 邀请别人回复 -->
+                        <div class="aw-mod email-invite-replay">
+                            <div class="mod-head">
+                                <h3>邮件邀请别人回复</h3>
+                            </div>
+                            <div class="mod-body clearfix">
+                                <!-- 侧边栏邀请box -->
+                                <form method="post" action="http://www.afucar.com/question/ajax/email_invite/question_id-1"
+                                onsubmit="return false;" id="email_invite_form">
+                                <input class="form-control" type="text" name="email" placeholder="邮件邀请回复..." /> 
+                                <a class="pull-right btn btn-mini btn-success"
+                                onclick="AWS.ajax_post($('#email_invite_form'));">邀请</a></form>
+                                <!-- end 侧边栏邀请box -->
+                            </div>
+                        </div>
+                        <!-- end 邀请别人回复 -->
+                        <!-- 相关问题 -->
+                        <div class="aw-mod">
+                            <div class="mod-head">
+                                <h3>相关问题</h3>
+                            </div>
+                            <div class="mod-body font-size-12">
+                                <ul>
+                                    <li>
+                                        <a href="http://www.afucar.com/question/1">chrome js 调试方法</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end 相关问题 -->
+                        <!-- 问题状态 -->
+                        <div class="aw-mod question-status">
+                            <div class="mod-head">
+                                <h3>问题状态</h3>
+                            </div>
+                            <div class="mod-body">
+                                <ul>
+                                    <li>最新活动: 
+                                    <span class="aw-text-color-blue">19 小时前</span></li>
+                                    <li>浏览: 
+                                    <span class="aw-text-color-blue">37</span></li>
+                                    <li>关注: 
+                                    <span class="aw-text-color-blue">1</span> 人</li>
+                                    <li class="aw-border-radius-5" id="focus_users"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end 问题状态 -->
+                    </div>
+                    <!-- end 侧边栏 -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var ATTACH_ACCESS_KEY = 'd4d50920f4b4a268c03afff7a6f40f6b';
+        var ITEM_IDS = '';
+        var COMMENT_UNFOLD = '';
+        var QUESTION_ID = 1;
+        var UNINTERESTED_COUNT = 5;
+        var ANSWER_EDIT_TIME = 30;
+        var USER_ANSWERED = '';
+        var UPLOAD_ENABLE = 'Y';
+        var ANSWER_TYPE = 'answer';
+</script> 
+    <script type="text/javascript" src="http://www.afucar.com/static/js/app/question_detail.js"></script>
+    <div class="aw-footer-wrap">
+        <div class="aw-footer">Copyright © 2015, All Rights Reserved 
+        <span class="hidden-xs">Powered By 
+        <a href="http://www.wecenter.com/?copyright" target="blank">WeCenter 3.1.4</a></span></div>
+    </div>
+    <a class="aw-back-top hidden-xs" href="javascript:;" onclick="$.scrollTo(1, 600, {queue:true});"></a> 
+    <!-- DO NOT REMOVE -->
+    <div id="aw-ajax-box" class="aw-ajax-box"></div>
+    <div style="display:none;" id="__crond">
+        <script type="text/javascript">
+                $(document).ready(function () {
+                        $('#__crond').html(unescape('%3Cimg%20src%3D%22' + G_BASE_URL +
+'/crond/run/1451545433%22%20width%3D%221%22%20height%3D%221%22%20/%3E'));
+                });
+        
+</script>
+    </div>
+    <!-- Escape time: 0.021279096603394 -->
+    <!-- / DO NOT REMOVE --></body>
+</html>
