@@ -45,6 +45,12 @@ class Answer(BaseModel):
 		return answer
 
 	@classmethod
+	def queryByQuestionId(cls, questionId):
+		session = DBSession()
+		answers = session.query(cls).filter(cls.question_id == questionId)
+		return answers
+
+	@classmethod
 	def addAnswer(cls, questionId, answerContent, userId):
 		obj = cls(question_id = questionId, answer_content = answerContent, uid = userId, add_time = long(time.time()))
 		session = DBSession()
