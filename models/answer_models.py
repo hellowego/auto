@@ -67,16 +67,16 @@ if __name__ == "__main__":
 	uid = 1
 	Answer.addAnswer(questionId, answerContent, uid)
 
-	answer = Answer.queryById(18)
-	print answer.answer_content
+	# answer = Answer.queryById(18)
+	# print answer.answer_content
 
-	print time.ctime()
+	# print time.ctime()
 
-	now = long(time.time())
-	print now
-	str = datetime.datetime.utcfromtimestamp(now)
-	print str
-	strnow = str.strftime("%Y-%m-%d %H:%M:%S")
-	print strnow
+	# now = long(time.time())
+	# print now
+	# str = datetime.datetime.utcfromtimestamp(now)
+	# print str
+	# strnow = str.strftime("%Y-%m-%d %H:%M:%S")
+	# print strnow
 
 
