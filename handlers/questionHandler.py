@@ -53,7 +53,15 @@ class AnswerAddHandler(BaseHandler):
 		result = {"errno" : 1, "err" : ""}
 		self.write(result)
 
-
+class AnswerCommentVoteHandler(BaseHandler):
+	'''
+	回答投票
+	'''
+	def post(self):
+		answer_id = self.get_argument("answer_id")
+		value = self.get_argument("value")
+		print "answer_id", answer_id
+		print "value", value
 
 
 class AnswerQuestionHandler(BaseHandler):
