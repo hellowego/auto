@@ -15,7 +15,7 @@
 	</div></div>
 	<div class="mod-body clearfix">
 		<!-- 评论内容 -->
-		<div class="markitup-box">asdfasdf</div>
+		<div class="markitup-box">{{answer.answer_content}}</div>
 		<!-- end 评论内容 -->
 	</div>
 	<div class="mod-footer">
@@ -25,7 +25,7 @@
 		<!-- 投票栏 -->
 		 
 		<span class="operate">
-			<a class="agree" onclick="AWS.User.agree_vote(this, 'hi', 45006);"> 
+			<a class="agree" onclick="AWS.User.agree_vote(this, {{answer.uid}}, {{answer.answer_id}});"> 
 				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-agree" data-original-title="赞同回复"></i>
 				<b class="count">0</b>
 			</a>

@@ -43,14 +43,25 @@ class AnswerVote(BaseModel):
 
 	@classmethod
 	def addAnswerVote(cls, answer_id, answer_uid, vote_uid, vote_value):
-		obj = cls(answer_id = 1, answer_uid = 2, vote_uid = 3, add_time = long(time.time()), vote_value = 4, reputation_factor = 1)
+		obj = cls(answer_id = answer_id, answer_uid = answer_uid, vote_uid = vote_uid, add_time = long(time.time()), vote_value = vote_value, reputation_factor = 1)
 		session = DBSession()
 		session.add(obj)
 		session.commit()
 		session.close()
 		return True
 
+	@classmethod
+	def queryByAnswerIdAndUserId(cls, answer_id, vote_uid):
+		session = DBSession()
+		vote_info = session.query(cls).filter(cls.answer_id == answer_id , cls.vote_uid == vote_uid).first()
+		return vote_info
 
+	@classmethod
+	def deleteByVoterId(cls, voter_id):
+		session = DBSession()
+		session.query(cls).filter(cls.voter_id == voter_id).delete()
+		session.commit()
+		session.close()
 
 if __name__ == "__main__":
 	bl = AnswerVote.addAnswerVote(1,2,3,4)

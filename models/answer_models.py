@@ -42,12 +42,13 @@ class Answer(BaseModel):
 	def queryById(cls, answerId):
 		session = DBSession()
 		answer = session.query(cls).filter(cls.answer_id == answerId).first()
+		print "answer[0].uid", answer.uid
 		return answer
 
 	@classmethod
 	def queryByQuestionId(cls, questionId):
 		session = DBSession()
-		answers = session.query(cls).filter(cls.question_id == questionId)
+		answers = session.query(cls).filter(cls.question_id == questionId).all()
 		return answers
 
 	@classmethod
@@ -65,10 +66,10 @@ if __name__ == "__main__":
 	questionId = 1
 	answerContent = "hello"
 	uid = 1
-	Answer.addAnswer(questionId, answerContent, uid)
+	# Answer.addAnswer(questionId, answerContent, uid)
 
-	# answer = Answer.queryById(18)
-	# print answer.answer_content
+	answer = Answer.queryById(30)
+	print answer.answer_content
 
 	# print time.ctime()
 

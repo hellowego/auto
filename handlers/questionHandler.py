@@ -10,6 +10,7 @@ sys.path.append("..")
 from models.account_models import AutoUser
 from models.question_models import Question
 from models.answer_models import Answer
+from models.answerVote_models import AnswerVote
 import traceback
 class QuestionModule(tornado.web.UIModule):
 	def render(self, question):
@@ -23,7 +24,11 @@ class QuestionHandler(BaseHandler):
 	'''
 	def get(self, questionId):
 		question = Question.queryById(questionId)
-		answers = Answer.queryByQuestionId(questionId).all()
+		answers = Answer.queryByQuestionId(questionId)
+		print answers[0].answer_content
+		for answer in answers:
+			print 'answer.answer_content', answer.answer_content
+			
 		self.render("question/question_detail.html", question=question, questionId=questionId, answers=answers)
 
 
@@ -62,6 +67,27 @@ class AnswerCommentVoteHandler(BaseHandler):
 		value = self.get_argument("value")
 		print "answer_id", answer_id
 		print "value", value
+		answer_info = Answer.queryById(answer_id)
+		userId = self.get_current_user_id()
+		# 获取投票信息
+		vote_info = AnswerVote.queryByAnswerIdAndUserId(answer_id, userId)
+				
+		# 赞同投票结果分三种情况
+		# 情况一 没有投过票，增加一条投票记录
+		if not vote_info :
+			print 'vote_info', vote_info
+			AnswerVote.addAnswerVote(answer_id, answer_info.uid, userId, value)
+		# 情况二 已经投过赞同票，则删除赞同记录（已经头赞同票，再点一次是为了取消赞同）
+		else :
+			if vote_info.vote_value == 1 :
+				print 'already vote'
+				print vote_info.voter_id
+				AnswerVote.deleteByVoterId(vote_info.voter_id)
+		# 情况三 已经投反对票的，将反对票更新为赞同票
+		
+		print answer_info.uid
+		print answer_info.answer_content
+		
 
 
 class AnswerQuestionHandler(BaseHandler):
