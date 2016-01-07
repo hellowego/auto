@@ -62,9 +62,26 @@ class AnswerVote(BaseModel):
 		session.query(cls).filter(cls.voter_id == voter_id).delete()
 		session.commit()
 		session.close()
+		
+	@classmethod
+	def updateByVoterId(cls, voter_id, vote_value):
+		session = DBSession()
+		session.query(cls).filter(cls.voter_id == voter_id).update({cls.vote_value:vote_value})
+		session.commit()
+		session.close()
+		
+	@classmethod
+	def countByAnswerIdAndType(cls, answer_id, vote_value):
+		session = DBSession()
+		count = session.query(cls).filter(cls.answer_id == answer_id, cls.vote_value == vote_value).count()		
+		session.close()
+		return count
 
 if __name__ == "__main__":
-	bl = AnswerVote.addAnswerVote(1,2,3,4)
-	print bl
+	# bl = AnswerVote.addAnswerVote(1,2,3,4)	
+	# print bl
+	
+	count = AnswerVote.countByAnswerIdAndType(30, 1)
+	print count
 
 

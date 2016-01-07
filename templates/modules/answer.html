@@ -25,11 +25,11 @@
 		<!-- 投票栏 -->
 		 
 		<span class="operate">
-			<a class="agree" onclick="AWS.User.agree_vote(this, {{answer.uid}}, {{answer.answer_id}});"> 
+			<a class="agree" onclick="AWS.User.agree_vote(this, {{answer.uid}}, {{answer.answer_id}})"> 
 				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-agree" data-original-title="赞同回复"></i>
 				<b class="count">0</b>
 			</a>
-			<a class="agree disabled"> 
+			<a class="disagree" onclick="AWS.User.disagree_vote(this, {{answer.uid}}, {{answer.answer_id}})"> 
 				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-disagree" data-original-title="对回复持反对意见"></i>
 				<b class="count">0</b>
 			</a>

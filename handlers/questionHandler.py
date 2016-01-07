@@ -58,7 +58,7 @@ class AnswerAddHandler(BaseHandler):
 		result = {"errno" : 1, "err" : ""}
 		self.write(result)
 
-class AnswerCommentVoteHandler(BaseHandler):
+class AnswerVoteHandler(BaseHandler):
 	'''
 	回答投票
 	'''
@@ -79,14 +79,21 @@ class AnswerCommentVoteHandler(BaseHandler):
 			AnswerVote.addAnswerVote(answer_id, answer_info.uid, userId, value)
 		# 情况二 已经投过赞同票，则删除赞同记录（已经头赞同票，再点一次是为了取消赞同）
 		else :
-			if vote_info.vote_value == 1 :
-				print 'already vote'
-				print vote_info.voter_id
+			print 'vote_info.vote_value', vote_info.vote_value
+			if vote_info.vote_value == int(value) :
+				print 'already vote'				
 				AnswerVote.deleteByVoterId(vote_info.voter_id)
 		# 情况三 已经投反对票的，将反对票更新为赞同票
+			if vote_info.vote_value != int(value) :
+				print 'against'
+				AnswerVote.updateByVoterId(vote_info.voter_id, value)
 		
+		# 统计总票数
+		# count 
 		print answer_info.uid
 		print answer_info.answer_content
+		
+
 		
 
 

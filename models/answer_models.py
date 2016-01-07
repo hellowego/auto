@@ -59,8 +59,15 @@ class Answer(BaseModel):
 		session.commit()
 		session.close()
 		return True
-
-
+	
+	@classmethod
+	def updateVoteByAnswerId(cls, answer_id, type, vote_value):
+		session = DBSession()
+		# 0反对票, 1赞同票
+		if type == 0 :			
+			session.query(cls).filter(cls.answer_id == answer_id).update({cls.against_count:vote_value})
+		else if type == 1 :
+			session.query(cls).filter(cls.answer_id == answer_id).update({cls.agree_count_count:vote_value})
 
 if __name__ == "__main__":
 	questionId = 1

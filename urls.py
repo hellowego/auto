@@ -7,7 +7,7 @@ from tornado.web import RequestHandler, Application, url
 from handlers.main_handler import IndexHandler
 from handlers.account_handler import RegisterHandler, CheckUsernameHandler, CheckEmailHandler, LoginHandler, LogoutHandler
 from handlers.exploreHandler import ExploreHandler
-from handlers.questionHandler import QuestionHandler, AnswerAddHandler, AnswerCommentVoteHandler
+from handlers.questionHandler import QuestionHandler, AnswerAddHandler, AnswerVoteHandler
 
 
 
@@ -26,7 +26,7 @@ urls = [
 
 	# ajax handler
 	(r"/ajax/save_answer", AnswerAddHandler),
-	(r"/question/ajax/answer_vote/", AnswerCommentVoteHandler),
+	(r"/question/ajax/answer_vote/", AnswerVoteHandler),
 	]
 
 
