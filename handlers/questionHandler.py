@@ -64,9 +64,9 @@ class AnswerVoteHandler(BaseHandler):
 	'''
 	def post(self):
 		answer_id = self.get_argument("answer_id")
-		value = self.get_argument("value")
+		vote_value = self.get_argument("vote_value")
 		print "answer_id", answer_id
-		print "value", value
+		print "vote_value", vote_value
 		answer_info = Answer.queryById(answer_id)
 		userId = self.get_current_user_id()
 		# 获取投票信息
@@ -76,20 +76,22 @@ class AnswerVoteHandler(BaseHandler):
 		# 情况一 没有投过票，增加一条投票记录
 		if not vote_info :
 			print 'vote_info', vote_info
-			AnswerVote.addAnswerVote(answer_id, answer_info.uid, userId, value)
+			AnswerVote.addAnswerVote(answer_id, answer_info.uid, userId, vote_value)
 		# 情况二 已经投过赞同票，则删除赞同记录（已经头赞同票，再点一次是为了取消赞同）
 		else :
 			print 'vote_info.vote_value', vote_info.vote_value
-			if vote_info.vote_value == int(value) :
+			if vote_info.vote_value == int(vote_value) :
 				print 'already vote'				
 				AnswerVote.deleteByVoterId(vote_info.voter_id)
 		# 情况三 已经投反对票的，将反对票更新为赞同票
-			if vote_info.vote_value != int(value) :
+			if vote_info.vote_value != int(vote_value) :
 				print 'against'
-				AnswerVote.updateByVoterId(vote_info.voter_id, value)
+				AnswerVote.updateByVoterId(vote_info.voter_id, vote_value)
 		
 		# 统计总票数
-		# count 
+		count = AnswerVote.countByAnswerIdAndType(answer_id, vote_value)
+		# 更新answer投票数
+		Answer.updateVoteByAnswerId(answer_id, vote_value, count)
 		print answer_info.uid
 		print answer_info.answer_content
 		

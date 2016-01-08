@@ -66,7 +66,7 @@ class Answer(BaseModel):
 		# 0反对票, 1赞同票
 		if type == 0 :			
 			session.query(cls).filter(cls.answer_id == answer_id).update({cls.against_count:vote_value})
-		else if type == 1 :
+		elif type == 1 :
 			session.query(cls).filter(cls.answer_id == answer_id).update({cls.agree_count_count:vote_value})
 
 if __name__ == "__main__":
