@@ -61,13 +61,18 @@ class Answer(BaseModel):
 		return True
 	
 	@classmethod
-	def updateVoteByAnswerId(cls, answer_id, type, vote_value):
+	def updateVoteByAnswerId(cls, answer_id, type, against_count, agree_count):
 		session = DBSession()
 		# 0反对票, 1赞同票
-		if type == 0 :			
-			session.query(cls).filter(cls.answer_id == answer_id).update({cls.against_count:vote_value})
-		elif type == 1 :
-			session.query(cls).filter(cls.answer_id == answer_id).update({cls.agree_count_count:vote_value})
+		# if type == '-1' :		
+			# print 'update against_count'
+			# session.query(cls).filter(cls.answer_id == answer_id).update({cls.against_count:count})
+		# elif type == '1' :
+			# print 'update agree_count'
+			# session.query(cls).filter(cls.answer_id == answer_id).update({cls.agree_count:count})
+		session.query(cls).filter(cls.answer_id == answer_id).update({cls.against_count:against_count, cls.agree_count:agree_count})
+		session.commit()
+		session.close()
 
 if __name__ == "__main__":
 	questionId = 1
@@ -77,6 +82,8 @@ if __name__ == "__main__":
 
 	answer = Answer.queryById(30)
 	print answer.answer_content
+	
+	Answer.updateVoteByAnswerId(30, '0', 100, 99)
 
 	# print time.ctime()
 

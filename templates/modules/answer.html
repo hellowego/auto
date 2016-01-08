@@ -11,7 +11,7 @@
 		<p>
 			<a class="aw-user-name" href="http://www.afucar.com/people/admin" data-id="1">admin</a>
 		</p>
-		<p class="text-color-999 aw-agree-by hide">赞同来自:</p>
+		<p class="text-color-999 aw-agree-by {% if answer.agree_count == 0 %} hide {% end %}">赞同来自:{{answer.vote['user']}}</p>
 	</div></div>
 	<div class="mod-body clearfix">
 		<!-- 评论内容 -->

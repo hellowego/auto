@@ -28,6 +28,15 @@ class QuestionHandler(BaseHandler):
 		print answers[0].answer_content
 		for answer in answers:
 			print 'answer.answer_content', answer.answer_content
+			vote = {'user':'hiihi'}
+			print vote['user']
+			answer.vote = vote
+			print answer.vote['user']
+			
+			# 投赞同票人信息
+			# agree_count = 
+			
+			
 			
 		self.render("question/question_detail.html", question=question, questionId=questionId, answers=answers)
 
@@ -64,8 +73,9 @@ class AnswerVoteHandler(BaseHandler):
 	'''
 	def post(self):
 		answer_id = self.get_argument("answer_id")
-		vote_value = self.get_argument("vote_value")
 		print "answer_id", answer_id
+		vote_value = self.get_argument("value")
+		
 		print "vote_value", vote_value
 		answer_info = Answer.queryById(answer_id)
 		userId = self.get_current_user_id()
@@ -89,9 +99,11 @@ class AnswerVoteHandler(BaseHandler):
 				AnswerVote.updateByVoterId(vote_info.voter_id, vote_value)
 		
 		# 统计总票数
-		count = AnswerVote.countByAnswerIdAndType(answer_id, vote_value)
+		agree_count = AnswerVote.countByAnswerIdAndType(answer_id, 1)
+		against_count = AnswerVote.countByAnswerIdAndType(answer_id, -1)
+		
 		# 更新answer投票数
-		Answer.updateVoteByAnswerId(answer_id, vote_value, count)
+		Answer.updateVoteByAnswerId(answer_id, vote_value, against_count, agree_count)
 		print answer_info.uid
 		print answer_info.answer_content
 		
