@@ -32,6 +32,9 @@ class QuestionHandler(BaseHandler):
 			print vote['user']
 			answer.vote = vote
 			print answer.vote['user']
+
+			# 获取投票uid
+			
 			
 			# 投赞同票人信息
 			# agree_count = 

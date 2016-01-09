@@ -77,10 +77,43 @@ class AnswerVote(BaseModel):
 		session.close()
 		return count
 
+	@classmethod
+	def queryVoteUidByAnswerId(cls, answer_id):
+		session = DBSession()
+		uid = session.query(cls.vote_uid).filter(cls.answer_id == answer_id).all()
+		return uid
+
+	@classmethod
+	def deleteByAnswerId(cls, answer_id):
+		session = DBSession()
+		session.query(cls).filter(cls.answer_id == answer_id).delete()
+		session.commit()
+		session.close()
+
+	# in 查询
+	@classmethod
+	def queryByVoteUids(cls, vote_uids):
+		session = DBSession()
+		voter_id = session.query(cls.voter_id).filter(cls.vote_uid.in_(vote_uids)).all()
+		return voter_id
+
 if __name__ == "__main__":
 	# bl = AnswerVote.addAnswerVote(1,2,3,4)	
 	# print bl
-	
+	test = 'queryVoteUidByAnswerId'
+	if test == 'queryVoteUidByAnswerId' :
+		# AnswerVote.addAnswerVote(1, 1, 2, 1)
+		# AnswerVote.addAnswerVote(1, 1, 3, 1)
+		# AnswerVote.addAnswerVote(1, 1, 4, 1)
+		uid = AnswerVote.queryVoteUidByAnswerId(1)
+		print uid
+		uid = [2,3,4]
+		voter_id = AnswerVote.queryByVoteUids(uid)
+		print voter_id
+		print voter_id[0][0]
+
+		# AnswerVote.deleteByAnswerId(1)
+
 	count = AnswerVote.countByAnswerIdAndType(30, 1)
 	print count
 
