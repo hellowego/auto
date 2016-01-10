@@ -11,7 +11,20 @@
 		<p>
 			<a class="aw-user-name" href="http://www.afucar.com/people/admin" data-id="1">admin</a>
 		</p>
-		<p class="text-color-999 aw-agree-by {% if answer.agree_count == 0 %} hide {% end %}">赞同来自:{{answer.vote['user']}}</p>
+		<p class="text-color-999 aw-agree-by {% if answer.agree_count == 0 %} hide {% end %}">
+			赞同来自:
+			{% set i = 0 %}
+			{% for votename in answer.votename %}				
+				{% if i >= 1 %} <em {% if i >= answer.showmax %} class="hide"  {% end %} >、</em>	{% end %}	
+				<a href="" class="aw-user-name {% if i >= answer.showmax %} hide  {% end %}" >{{votename}}</a>
+				{% set i += 1 %}
+			{% end %}
+			{% if len(answer.votename) >= answer.showmax %}
+				<a href="javascript:;" class="aw-agree-by-show" onclick="$(this).parents('.aw-agree-by').find('em,a').removeClass('hide'); $(this).remove();">更多»</a>
+			{% end %}
+
+
+		</p>
 	</div></div>
 	<div class="mod-body clearfix">
 		<!-- 评论内容 -->

@@ -11,6 +11,7 @@ from models.account_models import AutoUser
 from models.question_models import Question
 from models.answer_models import Answer
 from models.answerVote_models import AnswerVote
+from models.answer_vote_models import Answer_AnswerVote
 import traceback
 class QuestionModule(tornado.web.UIModule):
 	def render(self, question):
@@ -32,8 +33,12 @@ class QuestionHandler(BaseHandler):
 			print vote['user']
 			answer.vote = vote
 			print answer.vote['user']
+			showmax = 5
+			answer.showmax = 2
 
-			# 获取投票uid
+			# 获取投票人name
+			votename = Answer_AnswerVote.queryByAnswerId(answer.answer_id)
+			answer.votename = votename
 			
 			
 			# 投赞同票人信息
