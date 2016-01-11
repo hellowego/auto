@@ -29,6 +29,7 @@ class QuestionHandler(BaseHandler):
 		question = Question.queryById(questionId)
 		answers = Answer.queryByQuestionId(questionId)
 		print answers[0].answer_content
+		user = self.get_current_user()
 		for answer in answers:
 			print 'answer.answer_content', answer.answer_content
 			vote = {'user':'hiihi'}
@@ -61,7 +62,7 @@ class QuestionHandler(BaseHandler):
 			
 			
 			
-		self.render("question/question_detail.html", question=question, questionId=questionId, answers=answers)
+		self.render("question/question_detail.html", question=question, questionId=questionId, answers=answers, user=user)
 
 
 class AnswerAddHandler(BaseHandler):

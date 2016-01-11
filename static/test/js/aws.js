@@ -1629,7 +1629,8 @@ AWS.User =
 			}
 			else
 			{
-				$(selector).parents('.aw-item').find('.aw-agree-by').append('<em>、</em><a class="aw-user-name">' + user_name + '</a>');
+				// $(selector).parents('.aw-item').find('.aw-agree-by').append('<em>、</em><a class="aw-user-name">' + user_name + '</a>');
+				$(selector).parents('.aw-item').find('.aw-agree-by').prepend('<a class="aw-user-name">' + user_name + '</a> <em>、</em>');
 			}
 
 			$(selector).parents('.operate').find('.count').html(parseInt($(selector).parents('.operate').find('.count').html()) + 1);

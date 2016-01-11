@@ -12,7 +12,7 @@
 			<a class="aw-user-name" href="http://www.afucar.com/people/admin" data-id="1">admin</a>
 		</p>
 		<p class="text-color-999 aw-agree-by {% if answer.agree_count == 0 %} hide {% end %}">
-			赞同来自:
+			
 			{% set i = 0 %}
 			{% for votename in answer.votename %}				
 				{% if i >= 1 %} <em {% if i >= answer.showmax %} class="hide"  {% end %} >、</em>	{% end %}	
@@ -20,7 +20,7 @@
 				{% set i += 1 %}
 			{% end %}
 			{% if len(answer.votename) >= answer.showmax %}
-				<a href="javascript:;" class="aw-agree-by-show" onclick="$(this).parents('.aw-agree-by').find('em,a').removeClass('hide'); $(this).remove();">更多»</a>
+				<a href="javascript:;" class="aw-agree-by-show" onclick="$(this).parents('.aw-agree-by').find('em,a').removeClass('hide'); $(this).remove();">等人赞同</a>
 			{% end %}
 
 
@@ -38,7 +38,7 @@
 		<!-- 投票栏 -->
 		 
 		<span class="operate">
-			<a class="agree" onclick="AWS.User.agree_vote(this, {{answer.uid}}, {{answer.answer_id}})"> 
+			<a class="agree" onclick="AWS.User.agree_vote(this, '{{user.name}}', {{answer.answer_id}})"> 
 				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-agree" data-original-title="赞同回复"></i>
 				<b class="count">0</b>
 			</a>
