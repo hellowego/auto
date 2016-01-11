@@ -3,6 +3,8 @@
 
 import sys
 import re
+import datetime
+import time
 import tornado.web
 from baseHandler import BaseHandler
 from tornado import gen
@@ -40,9 +42,22 @@ class QuestionHandler(BaseHandler):
 			votename = Answer_AnswerVote.queryByAnswerId(answer.answer_id)
 			answer.votename = votename
 			
+			# 今天的日期
+			today = datetime.date.today()
+			# 今天日期的时间戳
+			todayStamp =int(time.mktime(today.timetuple())) 
 			
-			# 投赞同票人信息
-			# agree_count = 
+			# 回答时间
+			answerStamp = answer.add_time
+			t = time.localtime(answerStamp)
+			# 判断是否为今天回答			
+			if answerStamp - todayStamp > 0 :
+				# 今天的回答只截取日期和时间
+				addTimeStr = time.strftime('%H:%M', t)
+			else :
+				addTimeStr = time.strftime('%Y-%m-%d', t)
+				
+			answer.addTimeStr = addTimeStr
 			
 			
 			

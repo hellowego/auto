@@ -102,9 +102,9 @@ if __name__ == "__main__":
 	# print bl
 	test = 'queryVoteUidByAnswerId'
 	if test == 'queryVoteUidByAnswerId' :
-		# AnswerVote.addAnswerVote(1, 1, 2, 1)
-		# AnswerVote.addAnswerVote(1, 1, 3, 1)
-		# AnswerVote.addAnswerVote(1, 1, 4, 1)
+		AnswerVote.addAnswerVote(1, 1, 2, 1)
+		AnswerVote.addAnswerVote(1, 1, 3, 1)
+		AnswerVote.addAnswerVote(1, 1, 4, 1)
 		uid = AnswerVote.queryVoteUidByAnswerId(1)
 		print uid
 		uid = [2,3,4]
