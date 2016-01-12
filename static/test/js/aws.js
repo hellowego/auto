@@ -1665,15 +1665,15 @@ AWS.User =
 				{
 					if ($(e).html() == user_name)
 					{
-						if ($(e).prev())
-						{
-							$(e).prev().remove();
-						}
-						else
-						{
-							$(e).next().remove();
-						}
-
+						// if ($(e).prev())
+						// {
+						// 	$(e).prev().remove();
+						// }
+						// else
+						// {
+						// 	$(e).next().remove();
+						// }
+						$(e).prev().remove();
 						$(e).remove();
 					}
 				});
