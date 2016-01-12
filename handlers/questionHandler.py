@@ -39,10 +39,27 @@ class QuestionHandler(BaseHandler):
 			showmax = 5
 			answer.showmax = 2
 
-			# 获取投票人name
-			votename = Answer_AnswerVote.queryByAnswerId(answer.answer_id)
+			# 获取投赞同票人name			
+			votename = Answer_AnswerVote.queryByAnswerId(answer.answer_id, 1)
 			answer.votename = votename
 			
+			# 判读是否已经投赞同票
+			if user.name in votename:
+				answer.agreeActive = 1				
+			else:
+				answer.agreeActive = 0
+			
+			# 判读是否投反对票
+			votename = Answer_AnswerVote.queryByAnswerId(answer.answer_id, -1)
+			if user.name in votename:
+				answer.againstActive = 1				
+			else:
+				answer.againstActive = 0
+				
+			print 'answer.answer_id', answer.answer_id
+			print 'votename', votename
+			print 'user.name', user.name
+			print 'answer.agreeActive', answer.agreeActive
 			# 今天的日期
 			today = datetime.date.today()
 			# 今天日期的时间戳
@@ -56,10 +73,9 @@ class QuestionHandler(BaseHandler):
 				# 今天的回答只截取日期和时间
 				addTimeStr = time.strftime('%H:%M', t)
 			else :
-				addTimeStr = time.strftime('%Y-%m-%d', t)
-				
-			answer.addTimeStr = addTimeStr
+				addTimeStr = time.strftime('%Y-%m-%d', t)			
 			
+			answer.addTimeStr = addTimeStr
 			
 			
 		self.render("question/question_detail.html", question=question, questionId=questionId, answers=answers, user=user)

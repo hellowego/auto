@@ -1595,16 +1595,19 @@ AWS.User =
 			{
 				if ($(e).html() == user_name)
 				{
-					if ($(e).prev())
-					{
-						$(e).prev().remove();
-					}
-					else
-					{
-						$(e).next().remove();
-					}
-
+					// if ($(e).prev())
+					// {
+						// $(e).prev().remove();
+					// }
+					// else
+					// {
+						// $(e).next().remove();
+					// }
+					
+					$(e).next().remove();	
+					// 去除当前用户				
 					$(e).remove();
+					
 				}
 			});
 

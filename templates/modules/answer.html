@@ -19,8 +19,10 @@
 				<a href="" class="aw-user-name {% if i >= answer.showmax %} hide  {% end %}" >{{votename}}</a>
 				{% set i += 1 %}
 			{% end %}
-			{% if len(answer.votename) >= answer.showmax %}
-				<a href="javascript:;" class="aw-agree-by-show" onclick="$(this).parents('.aw-agree-by').find('em,a').removeClass('hide'); $(this).remove();">等人赞同</a>
+			{% if len(answer.votename) >= 0 %}
+				<a href="javascript:;" class="aw-agree-by-show" onclick="$(this).parents('.aw-agree-by').find('em,a').removeClass('hide'); $(this).remove();">
+					{% if len(answer.votename) >= answer.showmax %} 等人{% end %}赞同
+				</a>
 			{% end %}
 
 
@@ -38,13 +40,12 @@
 		<!-- 投票栏 -->
 		 
 		<span class="operate">
-			<a class="agree" onclick="AWS.User.agree_vote(this, '{{user.name}}', {{answer.answer_id}})"> 
+			<a class="agree {% if answer.agreeActive == 1 %} active {% end %}" onclick="AWS.User.agree_vote(this, '{{user.name}}', {{answer.answer_id}})"> 
 				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-agree" data-original-title="赞同回复"></i>
-				<b class="count">0</b>
+				<b class="count">{{answer.agree_count}}</b>
 			</a>
-			<a class="disagree" onclick="AWS.User.disagree_vote(this, {{answer.uid}}, {{answer.answer_id}})"> 
-				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-disagree" data-original-title="对回复持反对意见"></i>
-				<b class="count">0</b>
+			<a class="disagree {% if answer.againstActive == 1 %} active {% end %}" onclick="AWS.User.disagree_vote(this, {{answer.uid}}, {{answer.answer_id}})"> 
+				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-disagree" data-original-title="对回复持反对意见"></i>				
 			</a>
 		</span> 
 		<!-- end 投票栏 -->
