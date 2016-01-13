@@ -148,7 +148,17 @@ class AnswerVoteHandler(BaseHandler):
 		print answer_info.answer_content
 		
 
+class SaveAnswerComment(BaseHandler):
+	"""docstring for SaveAnswerComment"""
+	def get(self, answerId):
+		print answerId
 		
+class GetAnswerComment(BaseHandler):
+	"""docstring for GetAnswerComment"""
+	def get(self, answerId):
+		print answerId
+		result = {"errno" : 1, "err" : ""}
+		self.write(result)
 
 
 class AnswerQuestionHandler(BaseHandler):
