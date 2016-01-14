@@ -157,7 +157,9 @@ class GetAnswerComment(BaseHandler):
 	"""docstring for GetAnswerComment"""
 	def get(self, answerId):
 		print answerId
-		result = {"errno" : 1, "err" : ""}
+		# 按answerId 搜索评论
+
+		result = ''
 		self.write(result)
 
 
