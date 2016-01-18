@@ -36,7 +36,31 @@ class Test():
 
 
 if __name__ == "__main__":
-	Test.time2Stamp()
+	# Test.time2Stamp()
+
+	result = '''
+	<ul>
+		<li>
+			<a class="aw-user-name" href="http://wenda.wecenter.com/people/seosns" data-id="8884"><img src="http://wenda.wecenter.com/uploads/avatar/000/00/88/84_avatar_min.jpg" alt="" /></a>
+		
+			<div>
+				<p class="clearfix">
+				
+								<span class="pull-right">
+											<a href="javascript:;" onclick="if ($(this).parents('.aw-comment-box').find('form textarea').val() == $(this).parents('.aw-comment-box').find('form textarea').attr('placeholder')){$(this).parents('.aw-comment-box').find('form textarea').val('');};$(this).parents('.aw-comment-box').find('form').show().find('textarea').focus();$(this).parents('.aw-comment-box').find('form textarea').insertAtCaret('@seosns:');$.scrollTo($(this).parents('.aw-comment-box').find('form'), 300, {queue:true});$(this).parents('.aw-comment-box').find('textarea').focus();">回复</a>				</span>
+							
+				<a href="http://wenda.wecenter.com/people/seosns" class="aw-user-name author" data-id="8884">seosns</a> • <span>2015-04-17 21:45</span>
+				</p>
+				<p class="clearfix">谢谢你的肯定和建议，会陆续完善的</p>
+			</div>
+		</li>
+	</ul>
+	'''
+
+	a = '		hi, /%s, hello %s' 
+		
+	b = a %('jack', 'tom')
+	print b
 	
 	
 
