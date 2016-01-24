@@ -14,7 +14,10 @@ from models.question_models import Question
 from models.answer_models import Answer
 from models.answerVote_models import AnswerVote
 from models.answer_vote_models import Answer_AnswerVote
+from models.answerComment_models import AnswerComment
 import traceback
+
+
 class QuestionModule(tornado.web.UIModule):
 	def render(self, question):
 		return self.render_string("modules/question.html", question=question)
@@ -158,8 +161,11 @@ class GetAnswerComment(BaseHandler):
 	def get(self, answerId):
 		print answerId
 		# 按answerId 搜索评论
+		answerComments = AnswerComment.queryByAnswerId(answerId)
 
-		result = '''
+		for answerComment in answerComments :
+
+		commentModel = '''
 			<ul>
 				<li>
 					<a class="aw-user-name" href="http://wenda.wecenter.com/people/seosns" data-id="8884"><img src="http://wenda.wecenter.com/uploads/avatar/000/00/88/84_avatar_min.jpg" alt="" /></a>
@@ -172,11 +178,15 @@ class GetAnswerComment(BaseHandler):
 									
 						<a href="http://wenda.wecenter.com/people/seosns" class="aw-user-name author" data-id="8884">seosns</a> • <span>2015-04-17 21:45</span>
 						</p>
-						<p class="clearfix">谢谢你的肯定和建议，会陆续完善的</p>
+						<p class="clearfix">%s</p>
 					</div>
 				</li>
 			</ul>
 			'''
+		result = ''
+		for answerComment in answerComments :
+			comment = commentModel %(answerComment.message)
+			result = result.append(comment)
 		self.write(result)
 
 

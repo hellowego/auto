@@ -29,7 +29,7 @@ class AnswerComment(BaseModel):
 	
 	
 	@classmethod
-	def queryById(cls, answerId):
+	def queryByAnswerId(cls, answerId):
 		session = DBSession()
 		answer = session.query(cls).filter(cls.answer_id == answerId).first()
 		return answer

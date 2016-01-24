@@ -38,8 +38,7 @@ class Test():
 if __name__ == "__main__":
 	# Test.time2Stamp()
 
-	result = '''
-	<ul>
+	result = '''<ul>
 		<li>
 			<a class="aw-user-name" href="http://wenda.wecenter.com/people/seosns" data-id="8884"><img src="http://wenda.wecenter.com/uploads/avatar/000/00/88/84_avatar_min.jpg" alt="" /></a>
 		
@@ -54,13 +53,14 @@ if __name__ == "__main__":
 				<p class="clearfix">谢谢你的肯定和建议，会陆续完善的</p>
 			</div>
 		</li>
-	</ul>
-	'''
+	</ul>'''
 
 	a = '		hi, /%s, hello %s' 
 		
 	b = a %('jack', 'tom')
-	print b
+
+	c = 'hi: %s %s' %(b, b)
+	print c
 	
 	
 
