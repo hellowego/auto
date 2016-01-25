@@ -1,4 +1,6 @@
-# -*-coding=utf8-*-
+#!/usr/bin/env python
+#-*- coding: UTF-8 -*- 
+
 # your models module write here
 import sys
 import time
@@ -31,14 +33,9 @@ class AnswerComment(BaseModel):
 	@classmethod
 	def queryByAnswerId(cls, answerId):
 		session = DBSession()
-		answer = session.query(cls).filter(cls.answer_id == answerId).first()
+		answer = session.query(cls).filter(cls.answer_id == answerId)
 		return answer
 
-	@classmethod
-	def queryByQuestionId(cls, questionId):
-		session = DBSession()
-		answers = session.query(cls).filter(cls.question_id == questionId)
-		return answers
 
 	@classmethod
 	def addAnswerComment(cls, answer_id, uid, message):
@@ -52,8 +49,33 @@ class AnswerComment(BaseModel):
 
 
 if __name__ == "__main__":
-	bl = AnswerComment.addAnswerComment(1,2,'你好')
-	print bl
+	# bl = AnswerComment.addAnswerComment(1,2,'你好')
+	# print bl
+	answerComments = AnswerComment.queryByAnswerId(30)
+	ss = 'hi %s'
+	commentModel = u'''
+			<ul>
+				<li>
+					<a class="aw-user-name" href="http://wenda.wecenter.com/people/seosns" data-id="8884"><img src="http://wenda.wecenter.com/uploads/avatar/000/00/88/84_avatar_min.jpg" alt="" /></a>
+				
+					<div>
+						<p class="clearfix">
+						
+										<span class="pull-right">
+													<a href="javascript:;" onclick="if ($(this).parents('.aw-comment-box').find('form textarea').val() == $(this).parents('.aw-comment-box').find('form textarea').attr('placeholder')){$(this).parents('.aw-comment-box').find('form textarea').val('');};$(this).parents('.aw-comment-box').find('form').show().find('textarea').focus();$(this).parents('.aw-comment-box').find('form textarea').insertAtCaret('@seosns:');$.scrollTo($(this).parents('.aw-comment-box').find('form'), 300, {queue:true});$(this).parents('.aw-comment-box').find('textarea').focus();">回复</a>				</span>
+									
+						<a href="http://wenda.wecenter.com/people/seosns" class="aw-user-name author" data-id="8884">seosns</a> • <span>2015-04-17 21:45</span>
+						</p>
+						<p class="clearfix">%s</p>
+					</div>
+				</li>
+			</ul>
+			'''
+	for answerComment in answerComments :
+		print answerComment.message
+		s = commentModel %(answerComment.message)
+
+		print s
 
 
 

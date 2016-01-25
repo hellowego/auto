@@ -163,9 +163,8 @@ class GetAnswerComment(BaseHandler):
 		# 按answerId 搜索评论
 		answerComments = AnswerComment.queryByAnswerId(answerId)
 
-		for answerComment in answerComments :
-
-		commentModel = '''
+		
+		commentModel = u'''
 			<ul>
 				<li>
 					<a class="aw-user-name" href="http://wenda.wecenter.com/people/seosns" data-id="8884"><img src="http://wenda.wecenter.com/uploads/avatar/000/00/88/84_avatar_min.jpg" alt="" /></a>
@@ -184,9 +183,13 @@ class GetAnswerComment(BaseHandler):
 			</ul>
 			'''
 		result = ''
-		for answerComment in answerComments :
-			comment = commentModel %(answerComment.message)
-			result = result.append(comment)
+		if answerComments :
+			for answerComment in answerComments :
+				comment = commentModel %(answerComment.message)
+				# print commentModel
+				result += comment 
+				# print answerComment.message
+		print result
 		self.write(result)
 
 

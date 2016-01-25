@@ -2540,8 +2540,8 @@ AWS.Init =
 						break;
 
 					case 'answer':
-						var comment_form_action = G_BASE_URL + '/question/ajax/save_answer_comment/answer_id-' + $(this).attr('data-id');
-						var comment_data_url = G_BASE_URL + '/question/ajax/get_answer_comments/answer_id-' + $(this).attr('data-id');
+						var comment_form_action = G_BASE_URL + '/question/ajax/save_answer_comment/' + $(this).attr('data-id');
+						var comment_data_url = G_BASE_URL + '/question/ajax/get_answer_comments/' + $(this).attr('data-id');
 						break;
 				}
 

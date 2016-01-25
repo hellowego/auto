@@ -50,7 +50,7 @@ if __name__ == "__main__":
 							
 				<a href="http://wenda.wecenter.com/people/seosns" class="aw-user-name author" data-id="8884">seosns</a> • <span>2015-04-17 21:45</span>
 				</p>
-				<p class="clearfix">谢谢你的肯定和建议，会陆续完善的</p>
+				<p class="clearfix">%s</p>
 			</div>
 		</li>
 	</ul>'''
@@ -59,7 +59,7 @@ if __name__ == "__main__":
 		
 	b = a %('jack', 'tom')
 
-	c = 'hi: %s %s' %(b, b)
+	c = result %('hiiiiii')
 	print c
 	
 	
