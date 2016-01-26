@@ -155,6 +155,14 @@ class SaveAnswerComment(BaseHandler):
 	"""docstring for SaveAnswerComment"""
 	def get(self, answerId):
 		print answerId
+
+	def post(self, answerId):
+		print 'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii'
+		print answerId
+		message = self.get_argument("message")
+		print message
+		result = {"errno" : 1, "err" : ""}
+		self.write(result)
 		
 class GetAnswerComment(BaseHandler):
 	"""docstring for GetAnswerComment"""
@@ -189,7 +197,7 @@ class GetAnswerComment(BaseHandler):
 				# print commentModel
 				result += comment 
 				# print answerComment.message
-		print result
+		# print result
 		self.write(result)
 
 

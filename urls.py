@@ -27,7 +27,7 @@ urls = [
 	# ajax handler
 	(r"/ajax/save_answer", AnswerAddHandler),
 	(r"/question/ajax/answer_vote/", AnswerVoteHandler),
-	(r"/question/ajax/save_answer_comments/([^/]+)", SaveAnswerComment),
+	(r"/question/ajax/save_answer_comment/([^/]+)", SaveAnswerComment),
 	(r"/question/ajax/get_answer_comments/([^/]+)", GetAnswerComment),
 
 
