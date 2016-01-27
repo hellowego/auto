@@ -39,7 +39,7 @@ class Answer(BaseModel):
 	publish_source = Column(String(16), nullable = True)				# 来源
 
 	@classmethod
-	def queryById(cls, answerId):
+	def queryByAnswerId(cls, answerId):
 		session = DBSession()
 		answer = session.query(cls).filter(cls.answer_id == answerId).first()
 		print "answer[0].uid", answer.uid

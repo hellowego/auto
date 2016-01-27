@@ -160,6 +160,12 @@ class SaveAnswerComment(BaseHandler):
 		print 'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii'
 		print answerId
 		message = self.get_argument("message")
+		userId = self.get_current_user_id()
+		# 异常1 回答不存在
+		if not Answer.queryByAnswerId(answerId) :
+			
+		
+		AnswerComment.addAnswerComment(answerId, userId, message)
 		print message
 		result = {"errno" : 1, "err" : ""}
 		self.write(result)

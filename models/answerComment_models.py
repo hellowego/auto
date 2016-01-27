@@ -39,7 +39,7 @@ class AnswerComment(BaseModel):
 
 	@classmethod
 	def addAnswerComment(cls, answer_id, uid, message):
-		obj = cls(answer_id = answer_id, uid = uid, message = message)
+		obj = cls(answer_id = answer_id, uid = uid, message = message, time = long(time.time()))
 		session = DBSession()
 		session.add(obj)
 		session.commit()

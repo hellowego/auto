@@ -1,11 +1,5 @@
 #!/usr/bin/env python
 #-*- coding: UTF-8 -*- 
-#
-
-import logging
-import logging.config
-
-
 
 class Util(object):
 	'''
@@ -16,12 +10,7 @@ class Util(object):
 	def response(cls, rsm, errno, err):
 		return {'rsm':rsm, 'errno':errno, 'err':err}
 
-	@classmethod
-	def getLogger():
-		logging.config.fileConfig("config/logger.config")
-		logger = logging.getLogger("trace")
-
-		return logger
+		
 		
 		
 if __name__ == "__main__":
@@ -30,3 +19,4 @@ if __name__ == "__main__":
 	errno = 0
 	err = 'succ'
 	print Util.response(rsm, errno, err)
+
