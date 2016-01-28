@@ -15,6 +15,7 @@ from models.answer_models import Answer
 from models.answerVote_models import AnswerVote
 from models.answer_vote_models import Answer_AnswerVote
 from models.answerComment_models import AnswerComment
+from util import Util
 import traceback
 
 
@@ -162,13 +163,13 @@ class SaveAnswerComment(BaseHandler):
 		message = self.get_argument("message")
 		userId = self.get_current_user_id()
 		# 异常1 回答不存在
-		if not Answer.queryByAnswerId(answerId) :
-			
+		# if not Answer.queryByAnswerId(answerId) :
+		self.write(Util.response(NULL, -1, u'回复不存在'))
 		
-		AnswerComment.addAnswerComment(answerId, userId, message)
-		print message
-		result = {"errno" : 1, "err" : ""}
-		self.write(result)
+		# AnswerComment.addAnswerComment(answerId, userId, message)
+		# print message
+		# result = {"errno" : 1, "err" : ""}
+		# self.write(result)
 		
 class GetAnswerComment(BaseHandler):
 	"""docstring for GetAnswerComment"""
