@@ -164,7 +164,8 @@ class SaveAnswerComment(BaseHandler):
 		userId = self.get_current_user_id()
 		# 异常1 回答不存在
 		# if not Answer.queryByAnswerId(answerId) :
-		self.write(Util.response(NULL, -1, u'回复不存在'))
+		self.write(Util.response(None, -1, u'回复不存在'))
+		print Util.response(None, -1, u'回复不存在')
 		
 		# AnswerComment.addAnswerComment(answerId, userId, message)
 		# print message
