@@ -36,6 +36,7 @@ class AnswerComment(BaseModel):
 		answer = session.query(cls).filter(cls.answer_id == answerId)
 		return answer
 
+	
 
 	@classmethod
 	def addAnswerComment(cls, answer_id, uid, message):

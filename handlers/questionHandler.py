@@ -162,15 +162,29 @@ class SaveAnswerComment(BaseHandler):
 		print answerId
 		message = self.get_argument("message")
 		userId = self.get_current_user_id()
+		answer = Answer.queryByAnswerId(answerId)
 		# 异常1 回答不存在
-		# if not Answer.queryByAnswerId(answerId) :
-		self.write(Util.response(None, -1, u'回复不存在'))
-		print Util.response(None, -1, u'回复不存在')
+		if not answer :
+			self.write(Util.response(None, -1, u'回复不存在'))
+			return
+
+		# 请输入评论内容
+		if message == "":
+			self.write(Util.response(None, -1, u'请输入评论内容'))
+			return
+
+		# 不能评论锁定的问题
+		question = Question.queryById(answer.question_id)
+		if question.lock == 1 :
+			self.write(Util.response(None, -1, u'不能评论锁定的问题'))
+			return
+
+		# 你没有发表评论的权限(略)
 		
-		# AnswerComment.addAnswerComment(answerId, userId, message)
-		# print message
-		# result = {"errno" : 1, "err" : ""}
-		# self.write(result)
+		# 插入一条评论
+		AnswerComment.addAnswerComment(answerId, userId, message)
+		rsm = {'item_id':answerId, 'type_name':'answer'}
+		self.write(Util.response(rsm, 1, None))
 		
 class GetAnswerComment(BaseHandler):
 	"""docstring for GetAnswerComment"""
