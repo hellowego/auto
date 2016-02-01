@@ -454,7 +454,8 @@ var AWS =
 	{
 		$('#aw-comment-box-' + type_name + '-' + element_id + ' .aw-comment-list').html('<p align="center" class="aw-padding10"><i class="aw-loading"></i></p>');
 
-		$.get(G_BASE_URL + '/question/ajax/get_' + type_name + '_comments/' + type_name + '_id-' + item_id, function (data)
+		// $.get(G_BASE_URL + '/question/ajax/get_' + type_name + '_comments/' + type_name + '_id-' + item_id, function (data)
+		$.get(G_BASE_URL + '/question/ajax/get_' + type_name + '_comments/' + item_id, function (data)
 		{
 			$('#aw-comment-box-' + type_name + '-' + element_id + ' .aw-comment-list').html(data);
 		});
