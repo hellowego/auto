@@ -8,6 +8,7 @@ from handlers.main_handler import IndexHandler
 from handlers.account_handler import RegisterHandler, CheckUsernameHandler, CheckEmailHandler, LoginHandler, LogoutHandler
 from handlers.exploreHandler import ExploreHandler
 from handlers.questionHandler import QuestionHandler, AnswerAddHandler, AnswerVoteHandler, SaveAnswerComment, GetAnswerComment
+from handlers.profileHandler import ProfileHandler
 
 
 
@@ -22,6 +23,7 @@ urls = [
 	
 	# (r"/question/([^/]+)", QuestionHandler),
 	(r"/question/([0-9]$)", QuestionHandler),
+	(r"/profile/(.*)", ProfileHandler),
 
 
 	# ajax handler
@@ -29,6 +31,7 @@ urls = [
 	(r"/question/ajax/answer_vote/", AnswerVoteHandler),
 	(r"/question/ajax/save_answer_comment/([^/]+)", SaveAnswerComment),
 	(r"/question/ajax/get_answer_comments/([^/]+)", GetAnswerComment),
+
 
 
 	]
