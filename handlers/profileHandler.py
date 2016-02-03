@@ -23,4 +23,4 @@ class ProfileHandler(BaseHandler):
 
 
 	def get(self, username):
-		self.write("let's begin profile")
+		self.render("profile/index.html")
