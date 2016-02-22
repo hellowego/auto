@@ -4,6 +4,7 @@
 
 import tornado.web
 from models.account_models import AutoUser
+from models.users_models import Users
 
 class BaseHandler(tornado.web.RequestHandler):
 	"""
@@ -14,8 +15,9 @@ class BaseHandler(tornado.web.RequestHandler):
 		print "user_id ", user_id
 		if not user_id: return None
 		#return True
-		user = AutoUser.queryByUserId(user_id)
-		print "user_name " , user.name
+		# user = AutoUser.queryByUserId(user_id)
+		user = Users.queryByUserId(user_id)
+		print "user_name " , user.user_name
 		return user
 		
 	def get_current_user_id(self):

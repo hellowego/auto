@@ -12,9 +12,9 @@
                         <!-- 用户数据内容 -->
                         <div class="aw-mod aw-user-detail-box">
                             <div class="mod-head">
-                            <img src="http://wenda.wecenter.com/static/common/avatar-max-img.png" alt="hi" /> 
+                            <img src="{{ static_url("common/avatar-max-img.png") }}" alt="{{ user.user_name }}" /> 
                             <span class="pull-right operate">
-                                <a href="http://wenda.wecenter.com/account/setting/profile/"
+                                <a href="/account/setting"
                                 class="btn btn-mini btn-success">编辑</a>
                             </span>
                             <h1>hi</h1>
@@ -24,19 +24,19 @@
                                 <div class="meta">
 									<span>
 										<i class="icon icon-prestige"></i> 威望 : 
-										<em class="aw-text-color-green">0</em>
+										<em class="aw-text-color-green">{{user.reputation}}</em>
 									</span> 
 									<span> 
 										<i class="icon icon-score"></i>	积分 : 
-										<em class="aw-text-color-orange">50</em>
+										<em class="aw-text-color-orange">{{ user.credit }}</em>
 									</span> 
 									<span> 
 										<i class="icon icon-agree"></i> 赞同 : 
-										<em class="aw-text-color-orange">0</em>
+										<em class="aw-text-color-orange">{{ user.agree_count }}</em>
 									</span> 
 									<span> 
 										<i class="icon icon-thank"></i> 感谢 : 
-										<em class="aw-text-color-orange">0</em>
+										<em class="aw-text-color-orange">{{ user.thanks_count }}</em>
 									</span>
 								</div>
                             </div>

@@ -66,7 +66,7 @@ class Users(BaseModel):
 	reputation = Column(Integer, nullable=True, default = 0)
 	reputation_update_time = Column(DATETIME, nullable=True, default = datetime.now)	
 	weibo_visit = Column(TINYINT, nullable=True, default = 0) 	
-	integral = Column(Integer, nullable=True, default = 0) 
+	credit = Column(Integer, nullable=True, default = 0) 
 	draft_count = Column(Integer, nullable=True, default = 0)
 	common_email = Column(String(255), nullable=True)
 	url_token = Column(String(32), nullable=True)
@@ -191,8 +191,9 @@ if __name__ == "__main__":
 	# else:
 	# 	print 'wrong username or password'
 	# u = AutoUser.checkEmail("hellowego@gmail.com");
-	u = Users.addUser('hi', 'aa1@a.com', '1')
-	u = Users.queryByUserId(1)
+	# u = Users.addUser('hi', 'aa1@a.com', '1')
+	u = Users.addUser('hello', 'hellowego@gmail.com', '1')
+	u = Users.queryByUserId(2)
 	if u:
 		print 'register'
 	else:

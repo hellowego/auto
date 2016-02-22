@@ -136,6 +136,12 @@ class CheckEmailHandler(BaseHandler):
 		self.write(result)    
 
 
+class SettingHandler(BaseHandler):
+	""" 账户设置 """
+
+	def get(self):
+		self.render("account/setting.html")
+
 if __name__ == "__main__":
 	print 'hi'
 	# u = AutoUser.queryUser("hello1", '1');

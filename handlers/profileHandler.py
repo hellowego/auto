@@ -23,4 +23,10 @@ class ProfileHandler(BaseHandler):
 
 
 	def get(self, username):
-		self.render("profile/index.html")
+		user = self.get_current_user()
+		print user.user_name
+		self.render("profile/index.html", user = user)
+
+
+
+
