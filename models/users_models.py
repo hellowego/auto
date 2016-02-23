@@ -111,6 +111,15 @@ class Users(BaseModel):
 		else:
 			return u
 
+	@classmethod
+	def queryByUsername(cls, username):
+		""" 按用户名查询用户 """
+		session = DBSession()
+		u = session.query(cls).filter(cls.user_name==username).first()
+		if not u:
+			return None
+		else:
+			return u
 			
 	@classmethod
 	def checkUsername(cls, username):
