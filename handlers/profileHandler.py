@@ -25,14 +25,16 @@ class ProfileHandler(BaseHandler):
 
 	def get(self, username):
 		# 当前的用户id
-		uid = self.get_current_user_id()
+		uid = int(self.get_current_user_id())
 		# 要访问的用户主页
 		user = Users.queryByUsername(username)
 		if not user :
 			self.render("global/show_message.html", user = user)
 		else :
 			print user.user_name
-			self.render("profile/index.html", user = user)
+			print uid, user.uid
+			# uid = None
+			self.render("profile/index.html", user = user, uid = uid)
 
 
 

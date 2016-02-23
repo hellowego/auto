@@ -15,8 +15,14 @@
                             <img src="{{ static_url("common/avatar-max-img.png") }}" alt="{{ user.user_name }}" /> 
                             <span class="pull-right operate">
 								<!-- 当前不是自己的主页 换成 私信 关注 -->
-								
-                                <a href="/account/setting" class="btn btn-mini btn-success">编辑</a>
+								{% if user.uid <> uid and uid %}
+                                    <a class="text-color-999" onclick="AWS.dialog('inbox', {{user.user_name}});">
+                                        <i class="icon icon-inbox"></i> 私信</a>
+                                    <a onclick="AWS.dialog('publish', {category_enable:0, ask_user_id:{{user.uid}}, ask_user_name:{{user.user_name}}});" class="text-color-999 hidden-xs"><i class="icon icon-at"></i> 问Ta</a>
+                                    <a href="javascript:;" class="follow btn btn-normal btn-success active" onclick="AWS.User.follow($(this), 'user', {{user.uid}});" data-original-title="" title=""><span>关注</span> <em>|</em> <b>0</b></a>
+                                {% else %}
+                                    <a href="/account/setting" class="btn btn-mini btn-success">编辑</a>
+                                {% end %}
                             </span>
                             <h1>{{user.user_name}}</h1>
                             <p class="text-color-999"></p>
