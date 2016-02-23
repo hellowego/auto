@@ -48,21 +48,21 @@ class QuestionHandler(BaseHandler):
 			answer.votename = votename
 			
 			# 判读是否已经投赞同票
-			if user.name in votename:
+			if user.user_name in votename:
 				answer.agreeActive = 1				
 			else:
 				answer.agreeActive = 0
 			
 			# 判读是否投反对票
 			votename = Answer_AnswerVote.queryByAnswerId(answer.answer_id, -1)
-			if user.name in votename:
+			if user.user_name in votename:
 				answer.againstActive = 1				
 			else:
 				answer.againstActive = 0
 				
 			print 'answer.answer_id', answer.answer_id
 			print 'votename', votename
-			print 'user.name', user.name
+			print 'user.user_name', user.user_name
 			print 'answer.agreeActive', answer.agreeActive
 			# 今天的日期
 			today = datetime.date.today()
@@ -121,7 +121,7 @@ class AnswerVoteHandler(BaseHandler):
 		vote_value = self.get_argument("value")
 		
 		print "vote_value", vote_value
-		answer_info = Answer.queryById(answer_id)
+		answer_info = Answer.queryByAnswerId(answer_id)
 		userId = self.get_current_user_id()
 		# 获取投票信息
 		vote_info = AnswerVote.queryByAnswerIdAndUserId(answer_id, userId)

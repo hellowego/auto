@@ -39,11 +39,11 @@
 		<!-- 投票栏 -->
 		 
 		<span class="operate">
-			<a class="agree {% if answer.agreeActive == 1 %} active {% end %}" onclick="AWS.User.agree_vote(this, '{{user.name}}', {{answer.answer_id}})"> 
+			<a class="agree {% if answer.agreeActive == 1 %} active {% end %}" onclick="AWS.User.agree_vote(this, '{{user.user_name}}', {{answer.answer_id}})"> 
 				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-agree" data-original-title="赞同回复"></i>
 				<b class="count">{{answer.agree_count}}</b>
 			</a>
-			<a class="disagree {% if answer.againstActive == 1 %} active {% end %}" onclick="AWS.User.disagree_vote(this, '{{user.name}}', {{answer.answer_id}})"> 
+			<a class="disagree {% if answer.againstActive == 1 %} active {% end %}" onclick="AWS.User.disagree_vote(this, '{{user.user_name}}', {{answer.answer_id}})"> 
 				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-disagree" data-original-title="对回复持反对意见"></i>				
 			</a>
 		</span> 
