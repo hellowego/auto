@@ -2,6 +2,7 @@
 # your models module write here
 import sys
 from datetime import datetime
+from users_models import Users
 sys.path.append("..")
 from db.dbSession import BaseModel, DBSession
 from sqlalchemy import Column, String, Integer
@@ -50,23 +51,79 @@ class User_follow(BaseModel):
 		session = DBSession()
 		count = session.query(cls).filter(cls.friend_uid==friendUid, cls.fans_uid==fansUid).count()
 		return count
+
+	@classmethod
+	def countFollowing(cls, uid):
+		''' 查询关注人数 '''
+		# 创建session对象:
+		session = DBSession()
+		following = session.query(cls).filter(cls.fans_uid==uid).count()
+		return following
+
+	@classmethod
+	def countFollower(cls, uid):
+		''' 查询被关注人数 '''
+		# 创建session对象:
+		session = DBSession()
+		follower = session.query(cls).filter(cls.friend_uid==uid).count()
+		return follower
 	
 
 	@classmethod
-	def addFans(cls, fansUid, friendUid):
-		
+	def follow(cls, fansUid, friendUid):
+		''' 
+		添加关注
+		同时更新用户表的粉丝数和关注数
+		'''
 		ret = cls(fans_uid = fansUid, friend_uid = friendUid)
 		session = DBSession()
 		session.add(ret)
 		session.commit()
 		session.close()
+
+
+		# 更新uid为fansUid的关注人数和粉丝数
+		following = cls.countFollowing(fansUid)
+		follower = cls.countFollower(fansUid)
+		Users.updateFollowCount(fansUid, follower, following)
+
+		# 更新uid为friendUid的关注人数和粉丝数
+		following = cls.countFollowing(friendUid)
+		follower = cls.countFollower(friendUid)
+		Users.updateFollowCount(friendUid, follower, following)
 		return True
+
+
+
+
+	@classmethod
+	def unfollow(cls, fansUid, friendUid):
+		''' 取消关注 '''
+		# 创建session对象:
+		session = DBSession()
+		ret = session.query(cls).filter(cls.friend_uid==friendUid, cls.fans_uid==fansUid).delete()
+		session.commit()
+		session.close()
+
+
+		# 更新uid为fansUid的关注人数和粉丝数
+		following = cls.countFollowing(fansUid)
+		follower = cls.countFollower(fansUid)
+		Users.updateFollowCount(fansUid, follower, following)
+
+		# 更新uid为friendUid的关注人数和粉丝数
+		following = cls.countFollowing(friendUid)
+		follower = cls.countFollower(friendUid)
+		Users.updateFollowCount(friendUid, follower, following)
+		return True
+
+
 
 if __name__ == "__main__":
 	print 'hi'
-	# User_follow.addFans(1,2)
-	# User_follow.addFans(1,3)
-	# User_follow.addFans(2,3)
+	# User_follow.follow(1,2)
+	# User_follow.follow(1,3)
+	# User_follow.follow(2,3)
 
 	follows = User_follow.queryByFansUid(1)
 	# 查询1关注了谁

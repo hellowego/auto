@@ -45,10 +45,35 @@ class FollowPeopleHandler(BaseHandler):
 	"""
 	关注按钮
 	"""
-	def post(self):
-		rsm = {'type':'add'}
+	def post(self):		
+		friendUid = self.get_argument("uid")
+		# 当前的用户id
+		uid = int(self.get_current_user_id())
+		# 判读是否已经关注
+		isfollowed = User_follow.queryIsFollowed(uid, friendUid)
+		if isfollowed:
+			rsm = {'type':'remove'}
+			User_follow.unfollow(uid, friendUid)
+		else:
+			rsm = {'type':'add'}
+			User_follow.follow(uid, friendUid)
+		
 		print 'follow'
 		# self.write(Util.response(None, -1, u'回复不存在'))
 		self.write(Util.response(rsm, 1, None))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

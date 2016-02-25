@@ -191,6 +191,15 @@ class Users(BaseModel):
 		session.close()
 		return True
 
+	@classmethod
+	def updateFollowCount(cls, uid, fans_count, friend_count):
+		session = DBSession()
+		session.query(cls).filter(cls.uid == uid).update({cls.fans_count:fans_count, cls.friend_count:friend_count})
+		session.commit()
+		session.close()
+
+		
+
 if __name__ == "__main__":
 	print 'hi'
 	# u = AutoUser.queryUser("hello1", '1');
