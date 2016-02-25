@@ -43,6 +43,13 @@ class User_follow(BaseModel):
 		fans = session.query(cls).filter(cls.friend_uid==friendUid).all()
 		return fans
 
+	@classmethod
+	def queryIsFollowed(cls, fansUid, friendUid):
+		''' 查询是否关注 '''
+		# 创建session对象:
+		session = DBSession()
+		count = session.query(cls).filter(cls.friend_uid==friendUid, cls.fans_uid==fansUid).count()
+		return count
 	
 
 	@classmethod
@@ -57,9 +64,9 @@ class User_follow(BaseModel):
 
 if __name__ == "__main__":
 	print 'hi'
-	User_follow.addFans(1,2)
-	User_follow.addFans(1,3)
-	User_follow.addFans(2,3)
+	# User_follow.addFans(1,2)
+	# User_follow.addFans(1,3)
+	# User_follow.addFans(2,3)
 
 	follows = User_follow.queryByFansUid(1)
 	# 查询1关注了谁
@@ -73,6 +80,10 @@ if __name__ == "__main__":
 
 	# 查询谁关注了1
 	fans = User_follow.queryByFriendUidId(1)
+	
+	# 查询是否关注
+	count = User_follow.queryIsFollowed(1,4)
+	print count
 	for fan in fans:
 		print fan.follow_id, fan.fans_uid
 

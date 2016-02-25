@@ -9,6 +9,7 @@ from handlers.account_handler import RegisterHandler, CheckUsernameHandler, Chec
 from handlers.exploreHandler import ExploreHandler
 from handlers.questionHandler import QuestionHandler, AnswerAddHandler, AnswerVoteHandler, SaveAnswerComment, GetAnswerComment
 from handlers.profileHandler import ProfileHandler
+from handlers.profileHandler import FollowPeopleHandler
 
 
 
@@ -34,6 +35,7 @@ urls = [
 	(r"/question/ajax/get_answer_comments/([^/]+)", GetAnswerComment),
 
 
+	(r"/follow/ajax/follow_people/", FollowPeopleHandler),
 
 	]
 
