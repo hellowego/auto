@@ -26,7 +26,9 @@ class ProfileHandler(BaseHandler):
 
 	def get(self, username):
 		# 当前的用户id
-		uid = int(self.get_current_user_id())
+		uid = self.get_current_user_id()
+		if uid:
+			uid = int(uid)
 		# 要访问的用户主页
 		user = Users.queryByUsername(username)
 		
