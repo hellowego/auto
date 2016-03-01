@@ -184,7 +184,7 @@ class Users(BaseModel):
 	def addUser(cls, username, email, password):
 		hashed_password = bcrypt.hashpw(tornado.escape.utf8(password), bcrypt.gensalt())
 		print hashed_password
-		ret = cls(user_name = username, email = email, password = hashed_password)
+		ret = cls(user_name = username, email = email, password = hashed_password, url_token = username)
 		session = DBSession()
 		session.add(ret)
 		session.commit()
@@ -210,7 +210,8 @@ if __name__ == "__main__":
 	# 	print 'wrong username or password'
 	# u = AutoUser.checkEmail("hellowego@gmail.com");
 	# u = Users.addUser('hi', 'aa1@a.com', '1')
-	u = Users.addUser('hello', 'hellowego@gmail.com', '1')
+	# u = Users.addUser('hello', 'hellowego@gmail.com', '1')
+	u = Users.addUser('你好', 'hello@gmail.com', '1')
 	u = Users.queryByUserId(2)
 	if u:
 		print 'register'

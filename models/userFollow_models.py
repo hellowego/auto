@@ -117,6 +117,21 @@ class User_follow(BaseModel):
 		Users.updateFollowCount(friendUid, follower, following)
 		return True
 
+	@classmethod
+	def followingList(cls, uid):
+		''' 获取用户关注名单，uid, url_token, '''
+		# 创建session对象:
+		session = DBSession()
+		ret = session.query(Users.uid, Users.url_token).filter(cls.fans_uid == uid, Users.uid == cls.friend_uid).all()		
+		return ret
+		
+	@classmethod
+	def followerList(cls, uid):
+		''' 获取用户粉丝名单，uid, url_token, '''
+		# 创建session对象:
+		session = DBSession()
+		ret = session.query(Users.uid, Users.url_token).filter(cls.friend_uid == uid, Users.uid == cls.fans_uid).all()		
+		return ret
 
 
 if __name__ == "__main__":
@@ -143,6 +158,18 @@ if __name__ == "__main__":
 	print count
 	for fan in fans:
 		print fan.follow_id, fan.fans_uid
+		
+	# 获取用户关注名单，uid
+	print u'获取用户关注名单，uid'
+	ret = User_follow.followingList(1)
+	for uid, url_token in ret:
+		print uid, url_token
+		
+	# 获取用户关注名单，uid
+	print u'获取用户粉丝名单，uid'
+	ret = User_follow.followerList(11)
+	for uid, url_token in ret:
+		print uid, url_token
 
 	print 'hello'
 

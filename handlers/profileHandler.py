@@ -34,12 +34,16 @@ class ProfileHandler(BaseHandler):
 		
 		# 判读是否已经关注
 		isfollowed = User_follow.queryIsFollowed(uid, user.uid)
+		
+		# 判断用户是否登录
 		if not user :
 			self.render("global/show_message.html", user = user)
 		else :
 			print user.user_name
 			print uid, user.uid
-			# uid = None
+			# 获取关注名单
+			# followingUidList = 
+			# 获取粉丝名单
 			self.render("profile/index.html", user = user, uid = uid, isfollowed = isfollowed)
 
 
