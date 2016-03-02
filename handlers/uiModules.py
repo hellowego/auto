@@ -3,6 +3,9 @@
 
 
 import tornado.web
+import sys
+sys.path.append("..")
+from util import Util
 
 class AnswerModule(tornado.web.UIModule):
 	def render(self, answer, user):
@@ -11,7 +14,8 @@ class AnswerModule(tornado.web.UIModule):
 		
 		
 class FollowListModule(tornado.web.UIModule):
-	def render(self, uid, url_token):
-		return self.render_string("modules/followList.html", uid=uid, url_token=url_token)
+	def render(self, uid, url_token, username):
+		avatarUrl = Util.get_avatar_url(uid)
+		return self.render_string("modules/followList.html", uid=uid, url_token=url_token, avatarUrl=avatarUrl, username=username)
 		
 		

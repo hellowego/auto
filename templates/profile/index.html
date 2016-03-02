@@ -318,10 +318,8 @@
 								<span>关注 
 								<em class="aw-text-color-blue">{{ user.friend_count }}</em> 人</span>
 								<p>
-									{% for following in followingList %}
-										<a class="aw-user-name" data-id="{{following.uid}}" href="{{following.url_token}}">
-											<img src="http://wenda.wecenter.com/uploads/avatar/000/00/99/91_avatar_mid.jpg" alt="jat" />
-										</a>
+									{% for following in followingList %}										
+                                        {% module FollowList(following.uid, following.url_token, following.user_name) %}
 									{% end %}
 									
 								</p>
@@ -334,11 +332,9 @@
 								<span>被 
 								<em class="aw-text-color-blue">{{ user.fans_count }}</em> 人关注</span>
 								<p>
-									{% for follower in followerList %}
-										<a class="aw-user-name" data-id="{{follower.uid}}" href="{{follower.url_token}}">
-											<img src="http://wenda.wecenter.com/uploads/avatar/000/00/99/91_avatar_mid.jpg" alt="jat" />
-										</a>
-									{% end %}
+									{% for follower in followerList %}                                       
+                                        {% module FollowList(follower.uid, follower.url_token, follower.user_name) %}
+                                    {% end %}
 									
 								</p>
 							</div>

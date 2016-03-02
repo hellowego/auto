@@ -122,7 +122,7 @@ class User_follow(BaseModel):
 		''' 获取用户关注名单，uid, url_token, '''
 		# 创建session对象:
 		session = DBSession()
-		ret = session.query(Users.uid, Users.url_token).filter(cls.fans_uid == uid, Users.uid == cls.friend_uid).all()		
+		ret = session.query(Users.uid, Users.user_name, Users.url_token).filter(cls.fans_uid == uid, Users.uid == cls.friend_uid).all()		
 		return ret
 		
 	@classmethod
@@ -130,7 +130,7 @@ class User_follow(BaseModel):
 		''' 获取用户粉丝名单，uid, url_token, '''
 		# 创建session对象:
 		session = DBSession()
-		ret = session.query(Users.uid, Users.url_token).filter(cls.friend_uid == uid, Users.uid == cls.fans_uid).all()		
+		ret = session.query(Users.uid, Users.user_name, Users.url_token).filter(cls.friend_uid == uid, Users.uid == cls.fans_uid).all()		
 		return ret
 
 
