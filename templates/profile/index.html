@@ -318,30 +318,31 @@
 								<span>关注 
 								<em class="aw-text-color-blue">{{ user.friend_count }}</em> 人</span>
 								<p>
-									<a class="aw-user-name" data-id="2" href="http://wenda.wecenter.com/people/zhengqiang">
-										<img src="http://wenda.wecenter.com/uploads/avatar/000/00/00/02_avatar_mid.jpg" alt="zhengqiang" />
-									</a> 
-									<a class="aw-user-name" data-id="10" href="http://wenda.wecenter.com/people/yanc">
-										<img src="http://wenda.wecenter.com/uploads/avatar/000/00/00/10_avatar_mid.jpg" alt="yanc" />
-									</a> 
-									<a class="aw-user-name" data-id="49" href="http://wenda.wecenter.com/people/AWSupport">
-										<img src="http://wenda.wecenter.com/uploads/avatar/000/00/00/49_avatar_mid.jpg" alt="AWSupport" />
-									</a> 
-									<a class="aw-user-name" data-id="5167" href="http://wenda.wecenter.com/people/kk">
-										<img src="http://wenda.wecenter.com/uploads/avatar/000/00/51/67_avatar_mid.jpg" alt="kk" />
-									</a> 
-									<a class="aw-user-name" data-id="9991" href="http://wenda.wecenter.com/people/jat">
-										<img src="http://wenda.wecenter.com/uploads/avatar/000/00/99/91_avatar_mid.jpg" alt="jat" />
-									</a>
+									{% for following in followingList %}
+										<a class="aw-user-name" data-id="{{following.uid}}" href="{{following.url_token}}">
+											<img src="http://wenda.wecenter.com/uploads/avatar/000/00/99/91_avatar_mid.jpg" alt="jat" />
+										</a>
+									{% end %}
+									
 								</p>
 							</div>
                         </div>
                         <div class="aw-mod people-following">
                             <div class="mod-body">
-                            <a onclick="$('#page_focus').click();$('#focus .aw-tabs ul li').eq(1).click();$.scrollTo($('#focus').offset()['top'], 600, {queue:true})"
-                            class="pull-right font-size-12">更多 »</a> 
-                            <span>被 
-                            <em class="aw-text-color-blue">0</em> 人关注</span></div>
+								<a onclick="$('#page_focus').click();$('#focus .aw-tabs ul li').eq(1).click();$.scrollTo($('#focus').offset()['top'], 600, {queue:true})"
+								class="pull-right font-size-12">更多 »</a> 
+								<span>被 
+								<em class="aw-text-color-blue">{{ user.fans_count }}</em> 人关注</span>
+								<p>
+									{% for follower in followerList %}
+										<a class="aw-user-name" data-id="{{follower.uid}}" href="{{follower.url_token}}">
+											<img src="http://wenda.wecenter.com/uploads/avatar/000/00/99/91_avatar_mid.jpg" alt="jat" />
+										</a>
+									{% end %}
+									
+								</p>
+							</div>
+							
                         </div>
                         <div class="aw-mod people-following">
                             <div class="mod-body">关注 

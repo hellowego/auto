@@ -41,10 +41,11 @@ class ProfileHandler(BaseHandler):
 		else :
 			print user.user_name
 			print uid, user.uid
-			# 获取关注名单
-			# followingUidList = 
-			# 获取粉丝名单
-			self.render("profile/index.html", user = user, uid = uid, isfollowed = isfollowed)
+			# 获取主页用户关注名单
+			followingList =  User_follow.followingList(user.uid)
+			# 获取主页用户粉丝名单
+			followerList =  User_follow.followerList(user.uid)
+			self.render("profile/index.html", user = user, uid = uid, isfollowed = isfollowed, followingList = followingList, followerList = followerList)
 
 
 class FollowPeopleHandler(BaseHandler):
