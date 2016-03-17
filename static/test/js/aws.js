@@ -2181,7 +2181,7 @@ AWS.Dropdown =
 									}
 									else
 									{
-										var active = ''
+										var active = '';
 									}
 
 									$(selector).parent().find('.aw-dropdown-list').append(Hogan.compile(AW_TEMPLATE.searchDropdownListQuestions).render(

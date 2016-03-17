@@ -1,8 +1,17 @@
+# 启动数据库
+E:\mongodb-win32-x86_64-3.0.7\bin>mongod -dbpath  ../db
+
+#连接数据库
+E:\mongodb-win32-x86_64-3.0.7\bin>mongo.exe
+
 # 查看数据库
 show dbs
 
 # 查看当前使用数据库
 db
+
+# 查询集合
+db.th_trade_right.find()
 
 # 创建数据库
 use dbname
