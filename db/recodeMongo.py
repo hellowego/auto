@@ -1,3 +1,9 @@
+# 服务安装
+mongod.exe --logpath E:/mongodb-win32-x86_64-3.0.7/logs/trace.log --logappend --dbpath E:/mongodb-win32-x86_64-3.0.7/data --directoryperdb --serviceName MongoDB -install 
+
+#服务卸载
+mongod.exe --remove --serviceName "MongoDB"
+
 # 启动数据库
 E:\mongodb-win32-x86_64-3.0.7\bin>mongod -dbpath  ../db
 
