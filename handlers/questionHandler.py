@@ -231,6 +231,19 @@ class AnswerQuestionHandler(BaseHandler):
 		# userid is false need login 
 
 
+class SearchTopicHandler(BaseHandler):
+	"""docstring for SearchTopic"""
+	def get(self):
+		type = self.get_argument("type")
+		q = self.get_argument("q")
+		limit = self.get_argument("limit")
+		topic = {'name':'heeoll'}
+		result = {'hi':'hi',"hello":topic, 'ni':'hao'}
+		
+		print 'type: ',type, ' q: ', q, ' limit: ',limit 
+		self.write(result)
+
+
 
 
 	
