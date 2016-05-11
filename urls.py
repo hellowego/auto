@@ -11,6 +11,7 @@ from handlers.questionHandler import QuestionHandler, AnswerAddHandler, AnswerVo
 from handlers.profileHandler import ProfileHandler
 from handlers.profileHandler import FollowPeopleHandler
 from handlers.questionHandler import SearchTopicHandler
+from handlers.publishHandler import PublishQuestionHandler
 
 
 
@@ -35,6 +36,7 @@ urls = [
 	(r"/question/ajax/save_answer_comment/([^/]+)", SaveAnswerComment),
 	(r"/question/ajax/get_answer_comments/([^/]+)", GetAnswerComment),
 	(r"/search/ajax/search/", SearchTopicHandler),
+	(r"/publish/ajax/publish_question/", PublishQuestionHandler),
 
 
 	(r"/follow/ajax/follow_people/", FollowPeopleHandler),
