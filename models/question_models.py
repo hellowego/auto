@@ -1,6 +1,8 @@
 # -*-coding=utf8-*-
 # your models module write here
 import sys
+import time
+import datetime
 sys.path.append("..")
 from db.dbSession import BaseModel, DBSession
 from sqlalchemy import Column, String, Integer
@@ -22,35 +24,35 @@ class Question(BaseModel):
     question_id = Column(Integer, primary_key=True, nullable=False)
     question_content = Column(String(255), nullable=False)             #'问题内容'
     question_detail = Column(TEXT, nullable=False)              #'问题说明'
-    add_time         = Column(Integer, nullable=False)                 #'添加时间'
-    update_time = Column(Integer, nullable=False)      
-    published_uid = Column(Integer, nullable=False)                #'发布用户UID'
-    answer_count = Column(Integer, nullable=False)                 #'回答计数'
-    answer_users = Column(Integer, nullable=False)                 #'回答人数'
-    view_count = Column(Integer,  nullable=False)                  #'浏览次数'
-    focus_count = Column(Integer,  nullable=False)                 #'关注数'
-    comment_count = Column(Integer,  nullable=False)                #'评论数'
-    action_history_id = Column(Integer,  nullable=True)            #'动作的记录表的关连id'
-    category_id = Column(Integer,  nullable=False)                #'分类 ID'
-    agree_count = Column(Integer,  nullable=False)                #'回复赞同数总和'
-    against_count = Column(Integer, nullable=False)               #'回复反对数总和'
-    best_answer = Column(Integer, nullable=False)                 #'最佳回复 ID'
-    has_attach = Column(TINYINT, nullable=False)                  #'是否存在附件'  
+    add_time         = Column(Integer, nullable=True)                 #'添加时间'
+    update_time = Column(Integer, nullable=True)      
+    published_uid = Column(Integer, nullable=True)                #'发布用户UID'
+    answer_count = Column(Integer, nullable=True, default = 0)                 #'回答计数'
+    answer_users = Column(Integer, nullable=True, default = 0)                 #'回答人数'
+    view_count = Column(Integer,  nullable=True, default = 0)                  #'浏览次数'
+    focus_count = Column(Integer,  nullable=True, default = 0)                 #'关注数'
+    comment_count = Column(Integer,  nullable=True, default = 0)                #'评论数'
+    action_history_id = Column(Integer,  nullable=True, default = 0)            #'动作的记录表的关连id'
+    category_id = Column(Integer,  nullable=True, default = 0)                #'分类 ID'
+    agree_count = Column(Integer,  nullable=True, default = 0)                #'回复赞同数总和'
+    against_count = Column(Integer, nullable=True, default = 0)               #'回复反对数总和'
+    best_answer = Column(Integer, nullable=True, default = 0)                 #'最佳回复 ID'
+    has_attach = Column(TINYINT, nullable=True, default = 0)                  #'是否存在附件'  
     unverified_modify = Column(TEXT, nullable=True)
-    unverified_modify_count         = Column(Integer, nullable=False)
-    ip = Column(BIGINT, nullable=False)
-    last_answer = Column(Integer, nullable=False)                       #'最后回答 ID'
-    popular_value = Column(DOUBLE, nullable=False)    
-    popular_value_update = Column(Integer, nullable=False)  
-    lock = Column(TINYINT, nullable=False)                               #'是否锁定'
-    anonymous = Column(TINYINT, nullable=False)    
-    thanks_count = Column(Integer, nullable=False)      
-    question_content_fulltext = Column(TEXT, nullable=False)
-    is_recommend = Column(TINYINT, nullable=False)
-    weibo_msg_id = Column(BIGINT, nullable=False)
-    received_email_id = Column(Integer, nullable=False)  
-    chapter_id         = Column(Integer, nullable=False)
-    sort = Column(TINYINT, nullable=False)
+    unverified_modify_count         = Column(Integer, nullable=True, default = 0)
+    ip = Column(BIGINT, nullable=True, default = 0)
+    last_answer = Column(Integer, nullable=True, default = 0)                       #'最后回答 ID'
+    popular_value = Column(DOUBLE, nullable=True, default = 0)    
+    popular_value_update = Column(Integer, nullable=True, default = 0)  
+    lock = Column(TINYINT, nullable=True, default = 0)                               #'是否锁定'
+    anonymous = Column(TINYINT, nullable=True, default = 0)    
+    thanks_count = Column(Integer, nullable=True, default = 0)      
+    question_content_fulltext = Column(TEXT, nullable=True)
+    is_recommend = Column(TINYINT, nullable=True, default = 0)
+    weibo_msg_id = Column(BIGINT, nullable=True)
+    received_email_id = Column(Integer, nullable=True)  
+    chapter_id         = Column(Integer, nullable=True)
+    sort = Column(TINYINT, nullable=True, default = 0)
 
     @classmethod
     def queryAllQuestions(cls):
@@ -64,6 +66,18 @@ class Question(BaseModel):
         session = DBSession()
         question = session.query(cls).filter(cls.question_id == questionId).first()
         return question
+
+
+    @classmethod
+    def addQuestion(cls, question_content, question_detail, published_uid):
+        obj = cls(question_content = question_content, question_detail = question_detail, 
+            published_uid = published_uid, add_time = long(time.time()), update_time = long(time.time()))
+        session = DBSession()
+        session.add(obj)
+        session.commit()
+        session.close()
+        return True
+
 
 
 
