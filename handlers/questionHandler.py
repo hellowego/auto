@@ -32,7 +32,7 @@ class QuestionHandler(BaseHandler):
 	def get(self, questionId):
 		question = Question.queryById(questionId)
 		answers = Answer.queryByQuestionId(questionId)
-		print answers[0].answer_content
+		# print answers[0].answer_content
 		user = self.get_current_user()
 		for answer in answers:
 			print 'answer.answer_content', answer.answer_content

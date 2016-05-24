@@ -24,7 +24,11 @@ class PublishQuestionHandler(BaseHandler):
 		print question_content
 		user = self.get_current_user()
 		userId = self.get_current_user_id()
-		Question.addQuestion(question_content, question_detail, userId)
+		if len(question_content) < 5 :
+			self.write(Util.response(None, -1, u'问题标题字数不得少于 5 个字'))
+			return
+		else :
+			Question.addQuestion(question_content, question_detail, userId)
 
 		url = '/'
 		rsm = {'url':'/question/2'}
