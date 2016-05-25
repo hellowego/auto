@@ -18,4 +18,4 @@ class ExploreHandler(BaseHandler):
 		q = Question.queryAllQuestions()
 		questions = {'hi','hello'}
 		answer = 'hi'
-		self.render("explore/index.html", questions=q)
+		self.render("explore/index 2.html")
