@@ -10,7 +10,7 @@ from models.account_models import AutoUser
 from models.question_models import Question
 
 
-class ExploreHandler(BaseHandler):
+class SubmitHandler(BaseHandler):
 	def get(self):
 		question = {'context': 123}
 		# print question.context
@@ -18,4 +18,4 @@ class ExploreHandler(BaseHandler):
 		q = Question.queryAllQuestions()
 		questions = {'hi','hello'}
 		answer = 'hi'
-		self.render("explore/index.html")
+		self.render("submit.html")

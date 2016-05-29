@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>分享资讯 - OPEN资讯</title>
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="search" type="application/opensearchdescription+xml" href="/news/opensearchnews.xml" title="OpenNews" />
+    <meta name="description" content="" />
+    <meta name="Robots" content="All" />
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://www.open-open.com/resource/styles.css" rel="stylesheet">
+    <style type="text/css">
+    .postbody ul li {
+        list-style-type: disc;
+    }
+    
+    .list li {
+        background: #fff none repeat scroll 0 0;
+        border-bottom: medium none;
+        margin-bottom: 15px;
+        padding: 20px;
+    }
+    </style>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4b19e5cc155fe555484434d8338ee0af";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body dir="ltr">
+    <header class="site-header">
+        <div class="header-top ">
+            <div class="header-top-inner">
+                <div class="" style="margin: 0 30px;">
+                    <div class="row">
+                        <div class="header-top-left col-lg-6 col-md-6 col-sm-6 col-xs-12 v-grid">
+                            <div class="header-talet">
+                                <a href="http://www.open-open.com/">首页</a> &nbsp;
+                                <a class="" href="http://www.open-open.com/code/">代码</a> &nbsp;
+                                <a class="" href="http://www.open-open.com/doc/">文档</a> &nbsp;
+                                <a title='OPEN论坛频道' href="http://www.open-open.com/solution">问答</a> &nbsp;
+                                <a title="OPEN资讯" class="active" href="http://www.open-open.com/news/">资讯</a> &nbsp;
+                                <a title="OPEN经验库" class="" href="http://www.open-open.com/lib/">经验</a> &nbsp;
+                                <a title="GitHub日报" class="" href="http://www.open-open.com/github/">GitHub日报</a> &nbsp;
+                            </div>
+                        </div>
+                        <div class="header-top-right col-lg-6 col-md-6 col-sm-6 col-xs-12 v-grid">
+                            <div class="user-info pull-right" id="Personal">
+                                欢迎, <a href="/news/user/profile?uid=511951">hellowego</a>&nbsp;|&nbsp;<a href="/news/user/msg">消息</a>&nbsp;| &nbsp;<a href="/news/members/logout"> 退出</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar ">
+            <div class="container">
+                <div class="navbar-header" style="margin-right: 30px;">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span aria-hidden="true" class="glyphicon glyphicon-menu-hamburger"></span>
+                        <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
+                    </button>
+                    <a class="top-logo" href="//www.open-open.com/news"><span>www.open-open.com/news</span></a>
+                    <span style="font-size: 26px;color: #db6d4c">OPEN资讯</span>
+                    <span style="font-size: 12px;color: #b5b5b5"></span>
+                </div>
+                <div class="pull-right" style="padding: 20px;">
+                    <a class="btn btn-info br40" href="/news/submit/add">投稿</a>
+                </div>
+                <div id="search">
+                    <form onsubmit="document.charset='utf-8';" accept-charset="utf-8" method="post" action="/news/search" name="sf">
+                        <input type="hidden" value="all" name="site">
+                        <div class="input-group">
+                            <input type="text" x-webkit-speech="" placeholder="经验资讯" class="form-control" name="q" id="kw">
+                            <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                      </span>
+                        </div>
+                    </form>
+                    <!-- /input-group -->
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="dir cat-item">
+                            <a href="/news/category/4">开源软件</a>
+                        </li>
+                        <li class="dir cat-item">
+                            <a href="/news/category/5">前端技术</a>
+                        </li>
+                        <li class="dir cat-item">
+                            <a href="/news/category/6">互联网</a>
+                        </li>
+                        <li class="dir cat-item">
+                            <a href="/news/category/7">IT业界</a>
+                        </li>
+                        <li class="dir cat-item">
+                            <a href="/news/category/8">移动开发</a>
+                        </li>
+                        <li class="dir cat-item">
+                            <a href="/news/category/9">数据库</a>
+                        </li>
+                        <li class="dir cat-item">
+                            <a href="/news/category/10">操作系统</a>
+                        </li>
+                        <li class="dir cat-item">
+                            <a href="/news/category/11">软件编程</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </nav>
+    </header>
+    <!-- mid content -->
+    <style>
+    .cke_contents {
+        border-left: 1px solid #eee !important;
+        border-right: 1px solid #eee !important;
+    }
+    
+    #titlex {
+        background: #fff;
+        border: 1px solid #eee;
+        display: inline;
+        font-size: 20px;
+        height: 46px;
+        line-height: 1.33;
+        padding: 10px 16px;
+        width: 100%;
+    }
+    
+    #titlex:focus,
+    #tags:focus,
+    #code:focus {
+        border: 1px solid #00a2ff
+    }
+    
+    #tags {
+        width: 600px;
+        background: #fff;
+        margin-top: 15px;
+        border: 1px solid #eee;
+        padding: 10px;
+    }
+    </style>
+    <div id="mid-content" class="container" style="padding-top:30px;">
+        <div class="alert alert-info" role="alert" style="padding-left: 20px;">
+            <h6 style="margin: 0"><strong>提 示</strong></h6>
+            <ul>
+                <li>欢迎您在OPEN资讯发布资讯信息！</li>
+                <li>OPEN网站注册会员都可以发布资讯，经过管理员审批，您的资讯会发布在资讯频道首页，并且您将获得
+                    <label style="color:red">5个OPEN文档积分</label>的奖励</li>
+                <li>OPEN网站盼望您发布原创资讯信息，好的原创资讯更受大家欢迎</li>
+            </ul>
+        </div>
+        <br/>
+        <form action="/news/submit/save" method="post" name="thisform" id="thisform" onsubmit="return checkForm();">
+            <input type="text" id="titlex" placeholder="请输入你提交内容的标题" class="text" name="titlex" value="" size="60" maxlength="120" autocomplete="off" />
+            <p>
+                <br />
+                <textarea name="content" class="bodytext" id="bodytext"></textarea>
+                <br />
+                <p>
+                    <input type="text" id="tags" class="wickEnabled" placeholder="标签, 简单的描述性词语,供主题归类,用逗号分隔开" name="tags" value="" />
+                    <select name="catalogid" id="catalogid" style="border: 1px solid #eee; height: 40px;background: #fff; margin: 0 20px;">
+                        <option value="0">请选择分类</option>
+                        <option value="4">
+                            &nbsp;&nbsp;&nbsp;开源软件&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="5">
+                            &nbsp;&nbsp;&nbsp;前端技术&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="6">
+                            &nbsp;&nbsp;&nbsp;互联网&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="7">
+                            &nbsp;&nbsp;&nbsp;IT业界&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="8">
+                            &nbsp;&nbsp;&nbsp;移动开发&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="9">
+                            &nbsp;&nbsp;&nbsp;数据库&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="10">
+                            &nbsp;&nbsp;&nbsp;操作系统&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="11">
+                            &nbsp;&nbsp;&nbsp;软件编程&nbsp;&nbsp;&nbsp;
+                        </option>
+                    </select>
+                    <input type="button" style="border: 1px solid #00a2ff; border-radius: 30px;font-size: 18px;padding: 5px 20px;background:#00a2ff;color:#fff;" onclick="if(checkForm()){this.value='提交中...';this.disabled=true;this.form.submit();}" value="提交审核" />
+                </p>
+        </form>
+    </div>
+    <!-- mid content -->
+    <script src="//cdn.bootcss.com/jquery/1.12.1/jquery.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.open-open.com/lib/ckeditor/ckeditor.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+    var ImageUploadUrl = "/news/uploadImage.html";
+    var editor = CKEDITOR.replace('bodytext');
+    $(function() {
+        CKEDITOR.config.height = $(window).height() - 600;
+    });
+
+    function Trim(str) {
+        var tmpStr = new String(str);
+        return tmpStr.replace(/(^\s*)|(\s*$)/g, "");
+    }
+
+    function checkForm() {
+
+        if (Trim($("#titlex").val()) == '') {
+            alert('请填写标题！');
+            $("#titlex")[0].focus();
+            return false;
+        }
+
+        if ($("#catalogid").val() == '0') {
+            alert('请选择分类！');
+            $("#catalogid")[0].focus();
+            return false;
+        }
+        if (Trim($("#tags").val()) == '') {
+            alert('请填写标签！');
+            $("#tags")[0].focus();
+            return false;
+        }
+
+        return true;
+    }
+    </script>
+</body>
+
+</html>
