@@ -12,7 +12,7 @@ from handlers.profileHandler import ProfileHandler
 from handlers.profileHandler import FollowPeopleHandler
 from handlers.questionHandler import SearchTopicHandler
 from handlers.publishHandler import PublishQuestionHandler
-from handlers.submitHandler import SubmitHandler
+from handlers.submitHandler import SubmitHandler, SubmitLinkHandler
 
 
 
@@ -25,7 +25,10 @@ urls = [
 	(r"/check_username", CheckUsernameHandler),
 	(r"/check_email", CheckEmailHandler),
 	(r"/explore", ExploreHandler),
+
+	# 
 	(r"/submit", SubmitHandler),
+	(r"/submit/save", SubmitLinkHandler),
 	
 	# (r"/question/([^/]+)", QuestionHandler),
 	(r"/question/([0-9]$)", QuestionHandler),

@@ -61,67 +61,6 @@
                 </div>
             </div>
         </div>
-        <nav class="navbar ">
-            <div class="container">
-                <div class="navbar-header" style="margin-right: 30px;">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span aria-hidden="true" class="glyphicon glyphicon-menu-hamburger"></span>
-                        <span aria-hidden="true" class="glyphicon glyphicon-menu-up"></span>
-                    </button>
-                    <a class="top-logo" href="//www.open-open.com/news"><span>www.open-open.com/news</span></a>
-                    <span style="font-size: 26px;color: #db6d4c">OPEN资讯</span>
-                    <span style="font-size: 12px;color: #b5b5b5"></span>
-                </div>
-                <div class="pull-right" style="padding: 20px;">
-                    <a class="btn btn-info br40" href="/news/submit/add">投稿</a>
-                </div>
-                <div id="search">
-                    <form onsubmit="document.charset='utf-8';" accept-charset="utf-8" method="post" action="/news/search" name="sf">
-                        <input type="hidden" value="all" name="site">
-                        <div class="input-group">
-                            <input type="text" x-webkit-speech="" placeholder="经验资讯" class="form-control" name="q" id="kw">
-                            <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                      </span>
-                        </div>
-                    </form>
-                    <!-- /input-group -->
-                </div>
-            </div>
-        </nav>
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="collapse navbar-collapse" id="navbar">
-                    <ul class="nav navbar-nav">
-                        <li class="dir cat-item">
-                            <a href="/news/category/4">开源软件</a>
-                        </li>
-                        <li class="dir cat-item">
-                            <a href="/news/category/5">前端技术</a>
-                        </li>
-                        <li class="dir cat-item">
-                            <a href="/news/category/6">互联网</a>
-                        </li>
-                        <li class="dir cat-item">
-                            <a href="/news/category/7">IT业界</a>
-                        </li>
-                        <li class="dir cat-item">
-                            <a href="/news/category/8">移动开发</a>
-                        </li>
-                        <li class="dir cat-item">
-                            <a href="/news/category/9">数据库</a>
-                        </li>
-                        <li class="dir cat-item">
-                            <a href="/news/category/10">操作系统</a>
-                        </li>
-                        <li class="dir cat-item">
-                            <a href="/news/category/11">软件编程</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
-            </div>
-        </nav>
     </header>
     <!-- mid content -->
     <style>
@@ -135,19 +74,19 @@
         border: 1px solid #eee;
         display: inline;
         font-size: 20px;
-        height: 46px;
+        height: 96px;
         line-height: 1.33;
         padding: 10px 16px;
         width: 100%;
     }
     
     #titlex:focus,
-    #tags:focus,
+    #sourceurl:focus,
     #code:focus {
         border: 1px solid #00a2ff
     }
     
-    #tags {
+    #sourceurl {
         width: 600px;
         background: #fff;
         margin-top: 15px;
@@ -156,59 +95,19 @@
     }
     </style>
     <div id="mid-content" class="container" style="padding-top:30px;">
-        <div class="alert alert-info" role="alert" style="padding-left: 20px;">
-            <h6 style="margin: 0"><strong>提 示</strong></h6>
-            <ul>
-                <li>欢迎您在OPEN资讯发布资讯信息！</li>
-                <li>OPEN网站注册会员都可以发布资讯，经过管理员审批，您的资讯会发布在资讯频道首页，并且您将获得
-                    <label style="color:red">5个OPEN文档积分</label>的奖励</li>
-                <li>OPEN网站盼望您发布原创资讯信息，好的原创资讯更受大家欢迎</li>
-            </ul>
-        </div>
         <br/>
-        <form action="/news/submit/save" method="post" name="thisform" id="thisform" onsubmit="return checkForm();">
-            <input type="text" id="titlex" placeholder="请输入你提交内容的标题" class="text" name="titlex" value="" size="60" maxlength="120" autocomplete="off" />
+        <form action="/submit/save" method="post" name="thisform" id="thisform" onsubmit="return checkForm();">
+            <input type="text" id="titlex" placeholder="请输入你提交内容的标题" class="text" name="titlex" value="" size="160" maxlength="120" autocomplete="off" />
             <p>
-                <br />
-                <textarea name="content" class="bodytext" id="bodytext"></textarea>
-                <br />
                 <p>
-                    <input type="text" id="tags" class="wickEnabled" placeholder="标签, 简单的描述性词语,供主题归类,用逗号分隔开" name="tags" value="" />
-                    <select name="catalogid" id="catalogid" style="border: 1px solid #eee; height: 40px;background: #fff; margin: 0 20px;">
-                        <option value="0">请选择分类</option>
-                        <option value="4">
-                            &nbsp;&nbsp;&nbsp;开源软件&nbsp;&nbsp;&nbsp;
-                        </option>
-                        <option value="5">
-                            &nbsp;&nbsp;&nbsp;前端技术&nbsp;&nbsp;&nbsp;
-                        </option>
-                        <option value="6">
-                            &nbsp;&nbsp;&nbsp;互联网&nbsp;&nbsp;&nbsp;
-                        </option>
-                        <option value="7">
-                            &nbsp;&nbsp;&nbsp;IT业界&nbsp;&nbsp;&nbsp;
-                        </option>
-                        <option value="8">
-                            &nbsp;&nbsp;&nbsp;移动开发&nbsp;&nbsp;&nbsp;
-                        </option>
-                        <option value="9">
-                            &nbsp;&nbsp;&nbsp;数据库&nbsp;&nbsp;&nbsp;
-                        </option>
-                        <option value="10">
-                            &nbsp;&nbsp;&nbsp;操作系统&nbsp;&nbsp;&nbsp;
-                        </option>
-                        <option value="11">
-                            &nbsp;&nbsp;&nbsp;软件编程&nbsp;&nbsp;&nbsp;
-                        </option>
-                    </select>
-                    <input type="button" style="border: 1px solid #00a2ff; border-radius: 30px;font-size: 18px;padding: 5px 20px;background:#00a2ff;color:#fff;" onclick="if(checkForm()){this.value='提交中...';this.disabled=true;this.form.submit();}" value="提交审核" />
+                    <input type="text" id="sourceurl" class="wickEnabled" placeholder="网址" name="sourceurl" value="" />
+                    <input type="button" style="border: 1px solid #00a2ff; border-radius: 30px;font-size: 18px;padding: 5px 20px;background:#00a2ff;color:#fff;" onclick="if(checkForm()){this.value='提交中...';this.disabled=true;this.form.submit();}" value="提交" />
                 </p>
         </form>
     </div>
     <!-- mid content -->
     <script src="//cdn.bootcss.com/jquery/1.12.1/jquery.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://www.open-open.com/lib/ckeditor/ckeditor.js" charset="UTF-8"></script>
     <script type="text/javascript">
     var ImageUploadUrl = "/news/uploadImage.html";
     var editor = CKEDITOR.replace('bodytext');
@@ -234,9 +133,9 @@
             $("#catalogid")[0].focus();
             return false;
         }
-        if (Trim($("#tags").val()) == '') {
+        if (Trim($("#sourceurl").val()) == '') {
             alert('请填写标签！');
-            $("#tags")[0].focus();
+            $("#sourceurl")[0].focus();
             return false;
         }
 
