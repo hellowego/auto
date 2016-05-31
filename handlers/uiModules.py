@@ -19,3 +19,8 @@ class FollowListModule(tornado.web.UIModule):
 		return self.render_string("modules/followList.html", uid=uid, url_token=url_token, avatarUrl=avatarUrl, username=username)
 		
 		
+
+class LinkModule(tornado.web.UIModule):
+	def render(self, link):
+		return self.render_string("modules/linkList.html", link = link)
+		

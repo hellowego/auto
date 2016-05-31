@@ -6,18 +6,13 @@ import re
 from baseHandler import BaseHandler
 from tornado import gen
 sys.path.append("..")
-from models.linkModel import Link
-from models.question_models import Question
 
+from models.linkModel import Link
 
 class SubmitHandler(BaseHandler):
 	def get(self):
-		question = {'context': 123}
-		# print question.context
-		u = AutoUser.queryAllUsers()
-		q = Question.queryAllQuestions()
-		questions = {'hi','hello'}
-		answer = 'hi'
+		
+		
 		self.render("submit.html")
 
 

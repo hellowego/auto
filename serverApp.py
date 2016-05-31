@@ -14,7 +14,8 @@ import urls
 from tornado.options import define, options
 from handlers.questionHandler import QuestionModule
 from handlers.uiModules import AnswerModule
-from handlers.uiModules import FollowListModule
+from handlers.uiModules import FollowListModule, LinkModule
+
 
 define("port", default=8888, help="run on the given port", type=int)
 
@@ -27,7 +28,7 @@ class Application(tornado.web.Application):
 			blog_title=u"auto Blog",
 			template_path=os.path.join(os.path.dirname(__file__), "templates"),
 			static_path=os.path.join(os.path.dirname(__file__), "static"),
-			ui_modules={"Question": QuestionModule, "Answer": AnswerModule, "FollowList": FollowListModule},
+			ui_modules={"Question": QuestionModule, "Answer": AnswerModule, "FollowList": FollowListModule, "LinkModule":LinkModule},
 			xsrf_cookies=False,
 			cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
 			login_url="/auth/login",

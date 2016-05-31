@@ -36,6 +36,12 @@ class Link(BaseModel):
 		answer = session.query(cls).filter(cls.id == linkId)
 		return answer
 
+	@classmethod
+	def queryAll(cls):
+		session = DBSession()
+		linkList = session.query(cls)
+		return linkList
+
 	
 
 	@classmethod

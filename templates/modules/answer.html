@@ -1,0 +1,90 @@
+<div class="aw-item" uninterested_count="0" force_fold="0" id="answer_list_4">
+	<div class="mod-head">
+	<a class="anchor" name="answer_4"></a> 
+	<!-- 用户头像 -->
+	 
+	<a class="aw-user-img aw-border-radius-5 pull-right" href="http://www.afucar.com/people/admin" data-id="1">
+		<img src="http://www.afucar.com/static/common/avatar-mid-img.png" alt="" />
+	</a> 
+	<!-- end 用户头像 -->
+	<div class="title">
+		<p>
+			<a class="aw-user-name" href="http://www.afucar.com/people/admin" data-id="1">admin</a>
+		</p>
+		<p class="text-color-999 aw-agree-by {% if answer.agree_count == 0 %} hide {% end %}">
+			
+			{% set i = 0 %}
+			{% for votename in answer.votename %}				
+				{% if i >= 1 %} <em {% if i >= answer.showmax %} class="hide"  {% end %} >、</em>	{% end %}	
+				<a href="" class="aw-user-name {% if i >= answer.showmax %} hide  {% end %}" >{{votename}}</a>
+				{% set i += 1 %}
+			{% end %}
+			{% if len(answer.votename) >= 0 %}
+				<a href="javascript:;" class="aw-agree-by-show" onclick="$(this).parents('.aw-agree-by').find('em,a').removeClass('hide'); $(this).remove();">
+					{% if len(answer.votename) >= answer.showmax %} 等人{% end %}赞同
+				</a>
+			{% end %}
+
+		</p>
+	</div></div>
+	<div class="mod-body clearfix">
+		<!-- 评论内容 -->
+		<div class="markitup-box">{{answer.answer_content}}</div>
+		<!-- end 评论内容 -->
+	</div>
+	<div class="mod-footer">
+		<!-- 社交操作 -->
+		<div class="meta clearfix">
+		<span class="text-color-999 pull-right">{{answer.addTimeStr}}</span> 
+		<!-- 投票栏 -->
+		 
+		<span class="operate">
+			<a class="agree {% if answer.agreeActive == 1 %} active {% end %}" onclick="AWS.User.agree_vote(this, '{{user.user_name}}', {{answer.answer_id}})"> 
+				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-agree" data-original-title="赞同回复"></i>
+				<b class="count">{{answer.agree_count}}</b>
+			</a>
+			<a class="disagree {% if answer.againstActive == 1 %} active {% end %}" onclick="AWS.User.disagree_vote(this, '{{user.user_name}}', {{answer.answer_id}})"> 
+				<i data-placement="right" title="" data-toggle="tooltip" class="icon icon-disagree" data-original-title="对回复持反对意见"></i>				
+			</a>
+		</span> 
+		<!-- end 投票栏 -->
+		 
+		<span class="operate">
+			<a class="aw-add-comment" data-id="{{answer.answer_id}}" data-type="answer" data-comment-count="0" data-first-click="hide"
+			href="javascript:;"> 
+			<i class="icon icon-comment"></i> 
+			0</a>
+		</span> 
+		<!-- 可显示/隐藏的操作box -->
+		<div class="more-operate">
+		<a class="text-color-999" href="javascript:;"
+		onclick="AWS.dialog('commentEdit', {answer_id:4,attach_access_key:''});">编辑</a> 
+		<a href="javascript:;" onclick="AWS.User.answer_force_fold($(this), 4);" class="text-color-999"> 折叠</a> 
+		<a href="javascript:;" onclick="AWS.dialog('favorite', {item_id:4, item_type:'answer'});" class="text-color-999">
+		收藏</a>
+		<div class="btn-group pull-left">
+			<a class="text-color-999 dropdown-toggle" data-toggle="dropdown">分享</a>
+			<div aria-labelledby="dropdownMenu" role="menu" class="aw-dropdown shareout pull-right">
+				<ul class="aw-dropdown-list">
+					<li>
+						<a onclick="AWS.User.share_out({webid: 'tsina', content: $(this).parents('.aw-item').find('.markitup-box').text()});">
+						微博</a>
+					</li>
+					<li>
+						<a onclick="AWS.User.share_out({webid: 'qzone', content: $(this).parents('.aw-item').find('.markitup-box').text()});">
+						QZONE</a>
+					</li>
+					<li>
+						<a onclick="AWS.User.share_out({webid: 'weixin', content: $(this).parents('.aw-item').find('.markitup-box').text()});">
+						微信</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<a href="javascript:;" onclick="AWS.ajax_request(G_BASE_URL + '/question/ajax/set_best_answer/', 'answer_id=4');"
+		class="text-color-999">最佳回复</a></div>
+		<!-- end 可显示/隐藏的操作box --></div>
+		<!-- end 社交操作 -->
+	</div>
+</div>
+

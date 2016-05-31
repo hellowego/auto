@@ -1,0 +1,13 @@
+<div class="aw-item active" data-topic-id="">
+    <a class="aw-user-name hidden-xs" data-id="1" href="http://localhost:8080/people/admin" rel="nofollow"><img src="{{ static_url("test/img/avatar-mid-img.png") }} " alt="" /></a>
+    <div class="aw-question-content">
+        <h4>
+			<a href="/question/{{question.question_id}}">{{question.question_content}}</a>
+		</h4>
+        <a href="http://localhost:8080/question/1#!answer_form" class="pull-right text-color-999">回复</a>
+        <p>
+            <a class="aw-question-tags" href="http://localhost:8080/explore/category-1">默认分类</a> • <a href="http://localhost:8080/people/admin" class="aw-user-name">admin</a> <span class="text-color-999">发起了问题a • {{question.focus_count}} 人关注 • {{question.answer_count}} 个回复 • {{question.view_count}} 次浏览 • 2015-10-11 20:44				</span>
+            <span class="text-color-999 related-topic hide"> • 来自相关话题</span>
+        </p>
+    </div>
+</div>

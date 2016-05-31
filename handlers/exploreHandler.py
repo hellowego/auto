@@ -8,7 +8,7 @@ from tornado import gen
 sys.path.append("..")
 from models.account_models import AutoUser
 from models.question_models import Question
-
+from models.linkModel import Link
 
 class ExploreHandler(BaseHandler):
 	def get(self):
@@ -18,4 +18,5 @@ class ExploreHandler(BaseHandler):
 		q = Question.queryAllQuestions()
 		questions = {'hi','hello'}
 		answer = 'hi'
-		self.render("explore/index.html")
+		linkList = Link.queryAll()
+		self.render("explore/index.html", linkList = linkList)
