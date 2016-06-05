@@ -86,8 +86,27 @@ user = query.filter(User.id == 99).one()
 session.query(User).filter(User.name.like('%ed')).count()
 
 
+12. 文本语句text函数
+session.query(User).filter(text("id<224")).order_by(text("id")).all()
 
 
+13. 绑定变量
+session.query(User).filter(text("id<:value and name=:name")).params(value=224, name='fred').order_by(User.id).one()
+
+14. sql语句
+session.query(User).from_statement(text("SELECT * FROM users where name=:name")).params(name='ed').all()
+
+15. 分组查询
+from sqlalchemy import func
+session.query(func.count(User.name), User.name).group_by(User.name).all()
+
+16. 计数，下面语句执行效果一样
+SELECT count(*) FROM table
+session.query(func.count('*')).select_from(User).scalar()
+session.query(func.count(User.id)).scalar()
+
+17. 关联查询
+session.query(User, Address).filter(User.id==Address.user_id).filter(Address.email_address=='jack@google.com').all()
 
 
 

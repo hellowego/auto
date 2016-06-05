@@ -101,6 +101,40 @@
             <p>
                 <p>
                     <input type="text" id="sourceurl" class="wickEnabled" placeholder="网址" name="sourceurl" value="" />
+                    <select name="catalogid" id="catalogid" style="border: 1px solid #eee; height: 40px;background: #fff; margin: 0 20px;">
+                        <option value="0">请选择分类</option>
+                        <option value="400">
+                            &nbsp;&nbsp;&nbsp;开源软件&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="5">
+                            &nbsp;&nbsp;&nbsp;前端技术&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="6">
+                            &nbsp;&nbsp;&nbsp;互联网&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="7">
+                            &nbsp;&nbsp;&nbsp;IT业界&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="8">
+                            &nbsp;&nbsp;&nbsp;移动开发&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="9">
+                            &nbsp;&nbsp;&nbsp;数据库&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="10">
+                            &nbsp;&nbsp;&nbsp;操作系统&nbsp;&nbsp;&nbsp;
+                        </option>
+                        <option value="11">
+                            &nbsp;&nbsp;&nbsp;软件编程&nbsp;&nbsp;&nbsp;
+                        </option>
+
+                        {% for catalog in catalogList %}
+                            
+                            <option value={{catalog.id}}>
+                                &nbsp;&nbsp;&nbsp;{{catalog.name}}&nbsp;&nbsp;&nbsp;
+                            </option>
+                        {% end %}
+                    </select>
                     <input type="button" style="border: 1px solid #00a2ff; border-radius: 30px;font-size: 18px;padding: 5px 20px;background:#00a2ff;color:#fff;" onclick="if(checkForm()){this.value='提交中...';this.disabled=true;this.form.submit();}" value="提交" />
                 </p>
         </form>

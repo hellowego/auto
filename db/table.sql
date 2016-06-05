@@ -7,3 +7,10 @@ create table `link` (
 	PRIMARY KEY (`id`)
 )DEFAULT CHARSET=utf8;
 
+create table `catalog` ( 
+	`id` int(3)  NOT NULL AUTO_INCREMENT,
+    `name` varchar(32) default null unique,
+	`url` varchar(32) DEFAULT NULL unique,
+	`add_time` int(10) DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)DEFAULT CHARSET=utf8;

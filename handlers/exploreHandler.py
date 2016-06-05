@@ -10,6 +10,7 @@ from models.account_models import AutoUser
 from models.question_models import Question
 from models.linkModel import Link
 
+
 class ExploreHandler(BaseHandler):
 	def get(self):
 		question = {'context': 123}
@@ -19,4 +20,6 @@ class ExploreHandler(BaseHandler):
 		questions = {'hi','hello'}
 		answer = 'hi'
 		linkList = Link.queryAll()
+		
+
 		self.render("explore/index.html", linkList = linkList)
