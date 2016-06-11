@@ -62,7 +62,16 @@
                     
                 </ul>
                 <div class="pagination">
-                    <p><span class='pagescurrent'>1</span><a href='/news/tags/Bootstrap?pn=1' class=1s>2</a> <a href='/news/tags/Bootstrap?pn=2' class=2s>3</a> <a href='/news/tags/Bootstrap?pn=3' class=3s>4</a> <a href='/news/tags/Bootstrap?pn=4' class=4s>5</a> <a href='/news/tags/Bootstrap?pn=5' class=5s>6</a> <a href='/news/tags/Bootstrap?pn=6' class=6s>7</a> <a href='/news/tags/Bootstrap?pn=7' class=7s>8</a> <a href='/news/tags/Bootstrap?pn=8' class=8s>9</a> <a href='/news/tags/Bootstrap?pn=9' class=9s>10</a> <a href='/news/tags/Bootstrap?pn=1'>[下一页]</a> <a href='/news/tags/Bootstrap?pn=10'>[尾页]</a> </p>
+                    <p>
+                        <span class='pagescurrent'>1</span>
+                        {% for pageNum in pageNumList %}
+                            <a href='/news?pn={{ pageNum }}' class=1s>{{ pageNum }}</a> 
+                        {% end %}
+                        
+                        
+                        <a href='/news/tags/Bootstrap?pn=1'>[下一页]</a> 
+                        <a href='/news/tags/Bootstrap?pn=10'>[尾页]</a> 
+                    </p>
                 </div>
             </div>
             <div class="col-md-3">

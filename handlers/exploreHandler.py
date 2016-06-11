@@ -19,7 +19,10 @@ class ExploreHandler(BaseHandler):
 		q = Question.queryAllQuestions()
 		questions = {'hi','hello'}
 		answer = 'hi'
+		# 获取连接
 		linkList = Link.queryAll()
-		
+		# 获取页数
+		pageCount = Link.queryPageCount(10)
+		pageNumList = [2,3,4,5,6]
 
-		self.render("explore/index.html", linkList = linkList)
+		self.render("explore/index.html", linkList = linkList, pageNumList = pageNumList)
