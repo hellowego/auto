@@ -22,6 +22,12 @@ class SubmitLinkHandler(BaseHandler):
 		title = self.get_argument("titlex")
 		sourceurl = self.get_argument("sourceurl")
 		optionvalue = self.get_argument("catalogid")
+		#  添加http:// 或者https:// 前缀
+		if (sourceurl[0:7] == 'http://' or sourceurl[0:8] == 'https://'):
+			pass
+		else :
+			sourceurl = 'http://' + sourceurl
+
 		print title
 		print optionvalue
 		uid = 0
