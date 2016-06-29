@@ -27,3 +27,131 @@
   background-image: url(../icons/adowngray.gif);
   /* SPRITE */
 }
+
+/* links */
+.toggle .error {
+  font-size: x-small;
+}
+.toggle .option {
+  display: none;
+}
+.toggle .option.active {
+  display: inline;
+}
+.thing .stub {
+  display: none;
+}
+.link.last-clicked {
+  border: 1px dashed gray;
+  overflow: hidden;
+}
+.link {
+  margin: 0;
+  margin-bottom: 8px;
+  padding-left: 3px;
+}
+.link .score {
+  text-align: center;
+  color: #c6c6c6;
+}
+.link .title {
+  font-size: medium;
+  font-weight: normal;
+  margin-bottom: 1px;
+}
+.link .child h3 {
+  margin: 15px;
+  text-transform: none;
+  font-size: medium;
+}
+.rank {
+  overflow: hidden;
+}
+.profile-page .link .rank,
+.single-page .link .rank {
+  display: none;
+}
+.link .midcol {
+  font-weight: bold;
+  font-size: small;
+}
+.link .score.likes {
+  color: #FF8B60;
+}
+.link .score.dislikes {
+  color: #9494FF;
+}
+.link .rank {
+  float: left;
+  margin-top: 15px;
+  color: #c6c6c6;
+  font-family: arial;
+  font-size: medium;
+  text-align: right;
+}
+.rank-spacer {
+  font-size: medium;
+}
+.midcol-spacer {
+  font-size: small;
+}
+.link.compressed {
+  margin-bottom: 5px;
+}
+.link.compressed .rank {
+  margin-top: 10px;
+}
+.link.compressed .title {
+  margin: -2px 0 3px;
+}
+.link.compressed .score {
+  color: #888888;
+}
+.link.compressed .score-placeholder {
+  height: 3px;
+}
+.link.compressed .subreddit {
+  font-weight: bold;
+}
+.link.compressed .tagline,
+.link.compressed .search-result-meta {
+  display: inline;
+  margin-right: 12px;
+}
+.link.compressed .expando-button {
+  display: none;
+}
+
+/* display the right score based on whether they've voted */
+.score.likes,
+.score.dislikes {
+  display: none;
+}
+.likes .score,
+.dislikes .score {
+  display: none;
+}
+.likes .score.likes {
+  display: inline;
+}
+.dislikes .score.dislikes {
+  display: inline;
+}
+.likes div.score.likes {
+  display: block;
+}
+.dislikes div.score.dislikes {
+  display: block;
+}
+.warm-entry .rank {
+  color: #EDA179;
+}
+.hot-entry .rank {
+  color: #E47234;
+}
+.cool-entry .rank {
+  color: #A5ABFB;
+}
+.cold-entry .rank {
+  color: #4959F7;
+}
