@@ -27,6 +27,8 @@ class Link(BaseModel):
 	uid = Column(Integer, nullable = True, default = 0)								# 用户id
 	title = Column(String(256), nullable = False)							# 标题
 	url = Column(String(256), nullable = False)							# 链接
+	likecount = Column(Integer, nullable = True, default = 0)								# 
+	dislikecount = Column(Integer, nullable = True, default = 0)								# 
 	add_time = Column(Integer, nullable = False)							# 添加时间
 	
 	

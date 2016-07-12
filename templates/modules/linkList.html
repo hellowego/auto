@@ -1,4 +1,13 @@
 					<li>
+                        <div class = "vote midcol unvoted">
+                            <i class="arrow up" onclick="AUTO.agree_vote(this, 'hi', 46650);"></i> 
+                            
+                            <div class="score likes">{{link.likecount + 1}} </div>
+                            <div class="score unvoted">{{link.likecount}}</div>
+                            <div class="score dislikes">{{link.likecount - 1}} </div>
+                            
+                            <i class="arrow down " onclick="AUTO.disAgree_vote(this, 'hi', 46650);"></i> 
+                        </div>
                         <div class="cont">
                             <h3>[<a href="/news/category/5" class="category">搞笑系列</a>]<a href="{{link.url}}" target="_blank">{{ link.title }}</a></h3>
                             <div class="info">
