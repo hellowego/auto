@@ -7,6 +7,17 @@ var AUTO =
 		if($(selector).parent().hasClass("unvoted")){
 			$(selector).removeClass('up').addClass('upmod');
 			$(selector).parent().addClass('likes').removeClass('unvoted');
+
+			
+
+			// 票数增加
+			$.post("/ajax/vote",{id:1, value:"like"},
+				function  () {
+					// body...
+					// alert('hi');
+				}
+				
+			);
 		}
 		// 状态为喜欢
 		else if($(selector).parent().hasClass("likes")){

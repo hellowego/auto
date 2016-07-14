@@ -13,6 +13,7 @@ from handlers.profileHandler import FollowPeopleHandler
 from handlers.questionHandler import SearchTopicHandler
 from handlers.publishHandler import PublishQuestionHandler
 from handlers.submitHandler import SubmitHandler, SubmitLinkHandler
+from handlers.ajaxHandler import VoteHandler
 
 
 
@@ -36,6 +37,7 @@ urls = [
 
 
 	# ajax handler
+	(r"/ajax/vote", VoteHandler),
 	(r"/ajax/save_answer", AnswerAddHandler),
 	(r"/question/ajax/answer_vote/", AnswerVoteHandler),
 	(r"/question/ajax/save_answer_comment/([^/]+)", SaveAnswerComment),

@@ -58,6 +58,16 @@ class Link(BaseModel):
 		return count
 
 
+
+	@classmethod
+	def vote(cls, id, value):
+		session = DBSession()
+		session.query(cls).filter(cls.id == id).update({cls.likecount:cls.likecount + 1})
+		session.commit()
+		session.close()
+		return True
+
+
 	
 
 	@classmethod
