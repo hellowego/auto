@@ -35,7 +35,7 @@
             <div class="col-md-9 link " id="readercontainer">
                 <ul class="list">
                     {% for link in linkList %}
-                        {%  module LinkModule(link) %}
+                        {%  module LinkModule(link, get_time_format) %}
                     {% end %}
                     <li>
                         <div class = "vote midcol unvoted">

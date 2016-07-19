@@ -16,7 +16,8 @@ class VoteHandler(BaseHandler):
 	
 	def post(self):
 		id = self.get_argument("id")
-		print 'hiiiiiiiiiiiii'
-		Link.vote(1, 1)
+		value = self.get_argument("value")
+		print id, value
+		Link.vote( id, value)
 		rsm = {'type_name':'answer'}
 		self.write(Util.response(rsm, 1, None))

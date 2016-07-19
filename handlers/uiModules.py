@@ -21,6 +21,6 @@ class FollowListModule(tornado.web.UIModule):
 		
 
 class LinkModule(tornado.web.UIModule):
-	def render(self, link):
-		return self.render_string("modules/linkList.html", link = link)
+	def render(self, link, get_time_format):
+		return self.render_string("modules/linkList.html", link = link, get_time_format = get_time_format)
 		

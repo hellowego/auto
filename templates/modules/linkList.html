@@ -1,18 +1,18 @@
 					<li>
                         <div class = "vote midcol unvoted">
-                            <i class="arrow up" onclick="AUTO.agree_vote(this, 'hi', 46650);"></i> 
+                            <i class="arrow up" onclick="AUTO.agree_vote(this, 'hi', {{link.id}});"></i> 
                             
-                            <div class="score likes">{{link.likecount + 1}} </div>
-                            <div class="score unvoted">{{link.likecount}}</div>
-                            <div class="score dislikes">{{link.likecount - 1}} </div>
+                            <div class="score likes">{{link.likecount - link.dislikecount + 1}} </div>
+                            <div class="score unvoted">{{link.likecount - link.dislikecount}}</div>
+                            <div class="score dislikes">{{link.likecount - link.dislikecount - 1}} </div>
                             
-                            <i class="arrow down " onclick="AUTO.disAgree_vote(this, 'hi', 46650);"></i> 
+                            <i class="arrow down " onclick="AUTO.disAgree_vote(this, 'hi', {{link.id}});"></i> 
                         </div>
                         <div class="cont">
                             <h3>[<a href="/news/category/5" class="category">搞笑系列</a>]<a href="{{link.url}}" target="_blank">{{ link.title }}</a></h3>
                             <div class="info">
                                 <span class="author">
-                                         <a href="{{link.url}}"></a>&nbsp;发表于&nbsp;5 个月 前
+                                         <a href="{{link.url}}">hello</a>&nbsp;发表于&nbsp;{{get_time_format(link.add_time)}}
                                     </span> &nbsp;&nbsp;
                                 <span>651&nbsp;阅读</span>
                                 <a id="xvotes-1" href="javascript:vote(0,'2b2303',1,'e4126ccfa10b5f6dff004338c059ffcf',10)">1</a>

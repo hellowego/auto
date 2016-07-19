@@ -5,7 +5,8 @@
 import logging
 import logging.config
 import os
-
+import datetime
+import time
 
 
 class Util(object):
@@ -42,12 +43,32 @@ class Util(object):
 		else:
 			return 'common/avatar-' + size + '-img.png'
 			# return 'uploads/avatar/000/00/02_avatar_min.jpg'
+
+
+	@classmethod
+	def get_time_format(cls, poststamp):
+		# 现在的时间戳
+		nowStamp = int(time.time())
+		# 时间戳差值
+		spanStamp = nowStamp - poststamp
+
+		# 60秒之内
+		if spanStamp < 60:
+			return str(spanStamp) +  '秒前'
+		elif (spanStamp > 60 ) and (spanStamp <= 3600):
+			return str(int(spanStamp/60)) + '分钟前'
+		elif (spanStamp > 3600) and (spanStamp < 86400):
+			return str(int(spanStamp/3600)) + '小时' + str(int(spanStamp/3600%60)) + '分钟前'
+		elif (spanStamp >= 86400 ):
+			return str(int(spanStamp/86400)) + '天' +  str(int(spanStamp%86400/3600)) + '小时前'
+
+
 		
 		
 		
 if __name__ == "__main__":
 
-	test = 'get_avatar_url'
+	test = 'get_time_format'
 	if test == 'response':
 		rsm = {"url":"/explore"}
 		errno = 0
@@ -57,6 +78,14 @@ if __name__ == "__main__":
 	if test == 'get_avatar_url':
 		print Util.get_avatar_url('123456', "max")
 		print Util.get_avatar_url('123456')
+
+	if test == 'get_time_format':
+		nowStamp = int(time.time())
+		print Util.get_time_format(nowStamp -10)
+		print Util.get_time_format(nowStamp -70)
+		print Util.get_time_format(nowStamp -3700)
+		print Util.get_time_format(nowStamp -186400)
+		print '天'
 		
 	# print os.getcwd()
 	# print os.path.exists('static/uploads/1.txt')
