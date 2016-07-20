@@ -14,6 +14,7 @@ from handlers.questionHandler import SearchTopicHandler
 from handlers.publishHandler import PublishQuestionHandler
 from handlers.submitHandler import SubmitHandler, SubmitLinkHandler
 from handlers.ajaxHandler import VoteHandler
+from handlers.captchaHandler import CaptchaHandler
 
 
 
@@ -23,6 +24,7 @@ urls = [
 	(r"/account/login", LoginHandler),
 	(r"/account/logout", LogoutHandler),
 	(r"/account/setting", SettingHandler),
+	(r"/account/captcha", CaptchaHandler),
 	(r"/check_username", CheckUsernameHandler),
 	(r"/check_email", CheckEmailHandler),
 	(r"/explore", ExploreHandler),
