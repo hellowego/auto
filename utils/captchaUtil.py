@@ -26,11 +26,11 @@ class CaptchaUtil(object):
     def createCodeImage(self):
 
         # 240 x 60:
-        width = 60 * 4
-        height = 60
+        width = 100
+        height = 40
         image = Image.new('RGB', (width, height), (255, 255, 255))
         # 创建Font对象:
-        font = ImageFont.truetype('Arial.ttf', 36)
+        font = ImageFont.truetype('Arial.ttf', 20)
         # 创建Draw对象:
         draw = ImageDraw.Draw(image)
         # 填充每个像素:
@@ -41,9 +41,9 @@ class CaptchaUtil(object):
         for t in range(4):
             randchar = self.rndChar()
             print randchar
-            draw.text((60 * t + 10, 10), randchar, font=font, fill=self.rndColor2())
+            draw.text((25 * t + 5, 10), randchar, font=font, fill=self.rndColor2())
         # 模糊:
-        image = image.filter(ImageFilter.BLUR)
+        # image = image.filter(ImageFilter.BLUR)
         # image.save('code.jpg', 'jpeg');
         return image
 

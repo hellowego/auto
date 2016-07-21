@@ -26,4 +26,10 @@ create table `catalog` (
 
 
 -- 验证码
-create talbe `
+create table `captcha` (
+	`session_id` varchar(64) NOT NULL ,
+    `value` varchar(32) NOT NULL,
+    `add_time` int(10) ,
+    `status` smallint default 0,
+    primary KEY (`session_id`)
+)DEFAULT CHARSET=utf8;

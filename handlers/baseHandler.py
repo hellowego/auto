@@ -27,3 +27,11 @@ class BaseHandler(tornado.web.RequestHandler):
 			return None
 		else:
 			return user_id
+
+
+	def get_session_id(self):
+		session_id = self.get_secure_cookie("session_id")
+		if not session_id:
+			return None
+		else:
+			return session_id
