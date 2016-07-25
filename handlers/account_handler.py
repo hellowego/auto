@@ -5,6 +5,7 @@ import sys
 import re
 from baseHandler import BaseHandler
 from tornado import gen
+import uuid
 sys.path.append("..")
 from models.account_models import AutoUser
 from models.question_models import Question
@@ -13,6 +14,10 @@ from models.question_models import Question
 
 class RegisterHandler(BaseHandler):
 	def get(self):
+		sessionId = str(uuid.uuid1())
+		print sessionId
+
+		self.set_session_id()
 		self.render("account/register.html")
 
 	@gen.coroutine
@@ -111,6 +116,8 @@ class CheckUsernameHandler(BaseHandler):
 	def post(self):
 		user_name = self.get_argument("username")
 		bl = AutoUser.checkUsername(user_name)
+		# 
+		print 'sessionId : ' , self.get_session_id()
 
 		if bl :
 			result = {"errno" : -1, "err" : "用户名已被注册"}

@@ -38,14 +38,17 @@ class CaptchaUtil(object):
             for y in range(height):
                 draw.point((x, y), fill=self.rndColor())
         # 输出文字:
+        randstr = ""
         for t in range(4):
             randchar = self.rndChar()
+            randstr = randstr + str(randchar)
             print randchar
             draw.text((25 * t + 5, 10), randchar, font=font, fill=self.rndColor2())
+        print randstr
         # 模糊:
         # image = image.filter(ImageFilter.BLUR)
         # image.save('code.jpg', 'jpeg');
-        return image
+        return image,randstr
 
 
 

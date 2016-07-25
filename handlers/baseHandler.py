@@ -5,6 +5,7 @@
 import tornado.web
 from models.account_models import AutoUser
 from models.users_models import Users
+import uuid
 
 class BaseHandler(tornado.web.RequestHandler):
 	"""
@@ -32,6 +33,13 @@ class BaseHandler(tornado.web.RequestHandler):
 	def get_session_id(self):
 		session_id = self.get_secure_cookie("session_id")
 		if not session_id:
-			return None
+			session_id = str(uuid.uuid1())
+			self.set_secure_cookie("session_id", session_id)
+			return session_id
 		else:
 			return session_id
+
+
+	def set_session_id(self):
+		self.get_session_id()
+		

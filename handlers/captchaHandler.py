@@ -18,7 +18,10 @@ class CaptchaHandler(BaseHandler):
 	def get(self):
 		msstream = BytesIO()
 		captchaUtil = CaptchaUtil()
-		code_img = captchaUtil.createCodeImage()
+		code_img, randstr = captchaUtil.createCodeImage()
+		# print randstr
+		# 验证码记录数据库
+		self.set_secure_cookie("randstr", randstr)
 		code_img.save(msstream,"jpeg")
 		self.set_header('Content-Type', 'image/jpg')
 		self.write(msstream.getvalue())
