@@ -34,7 +34,7 @@ class RegisterHandler(BaseHandler):
 		# rsm = {"url":"/home/first_login-TRUE"}
 		rsm = {"url":"/"}
 		result = {"rsm" : rsm, "errno" : 1, "err" : ""}
-		bl = AutoUser.addUser(username, email, password)
+		# bl = AutoUser.addUser(username, email, password)
 		self.write(result)
 
 	

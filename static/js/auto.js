@@ -83,6 +83,48 @@ var AUTO =
 		}
 
 		
+	},
+
+	// ajax提交callback
+	ajax_processer: function (type, result)
+	{
+		alert('网络链接异常6');
+	},
+
+
+	ajax_post: function(formEl, processer, type) // 表单对象，用 jQuery 获取，回调函数名
+	{
+
+		
+
+		var custom_data = {
+			_post_type: 'ajax'
+		};
+
+
+		try{
+
+			formEl.ajaxSubmit(
+			{
+				dataType: 'json',
+				data: custom_data,
+				success: function (result)
+				{
+					alert(result);
+					// processer(type, result);
+				},
+				error: function (error)
+				{
+					
+				}
+			});
+
+		}catch(e){
+			alert('网络链接异常6');
+		}
+
+		
+
 	}
 
 };
