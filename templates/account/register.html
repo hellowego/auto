@@ -1,14 +1,15 @@
 {% extends "../base.html" %}
 {% block head %}
 	<link href="{{ static_url("css/register.css") }}" rel="stylesheet" type="text/css" />
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js" type="text/javascript"></script>
-    <script src="{{ static_url("js/jquery.form.js") }}" type="text/javascript"></script>
+    <link href="{{ static_url("css/icon.css") }}" rel="stylesheet" type="text/css" />
     
+    
+
 {% end %}
 {% block body %}
 <div class="aw-register-box">
     <div class="mod-head">
-        <a href=""><img src="http://wenda.wecenter.com/static/css/default/img/login_logo.png" alt="" /></a>
+        <a href="/"  ><img src="{{ static_url("icons/afu.png") }}" alt=""  class="logo-icon" /></a>
         <h1>注册新用户</h1>
     </div>
     <div class="mod-body">
@@ -16,7 +17,7 @@
                         
             <ul>
                 
-                <li class="alert alert-danger hide error_message text-left">
+                <li class="alert alert-danger collapse error_message text-left">
                     <i class="icon icon-delete"></i> <em></em>
                 </li>
                 
@@ -31,7 +32,7 @@
                 </li>
 
                 <li class="aw-register-verify">
-                    <img class="pull-right" id="captcha" onclick="this.src = '/account/captcha' + Math.floor(Math.random() * 10000);" src="/account/captcha">
+                    <img class="pull-right" id="captcha" onclick="this.src = '/account/captcha/' + Math.floor(Math.random() * 10000);" src="/account/captcha/11">
 
                     <input type="text" class="form-control" name="seccode_verify" placeholder="验证码">
                 </li>

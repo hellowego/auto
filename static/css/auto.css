@@ -155,3 +155,13 @@
 .cold-entry .rank {
   color: #4959F7;
 }
+
+
+/*logo*/
+.logo-icon{
+    border: 1px solid #e7e7eb;
+    vertical-align: middle;
+    width:40px;
+    height: 40px;
+    margin-right: 20px;
+}

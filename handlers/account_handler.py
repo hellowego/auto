@@ -25,15 +25,17 @@ class RegisterHandler(BaseHandler):
 		username = self.get_argument("user_name")
 		email = self.get_argument("email")
 		password = self.get_argument("password")
+		randstr = self.get_secure_cookie("randstr")
 		print username
 		print email
 		print password
+		print randstr
 
 		result = self.check( username, email, password)
-		# result = {"errno" : -1, "err" : "用户名为空"}
+		result = {"errno" : -1, "err" : "用户名为空"}
 		# rsm = {"url":"/home/first_login-TRUE"}
 		rsm = {"url":"/"}
-		result = {"rsm" : rsm, "errno" : 1, "err" : ""}
+		# result = {"rsm" : rsm, "errno" : 1, "err" : ""}
 		# bl = AutoUser.addUser(username, email, password)
 		self.write(result)
 

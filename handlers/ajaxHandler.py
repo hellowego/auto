@@ -5,6 +5,7 @@ import sys
 import re
 from baseHandler import BaseHandler
 from tornado import gen
+import tornado.web
 sys.path.append("..")
 from models.account_models import AutoUser
 from models.question_models import Question
@@ -13,7 +14,7 @@ from util import Util
 
 class VoteHandler(BaseHandler):
 	"""docstring for VoteHandler"""
-	
+	@tornado.web.authenticated
 	def post(self):
 		id = self.get_argument("id")
 		value = self.get_argument("value")

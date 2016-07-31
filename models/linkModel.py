@@ -30,6 +30,7 @@ class Link(BaseModel):
 	likecount = Column(Integer, nullable = True, default = 0)								# 
 	dislikecount = Column(Integer, nullable = True, default = 0)								# 
 	add_time = Column(Integer, nullable = False)							# 添加时间
+	readcount = Column(Integer, nullable = True, default = 0)
 	
 	
 	@classmethod

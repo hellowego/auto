@@ -24,7 +24,8 @@ urls = [
 	(r"/account/login", LoginHandler),
 	(r"/account/logout", LogoutHandler),
 	(r"/account/setting", SettingHandler),
-	(r"/account/captcha", CaptchaHandler),
+	# 验证码
+	(r"/account/captcha/([^/]+)", CaptchaHandler),
 	(r"/check_username", CheckUsernameHandler),
 	(r"/check_email", CheckEmailHandler),
 	(r"/explore", ExploreHandler),

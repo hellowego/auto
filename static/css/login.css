@@ -59,3 +59,8 @@ body{background:url('img/login_bg.jpg') no-repeat #e9f0f4;}
 	.aw-login-box .aw-mod-body #aw-login-user-name, .aw-mod-body #aw-login-user-password{width: 195px;}
 	.aw-login-box .aw-mod-footer{padding:0 10px !important;}
 }
+
+
+/*cf 原来在common里面，移到这里*/
+/*文本框之前的点去掉*/
+ul, ol{margin:0;padding:0;list-style:none;}

@@ -49,3 +49,10 @@ body{background:url('img/login_bg.jpg') no-repeat #e9f0f4;}
     .aw-register-box{width: 270px !important;}
     .aw-regiter-agreement{width: 240px;margin:10px 0 0;}
 }
+
+
+/*cf 原来在common里面，移到这里*/
+
+ul, ol{margin:0;padding:0;list-style:none;}
+.alert{margin-bottom:0px;padding:5px 14px;background: #fcfddb;border: 1px solid #f9f2a7;}
+.alert-danger, .alert-error{position: relative;margin-bottom:10px;background: #f2dede;border: 1px solid #eed3d7;}

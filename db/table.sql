@@ -12,6 +12,8 @@ create table `link` (
 	PRIMARY KEY (`id`)
 )DEFAULT CHARSET=utf8;
 
+alter table `link` add `readcount` int(10) default '0';
+
 
 -- 分类
 create table `catalog` ( 

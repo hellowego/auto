@@ -1,6 +1,11 @@
 {% extends "../base.html" %} 
-{% block body %}
 
+{% block head %}
+    <!-- // <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script> -->
+
+{% end %}
+
+{% block body %}
 
     <header class="site-header">
         <div class="header-top ">
@@ -10,19 +15,28 @@
                         <div class="header-top-left col-lg-6 col-md-6 col-sm-6 col-xs-12 v-grid">
                             <div class="header-talet">
                                 <a href="/">首页</a> &nbsp;
+                                <a title='大杂烩' href="/nosubject">大杂烩</a> &nbsp;
                                 <a class="" href="/newcar">新车资讯</a> &nbsp;
 								<a title="汽车赛事" class="" href="/">汽车赛事</a> &nbsp;
-                                <a class="" href="/newdriver">新手上路</a> &nbsp;
-                                <a title='问答' href="/ask">问答</a> &nbsp;
-								<a title="自驾游" class="" href="/">自驾游</a> &nbsp;
-                                <a title="交通资讯" class="active" href="/">交通资讯</a> &nbsp;                                
+                                <a class="" href="/newdriver">新手上路</a> &nbsp;                                
+								<a title="自驾游" class="" href="/">自驾游</a> &nbsp;                            
                             </div>
                         </div>
-                        <div class="header-top-right col-lg-6 col-md-6 col-sm-6 col-xs-12 v-grid">
-                            <div class="user-info pull-right" id="Personal">
-                                <a href='/news/members/register'>注册</a> | <a href='/news/members/login'>登录</a>
+                        {% if  current_user %}
+                            <div class="header-top-right col-lg-6 col-md-6 col-sm-6 col-xs-12 v-grid">
+                                <div class="user-info pull-right" id="Personal">
+                                    <a >您好，{{user.user_name}}  &nbsp&nbsp</a>
+                                    <a href="/account/logout"><i class="icon icon-logout"></i> 退出</a>
+                                </div>
                             </div>
-                        </div>
+                        {% else %}
+                            <div class="header-top-right col-lg-6 col-md-6 col-sm-6 col-xs-12 v-grid">
+                                <div class="user-info pull-right" id="Personal">
+                                    <a href='/account/register'>注册</a> | <a href='/account/login'>登录</a>
+                                   
+                                </div>
+                            </div>
+                        {% end %}
                     </div>
                 </div>
             </div>
@@ -30,6 +44,8 @@
         
     </header>
     <p></p>
+
+
     <div class="container">
         <div class="row">
             <div class="col-md-9 link " id="readercontainer">

@@ -15,10 +15,11 @@ class CaptchaHandler(BaseHandler):
 	"""docstring for VerifyCodeHandler"""
 	
 
-	def get(self):
+	def get(self, randnum):
 		msstream = BytesIO()
 		captchaUtil = CaptchaUtil()
 		code_img, randstr = captchaUtil.createCodeImage()
+		self.set_secure_cookie("randstr", randstr)
 		# print randstr
 		# 验证码记录数据库
 		self.set_secure_cookie("randstr", randstr)

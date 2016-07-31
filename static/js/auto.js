@@ -88,7 +88,57 @@ var AUTO =
 	// ajax提交callback
 	ajax_processer: function (type, result)
 	{
-		alert('网络链接异常6');
+		// alert('网络链接异常6');
+		if(result.errno != 1)
+		{
+			switch (type)
+			{
+				case 'error_message':
+					if (!$('.error_message').length)
+					{
+						// alert(_t('网络链接异常5'));
+						alert(result.err);
+					}
+					else if ($('.error_message em').length)
+					{
+						$('.error_message em').html(result.err);
+					}
+					else
+					{
+						 $('.error_message').html(result.err);
+					}
+
+					if ($('.error_message').css('display') != 'none')
+					{
+						AUTO.shake($('.error_message'));
+					}
+					else
+					{
+						$('.error_message').fadeIn(1000);
+					}
+
+					if ($('#captcha').length)
+					{
+						$('#captcha').click();
+					}
+			}
+		}
+		else 
+		{
+			if (result.rsm && result.rsm.url)
+			{
+				// 判断返回url跟当前url是否相同
+				if (window.location.href == result.rsm.url)
+				{
+					window.location.reload();
+				}
+				else
+				{
+					// alert(_t('网络链接异常5') + result.rsm.url);
+					window.location = decodeURIComponent(result.rsm.url);
+				}
+			}
+		}
 	},
 
 
@@ -110,8 +160,8 @@ var AUTO =
 				data: custom_data,
 				success: function (result)
 				{
-					alert(result);
-					// processer(type, result);
+					
+					processer(type, result);
 				},
 				error: function (error)
 				{
@@ -125,6 +175,31 @@ var AUTO =
 
 		
 
+	},
+
+	// 错误提示效果
+	shake: function(selector)
+	{
+		var length = 6;
+		selector.css('position', 'relative');
+		for (var i = 1; i <= length; i++)
+		{
+			if (i % 2 == 0)
+			{
+				if (i == length)
+				{
+					selector.animate({ 'left': 0 }, 50);
+				}
+				else
+				{
+					selector.animate({ 'left': 10 }, 50);
+				}
+			}
+			else
+			{
+				selector.animate({ 'left': -10 }, 50);
+			}
+		}
 	}
 
 };
