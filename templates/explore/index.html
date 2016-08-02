@@ -3,6 +3,9 @@
 {% block head %}
     <!-- // <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script> -->
 
+    <link href="{{ static_url("css/register.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ static_url("css/icon.css") }}" rel="stylesheet" type="text/css" />
+
 {% end %}
 
 {% block body %}
@@ -32,7 +35,8 @@
                         {% else %}
                             <div class="header-top-right col-lg-6 col-md-6 col-sm-6 col-xs-12 v-grid">
                                 <div class="user-info pull-right" id="Personal">
-                                    <a href='/account/register'>注册</a> | <a href='/account/login'>登录</a>
+                                    <a href='/account/register'  data-toggle="modal" data-target="#myModal">
+                                        注册</a> | <a href='/account/login'>登录</a>
                                    
                                 </div>
                             </div>

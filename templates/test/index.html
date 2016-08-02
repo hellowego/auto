@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+          <script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet" type="text/css">
+        
+        <script src="https://use.fontawesome.com/d53800b945.js"></script>
+        
+        <link  rel="stylesheet" type="text/css" href="style.css">
+        
+      
+        
+    </head>
+    <body>
+        
+         <!-- ------------------------- footer div ------------------------------------- -->
+        
+        <div class="col-xs-12" id="footerDiv">
+            <p class="col-xs-12 text-center" id="largeFooterText">
+                To comment and save, sign in or create an account.
+            </p>
+            <div class="col-xs-4 col-xs-offset-4 text-center">
+                <button class="btn btn-default signIn"  >Sign In</button>
+                <button class="btn btn-default register">Register</button>
+            </div>
+            <div class="col-xs-1 col-xs-offset-3 text-center">
+                <a id="closeFooter"><i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+            </div>
+
+        </div>
+        
+         <!-- ------------------------- body text div ------------------------------------- -->
+        
+        <div class="col-xs-12 bodyText">
+            <h1 class="text-center">Basic Login Modal using Bootstrap and jQuery</h1>
+            <p class="text-center">A basic login modal with links to social media and the opportunity to login via email and password.</p>
+            
+            <h4 class="text-center col-xs-12">The Footer Modal <br> <small>selecting wether to login or register</small></h4>
+            <ul class="col-xs-12 col-sm-6 col-sm-offset-3">
+                <li>As a user, clicking on "sign-in" will launch the login modal.</li>
+                <li>As a user, clicking on "register" will loaunch the register modal.</li>
+                <li>As a user, clicking on the "<i class="fa fa-angle-double-down" aria-hidden="true"></i>" button will minimize the login/register footer.</li>
+            </ul>
+            
+            <h4 class="text-center col-xs-12">The Login Modal</h4>
+            <ul class="col-xs-12 col-sm-6 col-sm-offset-3">
+                <li>As a user, I can sign in via social media.
+                    <ul>
+                        <li>clicking on one of the buttons will launch the apps login page</li>
+                    </ul>
+                </li>
+                <li>As a user, I can choose to login via email/password. (via Angular, future version)
+                    <ul>
+                        <li> On "success", the modal will close and the user will be logged in.</li>
+                        <li> On "error", the modal will stay up, and an error message will appear.</li>
+                    </ul>
+                </li>
+                <li> As a user, I can close the modal by clicking the "x".</li>
+                <li> As a user, I can choose to swith to the "register" modal.
+                    <ul>
+                        <li>The "login" modal will fade out and the "register" modal will fade in.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h4 class="text-center col-xs-12">The Register modal</h4>
+            <ul class="col-xs-12 col-sm-6 col-sm-offset-3">
+                <li>As a user, I can register via a social app.
+                    <ul>
+                        <li>Clicking on the button will launch the site's app to log in.</li>
+                        <li>Upon successful registration, the modal will close and the user will be logged in.</li>
+                        <li>Upon error, the error message will display and the user can try again.</li>
+                    </ul>
+                </li>
+                <li>As a user, I can register via email/ password/ confirmed password.</li>
+            </ul>
+        </div> 
+        
+        <!-- ------------------------- login div ------------------------------------- -->
+        
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4" id="loginDiv">
+            
+            
+            
+            <h3 class="text-center">Sign In<br><small>with</small></h3>
+            
+            
+            <div class="col-xs-12 col-sm-6 col-xs-offset-3 buttonGroup">
+            <button class="btn btn-default btn-block facebookButton loginButton" value="login via facebook">
+               <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                Facebook
+            </button>
+            <button class="btn btn-default btn-block twitterButton loginButton" value="loin via Twitter" >
+               <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                Twitter
+            </button>
+            <button class="btn btn-default  btn-block googleButton loginButton" value="login via google">
+               <i class="fa fa-google" aria-hidden="true"></i>
+                Google
+            </button>
+            <button class="btn btn-default  btn-block githubButton loginButton" value="login via git hub">
+               <i class="fa fa-github-square" aria-hidden="true"></i>
+                Git Hub
+            </button>
+            </div>
+            
+            <div class="col-xs-12 loginOrDiv" >
+                
+                <h4 class="col-xs-12 text-center"> - or - </h4>
+                
+            </div>
+            
+            <form class="form col-xs-12 col-sm-8 col-sm-offset-2 text-center emailForm">
+                <div class="input-group text-center col-xs-12">
+                    <input class="form-control text-center" type="email" placeholder="user@example.com" />
+                </div>
+                <div class="input-group text-center col-xs-12">
+                    <input class="form-control text-center" type="password" placeholder="password" />
+                </div>
+                <button type="submit" class="btn btn-default col-xs-12">Submit</button>
+            </form>
+            <p class="text-center col-xs-12">Need an account? <a class="register">Register</a> </p>
+            
+            <a class="closeX col-xs-12 text-right closeModal"><i class="fa fa-times" aria-hidden="true"></i></a>
+            
+        </div>
+        
+        
+        <!-- ------------------------- register div ------------------------------------- -->
+        
+                <div class="col-xs-12 col-sm-4 col-sm-offset-4" id="registerDiv">
+            
+            
+            
+            <h3 class="text-center">Register<br><small>with</small></h3>
+            
+            
+            <button class="btn btn-default btn-block facebookButton loginButton" value="register via facebook">
+               <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                facebook
+            </button>
+            <button class=" btn btn-default btn-block twitterButton loginButton" value="register via twitter">
+               <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                Twitter
+            </button>
+            <button class="btn btn-default btn-block googleButton loginButton" value="register via google">
+               <i class="fa fa-google" aria-hidden="true"></i>
+                Google
+            </button>
+            <button class="btn btn-default btn-block githubButton loginButton" value="register via github">
+               <i class="fa fa-github-square" aria-hidden="true"></i>
+                Git Hub
+            </button>
+            
+            <div class="col-xs-12 loginOrDiv" >
+                
+                <h4 class="col-xs-2 text-center"> - or - </h4>
+                
+            </div>
+            
+            <form class="form col-xs-12 col-sm-8 col-sm-offset-2 text-center emailForm">
+                <div class="input-group text-center col-xs-12">
+                    <input class="form-control text-center" type="email" placeholder="user@example.com" />
+                </div>
+                <div class="input-group text-center col-xs-12">
+                    <input class="form-control text-center" type="password" placeholder="password" />
+                </div>
+                <div class="input-group text-center col-xs-12">
+                    <input class="form-control text-center" type="password" placeholder="confirm password" />
+                </div>
+                <button type="submit" class="btn btn-default col-xs-12">Submit</button>
+            </form>
+            <p class="text-center col-xs-12">Already have an acocunt? <a class="signIn">Sign In</a> </p>
+            
+            <a class="closeX col-xs-12 text-right closeModal"><i class="fa fa-times" aria-hidden="true"></i></a>
+            
+        </div>
+        
+         <!-- ------------------------- load js ------------------------------------- -->
+        
+        
+        <script type="text/javascript" src="main.js"></script>
+    </body>
+</html>
