@@ -5,7 +5,7 @@
 # import handlers.mainHandler
 from tornado.web import RequestHandler, Application, url
 from handlers.main_handler import IndexHandler
-from handlers.account_handler import RegisterHandler, CheckUsernameHandler, CheckEmailHandler, LoginHandler, LogoutHandler, SettingHandler
+from handlers.account_handler import RegisterHandler, CheckUsernameHandler, CheckEmailHandler, LoginHandler, LogoutHandler, SettingHandler, ValidUsernameHandler
 from handlers.exploreHandler import ExploreHandler
 from handlers.questionHandler import QuestionHandler, AnswerAddHandler, AnswerVoteHandler, SaveAnswerComment, GetAnswerComment
 from handlers.profileHandler import ProfileHandler
@@ -28,6 +28,7 @@ urls = [
 	# 验证码
 	(r"/account/captcha/([^/]+)", CaptchaHandler),
 	(r"/check_username", CheckUsernameHandler),
+	(r"/valid_username", ValidUsernameHandler),
 	(r"/check_email", CheckEmailHandler),
 	(r"/explore", ExploreHandler),
 

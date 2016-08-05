@@ -87,7 +87,7 @@ class LoginHandler(BaseHandler):
 		self.render("account/login.html")
 
 	def post(self):
-		username = self.get_argument("user_name")
+		username = self.get_argument("username")
 		password = self.get_argument("password")
 		print username
 		print password
@@ -97,6 +97,7 @@ class LoginHandler(BaseHandler):
 			rsm = {"url":"/explore"}
 			result = {"rsm" : rsm, "errno" : 1, "err" : ""}
 			self.set_secure_cookie("current_user", str(u.id))
+			result['loggedin'] = True
 			print "current_user" ," ", str(u.id)
 
 		else :
@@ -113,7 +114,9 @@ class LogoutHandler(BaseHandler):
 
 
 class CheckUsernameHandler(BaseHandler):
-
+	'''
+	给页面用的
+	'''
 	@gen.coroutine
 	def post(self):
 		user_name = self.get_argument("username")
@@ -127,6 +130,27 @@ class CheckUsernameHandler(BaseHandler):
 			result = {"errno" : 1, "err" : ""}
 
 		self.write(result)
+		# return False
+
+class ValidUsernameHandler(BaseHandler):
+	'''
+	给jquey valid用的
+	'''
+	@gen.coroutine
+	def post(self):
+		user_name = self.get_argument("username")
+		bl = AutoUser.checkUsername(user_name)
+		# 
+		print 'username: ', user_name
+		print 'sessionId : ' , self.get_session_id()
+
+		if bl :
+			result = "false"
+		else :
+			result = "true"
+
+		self.write(result)
+		# return False
 
 
 class CheckEmailHandler(BaseHandler):
