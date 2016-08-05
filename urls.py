@@ -15,6 +15,7 @@ from handlers.publishHandler import PublishQuestionHandler
 from handlers.submitHandler import SubmitHandler, SubmitLinkHandler
 from handlers.ajaxHandler import VoteHandler
 from handlers.captchaHandler import CaptchaHandler
+from handlers.testHandler import TestHandler
 
 
 
@@ -37,6 +38,8 @@ urls = [
 	# (r"/question/([^/]+)", QuestionHandler),
 	(r"/question/([0-9]$)", QuestionHandler),
 	(r"/profile/(.*)", ProfileHandler),
+
+	(r"/test", TestHandler),
 
 
 	# ajax handler

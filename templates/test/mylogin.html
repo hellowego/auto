@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+
+	<link rel='stylesheet' id='bootstrap-css' href='http://bootstrapped.humanific.com/wp-content/themes/bootstrapped/bootstrap.css?ver=4.5.3' type='text/css' media='all' />
+
+
+    <link rel='stylesheet' id='bootstraped-login-css' href='http://bootstrapped.humanific.com/wp-content/plugins/bootstrapped-login/bootstraped-login.css?ver=4.5.3' type='text/css' media='all' />
+
+
+
+    <script type='text/javascript' src='http://bootstrapped.humanific.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+    
+
+    <script type='text/javascript' src='http://bootstrapped.humanific.com/wp-content/themes/bootstrapped/js/bootstrap.min.js?ver=4.5.3'></script>
+    
+
+
+    <script type='text/javascript' src='http://bootstrapped.humanific.com/wp-content/plugins/bootstrapped-login/bootstraped-login.js?ver=4.5.3'></script>
+
+
+    <script type='text/javascript'>
+    /* <![CDATA[ */
+    var ajaxlogin = {
+        "validate_required": "This field is required",
+        "validate_email": "Please enter a valid email address",
+        "validate_equalTo": "Please enter the same value again.",
+        "validate_minlength": "Enter at least {0} characters",
+        "validate_alphanumeric": "Enter at least {0} characters",
+        "checking_email": "Checking email address",
+        "sending_info": "Sending user info, please wait...",
+        "login_successfull": "Login successful, redirecting...",
+        "login_error": "Wrong username or password.",
+        "validate_username": "This username is already taken.",
+        "ajaxurl": "http:\/\/bootstrapped.humanific.com\/wp-admin\/admin-ajax.php",
+        "login_nonce": "cea66ba2f2"
+    };
+    /* ]]> */
+    </script>
+
+    
+
+</head>
+
+<body>
+
+	<div class="row">
+        <!-- <div class="col-sm-7">
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="glyphicon glyphicon-log-in "></i> Sign in <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" class="ajaxlogin">Log in</a></li>
+                    <li><a href="#" class="ajaxsignup">Register</a></li>
+                </ul>
+            </div>
+            <br />
+            <br /> You are not logged in <a class="btn btn-default ajaxlogin" href="#"><i class="glyphicon glyphicon-user "></i> Login </a> or <a class="btn btn-success ajaxsignup" href="#"><i class="glyphicon glyphicon-user "></i> Register </a>
+            <br />
+            </p>
+        </div> -->
+
+
+        <i class=" ajaxlogin" >Login </i> or 
+        <a class=" ajaxsignup" href="#">Register </a>
+
+    </div>
+
+	<div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body ">
+                    <div class="loginajax">
+                        <form id="lostpasswordform" method="post">
+                            <h4>Forgotten password</h4>
+                            <input type="hidden" name="action" value="tg_pwd_reset" />
+                            <input type="hidden" id="security-pwd" name="security-pwd" value="d64d7c281b" />
+                            <input type="hidden" name="_wp_http_referer" value="/" />
+                            <div class="form-group">
+                                <div id="passstatus"></div>
+                                <div>
+                                    <input type="text" name="email" placeholder="Email" class="form-control required email" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <input type="submit" name="submit" class="btn btn-primary btn-lg" value="Reset Password" />
+                                </div>
+                            </div>
+                        </form>
+                        <form id="signupform" action="" method="post">
+                            <h4>Register</h4>
+                            <div class="form-group">
+                                <div id="signupstatus"></div>
+                                <div>
+                                    <input type="text" name="username" placeholder="Username" class="username form-control required alphanumeric" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <input type="text" name="email" placeholder="Email" class="form-control required email " />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <input type="password" name="password" placeholder="Password" id="password" class="password form-control required" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <input type="password" name="password2" placeholder="Repeat password" id="password2" class="form-control required" />
+                                </div>
+                            </div>
+                            <input type="hidden" id="security-signup" name="security-signup" value="47c02be7f6" />
+                            <input type="hidden" name="_wp_http_referer" value="/" />
+                            <div class="form-group">
+                                <div>
+                                    <input type="submit" name="submit" class="btn btn-primary btn-lg" value="Sign up" />
+                                </div>
+                            </div>
+                        </form>
+                        <form class="ajaxloginform" id="loginform" method="post">
+                            <h4>Login</h4>
+                            <div class="form-group">
+                                <div class="loginstatus"></div>
+                                <div>
+                                    <input type="text" name="username" placeholder="Email or username" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <input type="password" name="password" placeholder="Password" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <input class="btn btn-primary btn-lg" type="submit" value="Log in" name="submit">
+                                </div>
+                            </div>
+                            <input type="hidden" id="ajaxloginref" name="ajaxloginref" value="ec5650598c" />
+                            <input type="hidden" name="_wp_http_referer" value="/" />
+                            <div class="form-group">
+                                <div>
+                                    <hr>
+                                    <a href="/lostpassword" class="ajaxlostpassword">Forgotten password</a>
+                                    <hr>
+                                    <a href="/signup" class="ajaxsignup">signup
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

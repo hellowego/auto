@@ -191,157 +191,111 @@
                     <p><a class="btn btn-default" href="https://github.com/humanific/bootstrapped"><i class="glyphicon glyphicon-cloud-download"></i> Download on github</a></p>
                 </div>
             </div>
-           
-[gallery columns="4" ids="40,39,34,33"]
-</pre>
-                            <br />
-                            <a class="btn btn-primary" title="Bootstrapped galleries plugin" href="http://bootstrapped.humanific.com/bootstrapped-galleries-plugin/">More info</a> <a class="btn btn-default" href="https://github.com/humanific/bootstrapped-gallery"><i class="glyphicon glyphicon-cloud-download"></i> Download on github</a></p>
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="gallery" id="gallery1">
-                          
-                        </div>
-                        <script>
-                        jQuery(document).ready(function($) {
-                            $('#gallery1').click(function(event) {
-                                event = event || window.event;
-                                var target = event.target || event.srcElement,
-                                    link = target.src ? target.parentNode : target;
-                                blueimp.Gallery($(this).find('a'), {
-                                    index: link,
-                                    event: event,
-                                    titleProperty: 'data-title',
-                                    onslide: function(index, slide) {
-                                        $(this.container).find('.title').html($(this.list[index]).attr('data-title'));
-                                    }
-                                });
-                                return false;
-                            });
-                        })
-                        </script>
-                        <!-- gallery markup  -->
-                        <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-                            <div class="slides"></div>
-                            <h3 class="title"></h3>
-                            <p class="description"></p>
-                            <a class="prev">‹</a>
-                            <a class="next">›</a>
-                            <a class="close">×</a>
-                            <a class="play-pause"></a>
-                            <ol class="indicator"></ol>
-                        </div>
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-sm-5">
-                        <h3><a title="Bootstrapped contactform plugin" href="http://bootstrapped.humanific.com/bootstrapped-contactform-plugin/">Bootstrapped contactform plugin</a></h3>
-                        <p>A plugin for a simple responsive contact form</p>
-                        <pre>[contactform layout="horizontal"]</pre>
-                        <p><a class="btn btn-primary" title="Bootstrapped contactform plugin" href="http://bootstrapped.humanific.com/bootstrapped-contactform-plugin/">More info</a> <a class="btn btn-default " href="https://github.com/humanific/bootstrapped-contactform"><i class="glyphicon glyphicon-cloud-download"> </i> Download on github</a></p>
-                    </div>
-                    <div class="col-sm-7">
-                        <script>
-                        jQuery(document).ready(function($) {
-                            $("#contactform").validate({
-                                errorClass: "text-danger small",
-                                highlight: function(element) {
-                                    $(element).closest('.form-group').addClass('has-error');
-                                },
-                                unhighlight: function(element) {
-                                    $(element).closest('.form-group').removeClass('has-error');
-                                },
-                                errorPlacement: function(error, element) {
-                                    element.closest('div').append(error);
-                                },
-                                messages: {
-                                    f_name: "This field is required",
-                                    f_msg: "This field is required",
-                                    email: "Please enter a valid email address"
-                                }
-                            });
-                        })
-                        </script>
-                        <form method="post" id="contactform" class="form-horizontal" role="form">
-                            <input type="hidden" id="contactsecurity" name="contactsecurity" value="be6d56342c" />
-                            <input type="hidden" name="_wp_http_referer" value="/" />
-                            <input type="hidden" id="contactsecurity" name="contactsecurity" value="be6d56342c" />
-                            <input type="hidden" name="_wp_http_referer" value="/" />
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="f_name">Your name*</label>
-                                <div class="col-sm-9">
-                                    <input type="text" value="" name="f_name" class="form-control required " />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="email">Your email*</label>
-                                <div class="col-sm-9">
-                                    <input type="text" value="" name="email" class="form-control required email " />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" for="f_msg">Your message*</label>
-                                <div class="col-sm-9">
-                                    <textarea name="f_msg" class="form-control required " style="height:200px"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="hidden" value="" name="origin" />
-                                <div class="col-sm-offset-3 col-sm-9">
-                                    <input type="submit" class="btn btn-default btn-lg" value="Send" />
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-sm-5">
-                        <h3><a title="Bootstrapped login plugin" href="http://bootstrapped.humanific.com/bootstrapped-login-plugin/">Bootstrapped login plugin</a></h3>
-                        <p>Ajax login and register bootstrap style
-                            <br />
-                            <pre>[usermenu]</pre>
-                            <br />
-                            <a class="btn btn-primary" title="Bootstrapped login plugin" href="http://bootstrapped.humanific.com/bootstrapped-login-plugin/">More info</a> <a class="btn btn-default" href="https://github.com/humanific/bootstrapped-login"><i class="glyphicon glyphicon-cloud-download"></i> Download on github</a></p>
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="glyphicon glyphicon-log-in "></i> Sign in <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#" class="ajaxlogin">Log in</a></li>
-                                <li><a href="#" class="ajaxsignup">Register</a></li>
-                            </ul>
-                        </div>
-                        <br />
-                        <br /> You are not logged in <a class="btn btn-default ajaxlogin" href="#"><i class="glyphicon glyphicon-user "></i> Login </a> or <a class="btn btn-success ajaxsignup" href="#"><i class="glyphicon glyphicon-user "></i> Register </a>
-                        <br />
-                        </p>
-                    </div>
-                </div>
+            [gallery columns="4" ids="40,39,34,33"]
+            </pre>
+            <br />
+            <a class="btn btn-primary" title="Bootstrapped galleries plugin" href="http://bootstrapped.humanific.com/bootstrapped-galleries-plugin/">More info</a> <a class="btn btn-default" href="https://github.com/humanific/bootstrapped-gallery"><i class="glyphicon glyphicon-cloud-download"></i> Download on github</a></p>
+        </div>
+        <div class="col-sm-7">
+            <div class="gallery" id="gallery1">
+            </div>
+            <script>
+            jQuery(document).ready(function($) {
+                $('#gallery1').click(function(event) {
+                    event = event || window.event;
+                    var target = event.target || event.srcElement,
+                        link = target.src ? target.parentNode : target;
+                    blueimp.Gallery($(this).find('a'), {
+                        index: link,
+                        event: event,
+                        titleProperty: 'data-title',
+                        onslide: function(index, slide) {
+                            $(this.container).find('.title').html($(this.list[index]).attr('data-title'));
+                        }
+                    });
+                    return false;
+                });
+            })
+            </script>
+            <!-- gallery markup  -->
+            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <p class="description"></p>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
             </div>
         </div>
-        <!-- #content -->
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <footer id="colophon" class="site-footer" role="contentinfo">
-                            <div>
-                                <div id="text-2" class="widget widget_text">
-                                    <div class="textwidget">
-                                        <hr> By <a href="http://humanific.com">humanific Studio</a> with thanks to <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://bootswatch.com/">Bootswatch</a></p>
-                                    </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-7">
+            <script>
+            jQuery(document).ready(function($) {
+                $("#contactform").validate({
+                    errorClass: "text-danger small",
+                    highlight: function(element) {
+                        $(element).closest('.form-group').addClass('has-error');
+                    },
+                    unhighlight: function(element) {
+                        $(element).closest('.form-group').removeClass('has-error');
+                    },
+                    errorPlacement: function(error, element) {
+                        element.closest('div').append(error);
+                    },
+                    messages: {
+                        f_name: "This field is required",
+                        f_msg: "This field is required",
+                        email: "Please enter a valid email address"
+                    }
+                });
+            })
+            </script>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="glyphicon glyphicon-log-in "></i> Sign in <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" class="ajaxlogin">Log in</a></li>
+                    <li><a href="#" class="ajaxsignup">Register</a></li>
+                </ul>
+            </div>
+            <br />
+            <br /> You are not logged in <a class="btn btn-default ajaxlogin" href="#"><i class="glyphicon glyphicon-user "></i> Login </a> or <a class="btn btn-success ajaxsignup" href="#"><i class="glyphicon glyphicon-user "></i> Register </a>
+            <br />
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- #content -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <footer id="colophon" class="site-footer" role="contentinfo">
+                        <div>
+                            <div id="text-2" class="widget widget_text">
+                                <div class="textwidget">
+                                    <hr> By <a href="http://humanific.com">humanific Studio</a> with thanks to <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="http://bootswatch.com/">Bootswatch</a></p>
                                 </div>
                             </div>
-                        </footer>
-                        <!-- #colophon -->
-                    </div>
-                    <!-- .col-md-12 -->
+                        </div>
+                    </footer>
+                    <!-- #colophon -->
                 </div>
-                <!-- .row -->
+                <!-- .col-md-12 -->
             </div>
-            <!-- container -->
+            <!-- .row -->
         </div>
+        <!-- container -->
+    </div>
     </div>
     <!-- #page -->
     <script type='text/javascript' src='http://bootstrapped.humanific.com/wp-includes/js/wp-embed.min.js?ver=4.5.3'></script>
@@ -422,4 +376,18 @@
                                 <div>
                                     <hr>
                                     <a href="/lostpassword" class="ajaxlostpassword">Forgotten password</a>
-                                    <hr> If you don't have an account yet, please <a href="
+                                    <hr> If you don't have an account yet, please
+                                    <a href="/signup" class="ajaxsignup">
+                                        <?php _e('signup','bootstrapped-login');?>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
