@@ -3,38 +3,44 @@
 
 <head>
 
-
+<!-- 
 	<link rel='stylesheet' id='bootstrap-css' href='http://bootstrapped.humanific.com/wp-content/themes/bootstrapped/bootstrap.css?ver=4.5.3' type='text/css' media='all' />
-
 
     <link rel='stylesheet' id='bootstraped-login-css' href='http://bootstrapped.humanific.com/wp-content/plugins/bootstrapped-login/bootstraped-login.css?ver=4.5.3' type='text/css' media='all' />
 
-
-
     <script type='text/javascript' src='http://bootstrapped.humanific.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+
     <script type='text/javascript' src='http://bootstrapped.humanific.com/wp-content/plugins/bootstrapped-contactform/jquery.validate.min.js?ver=4.5.3'></script>
 
     <script type='text/javascript' src='http://bootstrapped.humanific.com/wp-content/themes/bootstrapped/js/bootstrap.min.js?ver=4.5.3'></script>
+ -->
     
 
-
+    <link rel='stylesheet' id='bootstrap-css' href='http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstraped-login-css' href="{{ static_url("css/bootstraped-login.css") }}" type='text/css' media='all' />
+    <script type='text/javascript' src='http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js'></script>
+    <script type='text/javascript' src="//cdn.bootcss.com/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+    <script type='text/javascript' src='http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js'></script>
     <script type='text/javascript' src="{{ static_url("js/bootstraped-login.js") }}"></script>
+    
 
 
     <script type='text/javascript'>
     /* <![CDATA[ */
     var ajaxlogin = {
-        "validate_required": "This field is required",
-        "validate_email": "Please enter a valid email address",
-        "validate_equalTo": "Please enter the same value again.",
-        "validate_minlength": "Enter at least {0} characters",
-        "validate_alphanumeric": "Enter at least {0} characters",
-        "checking_email": "Checking email address",
-        "sending_info": "Sending user info, please wait...",
-        "login_successfull": "Login successful, redirecting...",
-        "login_error": "Wrong username or password.",
-        "validate_username": "This username is already taken.",
+        "validate_required": "必填字段",
+        "username_required": "用户名不能为空",
+        "validate_email": "必须输入正确格式的电子邮件",
+        "validate_equalTo": "两次输入的密码不一致",
+        "validate_minlength": "至少输入 {0} 个字符",
+        "validate_alphanumeric": "至少输入 {0} 个字符",
+        "checking_email": "正在发送邮件",
+        "sending_info": "正在登录...",
+        "login_successfull": "登录成功, 跳转...",
+        "login_error": "用户名或密码错误",
+        "validate_username": "用户名已被占用",
         "ajaxurl": "/account/login",
+        "register_url": "/account/signup",
         "login_nonce": "cea66ba2f2"
     };
     /* ]]> */
@@ -90,7 +96,7 @@
                             </div>
                         </form>
                         <form id="signupform" action="" method="post">
-                            <h4>Register</h4>
+                            <h4>加入阿福</h4>
                             <div class="form-group">
                                 <div id="signupstatus"></div>
                                 <div>
@@ -121,16 +127,16 @@
                             </div>
                         </form>
                         <form class="ajaxloginform" id="loginform" method="post">
-                            <h4>Login</h4>
+                            <h4>登录阿福</h4>
                             <div class="form-group">
                                 <div class="loginstatus"></div>
                                 <div>
-                                    <input type="text" name="username" placeholder="Email or username" class="form-control" />
+                                    <input type="text" name="username" placeholder="用户名或者邮箱" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div>
-                                    <input type="password" name="password" placeholder="Password" class="form-control" />
+                                    <input type="password" name="password" placeholder="密码" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">

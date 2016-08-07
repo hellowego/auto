@@ -67,7 +67,7 @@ jQuery(function($) {
               $.ajax({
                   type: 'POST',
                   dataType: 'json',
-                  url: ajaxlogin.ajaxurl,
+                  url: ajaxlogin.register_url,
                   data: data,
                   success: function(data){
                       $('#signupstatus').text(data.info);
@@ -190,6 +190,7 @@ jQuery(function($) {
       if($.validator.messages){
         $.extend($.validator.messages, {
               required: ajaxlogin.validate_required,
+              username_required: ajaxlogin.username_required,
               email: ajaxlogin.validate_email,
               equalTo: ajaxlogin.validate_equalTo,
               minlength: $.validator.format(ajaxlogin.validate_minlength),

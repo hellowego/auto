@@ -80,6 +80,23 @@ class RegisterHandler(BaseHandler):
 				return True
 		return False
 
+class RegisterHandler2(BaseHandler):
+	"""docstring for RegisterHandler2"""
+	def post(self):
+		username = self.get_argument("username")
+		email = self.get_argument("email")
+		password = self.get_argument("password")
+		# randstr = self.get_secure_cookie("randstr")
+		print username
+		print email
+		print password
+		result = {"info" : "注册成功", "register" : True}
+		
+		print result
+		self.write(result)
+		
+
+
 
 class LoginHandler(BaseHandler):
 	"""docstring for LoginHandler"""

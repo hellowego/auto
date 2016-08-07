@@ -37,3 +37,8 @@ class ExploreHandler(BaseHandler):
 		# print get_time_format(nowStamp -186400)
 
 		self.render("explore/index.html", linkList = linkList, pageNumList = pageNumList, get_time_format = Util.get_time_format, user = user)
+
+
+
+	def post(self):
+		pass

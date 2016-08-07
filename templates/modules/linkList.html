@@ -1,6 +1,6 @@
 					<li>
                         <div class = "vote midcol unvoted">
-                            <i class="arrow up" onclick="AUTO.agree_vote(this, 'hi', {{link.id}});"></i> 
+                            <i class="arrow up {% if not current_user %} ajaxlogin " {% else %} "  onclick="AUTO.agree_vote(this, 'hi', {{link.id}});"  {% end %}></i> 
                             
                             <div class="score likes">{{link.likecount - link.dislikecount + 1}} </div>
                             <div class="score unvoted">{{link.likecount - link.dislikecount}}</div>

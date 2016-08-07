@@ -2,9 +2,12 @@
 
 {% block head %}
     <!-- // <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script> -->
-
+<!-- 
     <link href="{{ static_url("css/register.css") }}" rel="stylesheet" type="text/css" />
     <link href="{{ static_url("css/icon.css") }}" rel="stylesheet" type="text/css" />
+ -->
+    <script src="http://ximan.github.io/dropload/dist/dropload.min.js"></script>
+     <link rel="stylesheet" href="http://ximan.github.io/dropload/dist/dropload.css">
 
 {% end %}
 
@@ -35,8 +38,8 @@
                         {% else %}
                             <div class="header-top-right col-lg-6 col-md-6 col-sm-6 col-xs-12 v-grid">
                                 <div class="user-info pull-right" id="Personal">
-                                    <a href='/account/register'  data-toggle="modal" data-target="#myModal">
-                                        注册</a> | <a href='/account/login'>登录</a>
+                                    <a  class="ajaxsignup " href="#">
+                                        注册</a> | <a class="ajaxlogin " >登录</a>
                                    
                                 </div>
                             </div>
@@ -49,39 +52,7 @@
     </header>
     <p></p>
 
-    <button class="btn btn-primary btn-lg" data-toggle="modal" 
-   data-target="#myModal">
-   开始演示模态框
-</button>
 
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
-   aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" 
-               data-dismiss="modal" aria-hidden="true">
-                  &times;
-            </button>
-            <h4 class="modal-title" id="myModalLabel">
-               模态框（Modal）标题
-            </h4>
-         </div>
-         <div class="modal-body">
-            在这里添加一些文本
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" 
-               data-dismiss="modal">关闭
-            </button>
-            <button type="button" class="btn btn-primary">
-               提交更改
-            </button>
-         </div>
-      </div><!-- /.modal-content -->
-</div><!-- /.modal -->
-</div>
 
 
     <div class="container">
@@ -91,50 +62,30 @@
                     {% for link in linkList %}
                         {%  module LinkModule(link, get_time_format) %}
                     {% end %}
-                    <li>
-                        <div class = "vote midcol unvoted">
-                            <i class="arrow up" onclick="AUTO.agree_vote(this, 'hi', 46650);"></i> 
-                            
-                            <div class="score dislikes">3987</div>
-                            <div class="score unvoted">3988</div>
-                            <div class="score likes">3989</div>
-                            <i class="arrow down " onclick="AUTO.disAgree_vote(this, 'hi', 46650);"></i> 
+
+
+                         <div class="content">
+                            <div class="lists"></div>
                         </div>
-                        <div class="cont">
-                            <h3>[<a href="/news/category/5" class="category">前端技术</a>]<a href="/news/view/87cc00" target="_blank">2016年 20+ 个最好的免费 Bootstrap HTML5 模板</a></h3>
-                            <div class="info">
-                                <span class="author">
-                                         <a href="/news/user/profile?uid=1"></a>&nbsp;发表于&nbsp;2 个月 前
-                                    </span>
-                                <span>1&nbsp;收藏</span> &nbsp;&nbsp;
-                                <span>4273&nbsp;阅读</span>
-                                <a id="xvotes-0" href="javascript:vote(0,'87cc00',0,'3d13b74fca70869119ab37ab92380399',10)">1</a>
-                                <a href="javascript:vote(0,'87cc00',0,'3d13b74fca70869119ab37ab92380399',10)">
-									  赞
-								</a>
-                            </div>
-                            <p class="intro"> 2016年 20+ 个最好的免费 Bootstrap HTML5 模板</p>
-                            <div class="tag">
-                                <i aria-hidden="true" class="fa fa-tags"></i>
-                                <a href="/news/tags/Bootstrap" class="tag">Bootstrap</a>
-                                <a href="/news/tags/HTML5" class="tag">HTML5</a>
-                            </div>
-                        </div>
-                    </li>
+                    
                     
                 </ul>
+
+                <!-- 
                 <div class="pagination">
                     <p>
                         <span class='pagescurrent'>1</span>
                         {% for pageNum in pageNumList %}
                             <a href='/news?pn={{ pageNum }}' class=1s>{{ pageNum }}</a> 
                         {% end %}
+
                         
                         
                         <a href='/news/tags/Bootstrap?pn=1'>[下一页]</a> 
                         <a href='/news/tags/Bootstrap?pn=10'>[尾页]</a> 
                     </p>
                 </div>
+ -->
             </div>
             <div class="col-md-3">
                 
@@ -142,83 +93,16 @@
                         <a class="btn btn-info br40" href="/submit">投稿</a>
                     </div>
                 
-                <div class="side-box">
-                    <div class="title clearfix">
-                        <h3>热门话题</h3>
-                        <a class="r more" rel="nofollow" href="/news/cloud" target="_blank">更多</a>
-                    </div>
-                    <div style="padding-top: 20px;" class="tags">
-                        <span><a class="mytag" href="/news/tags/程序员">程序员</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Linux">Linux</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Android">Android</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Java">Java</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/微软">微软</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Google">Google</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/HTML5">HTML5</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/jQuery">jQuery</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/PHP">PHP</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/谷歌">谷歌</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Ubuntu">Ubuntu</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/JavaScript">JavaScript</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Firefox">Firefox</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/开源">开源</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Windows 8">Windows 8</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/iOS">iOS</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Python">Python</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Docker">Docker</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/小米">小米</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Chrome">Chrome</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/编程">编程</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/苹果">苹果</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/jQuery插件">jQuery插件</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Windows 10">Windows 10</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/百度">百度</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/腾讯">腾讯</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/Windows Phone">Windows Phone</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/诺基亚">诺基亚</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/360">360</a></span>&nbsp;
-                        <span><a class="mytag" href="/news/tags/黑客">黑客</a></span>&nbsp;
-                    </div>
-                </div>
-                <div class="side-box">
-                    <div class="title clearfix">
-                        <h3>最新发布</h3>
-                        <a class="r more" rel="nofollow" href="http://www.open-open.com/doc/" target="_blank">更多</a>
-                    </div>
-                    <div>1、<a href="http://www.open-open.com/doc/view/aceccf3bacc94238892847ac0b31c65d" target="_blank">一种低编码复杂度的qc-ldpc码的构造方法.docx</a></div>
-                    <div>2、<a href="http://www.open-open.com/doc/view/cb73301acbf0469ba9f601c37fa8226f" target="_blank">手动查杀病毒技术.docx</a></div>
-                    <div>3、<a href="http://www.open-open.com/doc/view/41d9b7f251b443a587e2fdedb1f0641f" target="_blank">eira ldpc码的fpga的实现.doc</a></div>
-                    <div>4、<a href="http://www.open-open.com/doc/view/6aa6fe4b89434bfa951dca9ae12af03d" target="_blank">突破安全狗.docx</a></div>
-                    <div>5、<a href="http://www.open-open.com/doc/view/9acca21639b24719b06a7d7b3c26ac45" target="_blank">音乐网站的设计与实现.docx</a></div>
-                    <div>6、<a href="http://www.open-open.com/doc/view/a9b677aa60c7419997c53abb86fcad22" target="_blank">浅谈逻辑漏洞挖掘.docx</a></div>
-                    <div>7、<a href="http://www.open-open.com/doc/view/44438b9b318a4d2680decd60717b2e41" target="_blank">metasploit实战讲解.docx</a></div>
-                    <div>8、<a href="http://www.open-open.com/doc/view/cd2a7572b6a3464da77d3a6831d8d282" target="_blank">web应用程序安全与风险.docx</a></div>
-                    <div>9、<a href="http://www.open-open.com/doc/view/4bcbece04e944ed5bff6a37110062c79" target="_blank">黑客工具解析-信息探测.docx</a></div>
-                    <div>10、<a href="http://www.open-open.com/doc/view/0a5d3aec207b4c78869e0a21d1354948" target="_blank">核心防御机制.docx</a></div>
-                    <div>11、<a href="http://www.open-open.com/doc/view/ef6baee973b94389841a39abfa00d4d4" target="_blank">web应用程序技术.docx</a></div>
-                    <div>12、<a href="http://www.open-open.com/doc/view/a409c0b66f3b4456bf7f4a3a52fddd16" target="_blank">Web入侵先遣—SQL注入攻击技术初探.docx</a></div>
-                    <div>13、<a href="http://www.open-open.com/doc/view/a0705917caaf4c51a5fb78e2c11c197c" target="_blank">移动app测试方案.docx</a></div>
-                    <div>14、<a href="http://www.open-open.com/doc/view/616a4a9296c8403fb7ce4c0b334582c3" target="_blank">app加固项目方案.docx</a></div>
-                    <div>15、<a href="http://www.open-open.com/doc/view/d2fa9eb0ccd44583a1f48848691a083d" target="_blank">移动app测试报告--2016-0328.docx</a></div>
-                </div>
-                <div class="side-box">
-                    <div class="title clearfix">
-                        <h3>最新分享经验</h3>
-                        <a class="r more" rel="nofollow" href="http://www.open-open.com/lib/" target="_blank">更多</a>
-                    </div>
-                </div>
-                <div class="side-box">
-                    <div class="title clearfix">
-                        <h3>最新问答</h3>
-                        <a class="r more" rel="nofollow" href="http://www.open-open.com/solution/" target="_blank">更多</a>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
-    <!-- mid content -->
-    </div>
-    <!-- mid content -->
+   
+
+
+
+
+
     <style>
     footer {
         background-color: #fff;
@@ -227,6 +111,64 @@
         padding: 20px 0;
     }
     </style>
+
+
+
+<script>
+$(function(){
+    var counter = 0;
+    // 每页展示4个
+    var num = 4;
+    var pageStart = 0,pageEnd = 0;
+
+    // dropload
+    $('.content').dropload({
+        scrollArea : window,
+        loadDownFn : function(me){
+            $.ajax({
+                type: 'GET',
+                url: 'http://ximan.github.io/dropload/examples/json/more.json',
+                dataType: 'json',
+                success: function(data){
+                    var result = '';
+                    counter++;
+                    pageEnd = num * counter;
+                    pageStart = pageEnd - num;
+
+                    for(var i = pageStart; i < pageEnd; i++){
+                        result +=   '<a class="item opacity" href="'+data.lists[i].link+'">'
+                                        +'<img src="'+data.lists[i].pic+'" alt="">'
+                                        +'<h3>'+data.lists[i].title+'</h3>'
+                                        +'<span class="date">'+data.lists[i].date+'</span>'
+                                    +'</a>';
+                        if((i + 1) >= data.lists.length){
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                            break;
+                        }
+                    }
+                    // 为了测试，延迟1秒加载
+                    setTimeout(function(){
+                        $('.lists').append(result);
+                        // 每次数据加载完，必须重置
+                        me.resetload();
+                    },1000);
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!');
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        }
+    });
+});
+</script>
+
+
+
     
     <!--[if lte IE 6]>
     <script type="text/javascript">
@@ -240,10 +182,13 @@
       img{ behavior: url("/news/js/ie6pngfix.htc"); }
     </style>
     <![endif]-->
+<!-- 
     <script type="text/javascript" src="http://libs.baidu.com/jquery/1.3.2/jquery.min.js"></script>
     <script type="text/javascript" src="/news/js/view.js"></script>
     <script type="text/javascript" src="/news/js/jquery.jgrowl_minimized.js"></script>
     <script type="text/javascript" src="/news/js/scrolltopcontrolt.js"></script>
+ -->
+<!-- 
     <script type="text/javascript">
     scrolltotop.offset(188, 165);
     scrolltotop.controlHTML('<img src="/news/images/gotop.gif" style="width:35px; height:35px;" />')
@@ -275,4 +220,6 @@
         s.parentNode.insertBefore(bp, s);
     })();
     </script>
+ -->
+
 {% end %}
