@@ -209,22 +209,9 @@ jQuery(function($) {
     })
 
 
-});
 
+    // -----------------------------
 
-
-
-
-
-$(function() {
-    var counter = 0;
-    // 每页展示4个
-    var num = 4;
-    var pageStart = 0,
-        pageEnd = 0;
-    // document.write("<script src=\"http://localhost:8888/static/js/bootstraped-login.js\"><\/script> ")
-
-    console.log('test');
     // dropload
     $('.content').dropload({
         scrollArea: window,
@@ -234,6 +221,12 @@ $(function() {
                 url: '/explore',
                 dataType: 'text',
                 success: function(data) {
+
+                    var counter = 0;
+                    // 每页展示4个
+                    var num = 4;
+                    var pageStart = 0,
+                        pageEnd = 0;
                     var result = '';
                     counter++;
                     pageEnd = num * counter;
@@ -250,26 +243,13 @@ $(function() {
                         $('.lists').append(data);
                         // $('.lists').html("<i class=\"arrow up  ajaxlogin\"></i>");
                         div = "loginform";
-                        $('body').on('click', '.ajaxlogin', function(e) {
-                            try {
-                                $('#login_modal').modal('show')
-                            } catch (err) {
-                                console.log('no bootstrap ' + err);
-                                $('#login_modal').show();
-                                var $el = $('#login_modal #' + div).fadeIn();
-                                $('#login_modal .modal-dialog').css({
-                                    opacity: 1,
-                                    position: 'absolute',
-                                    display: 'block',
-                                    left: ($(window).width() - $el.width()) / 2,
-                                    top: (($(window).height() - $el.height()) / 2) - 30
-                                });
-                            }
-
-
-                            $('#login_modal form').hide();
-                            var $el = $('#login_modal #' + div).fadeIn();
+                        $('.lists').on('click', '.ajaxlogin', function(e) {
+                            // -----
+                            var r = $(this).attr('data-redirect');
+                            if (r) redirect = r;
+                            showModal('loginform');
                             e.preventDefault();
+
                             // -----------------
                         });
                         console.log(data);
@@ -285,4 +265,24 @@ $(function() {
             });
         }
     });
+
+    // -----------------------------
+
+});
+
+
+
+
+
+
+$(function() {
+    var counter = 0;
+    // 每页展示4个
+    var num = 4;
+    var pageStart = 0,
+        pageEnd = 0;
+    // document.write("<script src=\"http://localhost:8888/static/js/bootstraped-login.js\"><\/script> ")
+
+    console.log('test');
+    
 });
