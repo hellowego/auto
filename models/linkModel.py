@@ -46,6 +46,13 @@ class Link(BaseModel):
 		return linkList
 
 	@classmethod
+	def queryByPage(cls, offset, limit):
+		session = DBSession()
+		linkList = session.query(cls).order_by(cls.add_time.desc()).offset(offset).limit(limit)
+		return linkList
+
+
+	@classmethod
 	def queryPageCount(cls, pageSize):
 		session = DBSession()
 		count = session.query(cls).count()

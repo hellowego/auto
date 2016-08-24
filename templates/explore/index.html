@@ -59,17 +59,54 @@
         <div class="row">
             <div class="col-md-9 link " id="readercontainer">
                 <ul class="list">
+                    <!-- 
                     {% for link in linkList %}
                         {%  module LinkModule(link, get_time_format) %}
                     {% end %}
-
-
+ -->
+                        
                          <div class="content">
                             <div class="lists"></div>
                         </div>
+                        <!-- 
+                        <div class="lists"></div> -->
+
+                        <!-- 
+                        <div class="content">
+                            <div class="lists">
+                                    <li>
+                                        <div class="vote midcol unvoted ">
+                                            <i class="arrow up  ajaxlogin"></i>
+                                            <div class="score likes">17 </div>
+                                            <div class="score unvoted">16</div>
+                                            <div class="score dislikes">15 </div>
+                                            <i class="arrow down  ajaxlogin"></i>
+                                        </div>
+                                        <div class="cont">
+                                            <h3>[<a href="/news/category/5" class="category">搞笑系列</a>]<a href="http://baidu.com" target="_blank">baidu</a></h3>
+                                            <div class="info">
+                                                <span class="author">
+                                                    <a href="http://baidu.com">hello1</a>&nbsp;发表于&nbsp;28天1小时前
+                                                    </span> &nbsp;&nbsp;
+                                                <span>1&nbsp;阅读</span>
+                                            </div>
+                                            
+                                        </div>
+                                    </li>
+                            </div>
+                        </div>
+ -->
+
+
                     
-                    
+                   <!--  <i class="arrow up  ajaxlogin"></i>
+                    <i class="arrow up  ajaxlogin"></i> -->
+
+
+
                 </ul>
+
+
 
                 <!-- 
                 <div class="pagination">
@@ -85,7 +122,7 @@
                         <a href='/news/tags/Bootstrap?pn=10'>[尾页]</a> 
                     </p>
                 </div>
- -->
+                -->
             </div>
             <div class="col-md-3">
                 
@@ -115,111 +152,9 @@
 
 
 <script>
-$(function(){
-    var counter = 0;
-    // 每页展示4个
-    var num = 4;
-    var pageStart = 0,pageEnd = 0;
 
-    // dropload
-    $('.content').dropload({
-        scrollArea : window,
-        loadDownFn : function(me){
-            $.ajax({
-                type: 'GET',
-                url: 'http://ximan.github.io/dropload/examples/json/more.json',
-                dataType: 'json',
-                success: function(data){
-                    var result = '';
-                    counter++;
-                    pageEnd = num * counter;
-                    pageStart = pageEnd - num;
-
-                    for(var i = pageStart; i < pageEnd; i++){
-                        result +=   '<a class="item opacity" href="'+data.lists[i].link+'">'
-                                        +'<img src="'+data.lists[i].pic+'" alt="">'
-                                        +'<h3>'+data.lists[i].title+'</h3>'
-                                        +'<span class="date">'+data.lists[i].date+'</span>'
-                                    +'</a>';
-                        if((i + 1) >= data.lists.length){
-                            // 锁定
-                            me.lock();
-                            // 无数据
-                            me.noData();
-                            break;
-                        }
-                    }
-                    // 为了测试，延迟1秒加载
-                    setTimeout(function(){
-                        $('.lists').append(result);
-                        // 每次数据加载完，必须重置
-                        me.resetload();
-                    },1000);
-                },
-                error: function(xhr, type){
-                    alert('Ajax error!');
-                    // 即使加载出错，也得重置
-                    me.resetload();
-                }
-            });
-        }
-    });
-});
 </script>
 
 
-
-    
-    <!--[if lte IE 6]>
-    <script type="text/javascript">
-    /* <![CDATA[ */
-       blankimgpath = '/news/images/blank.gif';
-     /* ]]> */
-    </script>
-    <style type="text/css" media="screen">
-      @import "/news/css/ie6.css";
-      body{ behavior:url("/news/js/ie6hoverfix.htc"); }
-      img{ behavior: url("/news/js/ie6pngfix.htc"); }
-    </style>
-    <![endif]-->
-<!-- 
-    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.3.2/jquery.min.js"></script>
-    <script type="text/javascript" src="/news/js/view.js"></script>
-    <script type="text/javascript" src="/news/js/jquery.jgrowl_minimized.js"></script>
-    <script type="text/javascript" src="/news/js/scrolltopcontrolt.js"></script>
- -->
-<!-- 
-    <script type="text/javascript">
-    scrolltotop.offset(188, 165);
-    scrolltotop.controlHTML('<img src="/news/images/gotop.gif" style="width:35px; height:35px;" />')
-    scrolltotop.init();
-    </script>
-    <script type="text/javascript">
-    /* <![CDATA[ */
-    jQuery(document).ready(function() {
-        // body .safari class
-        if (jQuery.browser.safari) jQuery('body').addClass('safari');
-
-
-        // scroll to top
-        jQuery("a#toplink").click(function() {
-            jQuery('html, body').animate({
-                scrollTop: 0
-            }, 'slow');
-        });
-
-    });
-    var rooturl = '/news';
-    /* ]]> */
-    </script>
-    <script>
-    (function() {
-        var bp = document.createElement('script');
-        bp.src = '//push.zhanzhang.baidu.com/push.js';
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-    </script>
- -->
 
 {% end %}
