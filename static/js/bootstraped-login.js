@@ -211,6 +211,28 @@ jQuery(function($) {
 
 
     // -----------------------------
+    // var counter = 0;
+    // // 每页展示4个
+    // var num = 4;
+    // var pageStart = 0,
+    //     pageEnd = 0;
+
+    var pageNum = 0;
+
+    // data = {'pageNum': pageNum}
+
+
+    // 代理方式绑定事件
+    div = "loginform";
+    $('.lists').on('click', '.ajaxlogin', function(e) {
+        // -----
+        var r = $(this).attr('data-redirect');
+        if (r) redirect = r;
+        showModal('loginform');
+        e.preventDefault();
+
+        // -----------------
+    });
 
     // dropload
     $('.content').dropload({
@@ -219,43 +241,40 @@ jQuery(function($) {
             $.ajax({
                 type: 'POST',
                 url: '/explore',
-                dataType: 'text',
+                dataType: 'json',
+                data: {'pageNum': pageNum},
                 success: function(data) {
 
-                    var counter = 0;
-                    // 每页展示4个
-                    var num = 4;
-                    var pageStart = 0,
-                        pageEnd = 0;
-                    var result = '';
-                    counter++;
-                    pageEnd = num * counter;
-                    pageStart = pageEnd - num;
+                    
+                    // var result = '';
+                    // counter++;
+                    // pageEnd = num * counter;
+                    // pageStart = pageEnd - num;
 
+                    pageNum ++;
+                    console.log("pageNum: %s", pageNum);
+                    console.log("pageEnd: %s", data.pageEnd);
+                    // console.log("html: %s", data.html);
 
-                    // 锁定
-                    me.lock();
-                    // 无数据
-                    me.noData();
+                    if(data.pageEnd == 1) {
+                        console.log("pageEnd: 11111");
+                        // 锁定
+                        me.lock();
+                        // 无数据
+                        me.noData();
+                    }
+
+                    
                     // break;
                     // 为了测试，延迟1秒加载
                     setTimeout(function() {
-                        $('.lists').append(data);
+                        $('.lists').append(data.html);
                         // $('.lists').html("<i class=\"arrow up  ajaxlogin\"></i>");
-                        div = "loginform";
-                        $('.lists').on('click', '.ajaxlogin', function(e) {
-                            // -----
-                            var r = $(this).attr('data-redirect');
-                            if (r) redirect = r;
-                            showModal('loginform');
-                            e.preventDefault();
-
-                            // -----------------
-                        });
-                        console.log(data);
+                        
+                        // console.log(data);
                         // 每次数据加载完，必须重置
                         me.resetload();
-                    }, 1000);
+                    }, 100);
                 },
                 error: function(xhr, type) {
                     console.log(type);

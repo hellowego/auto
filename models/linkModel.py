@@ -2,9 +2,12 @@
 #-*- coding: UTF-8 -*- 
 
 # your models module write here
+from __future__ import division
 import sys
 import time
 import datetime
+import math
+
 sys.path.append("..")
 from db.dbSession import BaseModel, DBSession
 from sqlalchemy import Column, String, Integer
@@ -56,7 +59,8 @@ class Link(BaseModel):
 	def queryPageCount(cls, pageSize):
 		session = DBSession()
 		count = session.query(cls).count()
-		pageCount = int(count/int(pageSize))
+		# 向上取整，如：3.2  取整后为 4
+		pageCount = int(math.ceil(count/int(pageSize)))
 		return pageCount
 
 	@classmethod

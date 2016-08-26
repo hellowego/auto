@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 
 BaseModel = declarative_base()
 
-engine = create_engine('mysql://auto:auto@localhost:3306/auto',connect_args={'charset':'utf8'})
+engine = create_engine('mysql://auto:auto@localhost:3306/auto',connect_args={'charset':'utf8'}, pool_size=20, max_overflow=0)
 DBSession = sessionmaker(bind=engine)
 
 

@@ -35,3 +35,14 @@ create table `captcha` (
     `status` smallint default 0,
     primary KEY (`session_id`)
 )DEFAULT CHARSET=utf8;
+
+
+-- 
+drop table user_vote;
+create table `user_vote` (	
+    `user_id` int,
+    `link_id` int,
+    `type` smallint comment ' 0 disageree,   1 agree',
+    `add_time` int(10) ,
+    primary KEY (`user_id`, `link_id`)
+)DEFAULT CHARSET=utf8;
