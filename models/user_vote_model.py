@@ -2,11 +2,11 @@
 #-*- coding: UTF-8 -*- 
 
 # your models module write here
-from __future__ import division
+
 import sys
 import time
 import datetime
-import math
+
 
 sys.path.append("..")
 from db.dbSession import BaseModel, DBSession
@@ -27,8 +27,8 @@ class User_vote(BaseModel):
 	__tablename__ = "User_vote"
 
 	
-	user_id = Column(Integer, nullable = False)								# 用户id
-	link_id = Column(Integer, nullable = False)			
+	user_id = Column(Integer, primary_key = True, nullable = False)								# 用户id
+	link_id = Column(Integer, primary_key = True, nullable = False)			
 	type = Column(Integer, nullable = True, default = 0)							#	
 	add_time = Column(Integer, nullable = False)							# 添加时间
 	
@@ -37,14 +37,19 @@ class User_vote(BaseModel):
 	@classmethod
 	def queryByUserId(cls, userId):
 		session = DBSession()
-		userVotes = session.query(cls).filter(cls.user_id == userId)
+		userVotes = session.query(cls).filter(cls.user_id == userId).first()
 		return userVotes
 
 	@classmethod
 	def queryByUserIdAndLinkId(cls, userId, linkid):
 		session = DBSession()
-		userVote = session.query(cls).filter(cls.user_id == userId, cls.link_id == linkid)
-		return userVote
+		userVote = session.query(cls).filter(cls.user_id == userId, cls.link_id == linkid).first()
+		if not userVote:
+			return False
+		else:
+			print userVote
+			return userVote
+		
 
 
 	@classmethod
@@ -56,14 +61,32 @@ class User_vote(BaseModel):
 		session.close()
 		return True
 
+	@classmethod
+	def deleteByUserIdAndLinkId(cls, userId, linkid):
+		session = DBSession()
+		session.query(cls).filter(cls.user_id == userId, cls.link_id == linkid).delete()
+		session.commit()
+		return True
+		
+		
+
+
+	@classmethod
+	def updateByUserIdAndLinkId(cls, userId, linkid, type):
+		session = DBSession()
+		session.query(cls).filter(cls.user_id == userId, cls.link_id == linkid).update({cls.type: type})
+		session.commit()
+		return True
+
 
 	
 
 
 
 if __name__ == "__main__":
-	bl = Link.add(1,'tilte','你好')
-	print bl
+	# bl = User_vote.add(1,1,1)
+	userVote = User_vote.queryByUserIdAndLinkId(2,19)
+	print userVote.user_id
 	
 
 

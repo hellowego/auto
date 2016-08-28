@@ -19,6 +19,7 @@ class VoteHandler(BaseHandler):
 		id = self.get_argument("id")
 		value = self.get_argument("value")
 		print id, value
-		Link.vote( id, value)
+		user = self.get_current_user()
+		Link.vote( id, user.uid, value)
 		rsm = {'type_name':'answer'}
 		self.write(Util.response(rsm, 1, None))

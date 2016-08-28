@@ -1,6 +1,6 @@
 body{background: #f9fafc;}
-a { color: #888888; }
-a:hover{ color: #db6d4c ; }
+/*a { color: #888888; }
+a:hover{ color: #db6d4c ; }*/
 
 ul,ol{margin: 0;padding: 0}
 code { background-color: #effafd ; color: #27b8e6; margin: 5px; padding: 0 4px; border-radius: 0; }

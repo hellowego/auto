@@ -14,7 +14,7 @@ sys.path.append("..")
 from models.account_models import AutoUser
 from models.question_models import Question
 from models.linkModel import Link
-from models.User_vote import User_vote
+from models.user_vote_model import User_vote
 from util import Util
 
 class ExploreHandler(BaseHandler):	
@@ -62,15 +62,23 @@ class ExploreHandler(BaseHandler):
 			print '-----pageEnd-------'
 		linkmodel = '''
 			<li>
-			    <div class="vote midcol unvoted ">
+			    <div class="vote midcol %s ">
 			        %s
 			        <div class="score likes">%s </div>
 			        <div class="score unvoted">%s</div>
 			        <div class="score dislikes">%s </div>
 			        %s
 			    </div>
-			    <div class="cont">
-			        <h3>[<a href="/news/category/5" class="category">搞笑系列</a>]<a href="%s" target="_blank">%s</a></h3>
+			    <div class="cont thing">
+			        <p class="title">
+			        	<a href="%s" target="_blank">%s</a>
+			        	<span class="domain">
+			        		(
+			        			<a>%s</a>
+			        		)
+			        	</span>
+
+			        </p>
 			        <div class="info">
 			            <span class="author">
 							<a href="http://baidu.com">hello</a>&nbsp;发表于&nbsp;28天1小时前
@@ -85,31 +93,38 @@ class ExploreHandler(BaseHandler):
 		user = self.get_current_user()
 		
 
-		html = ""
+		html = ""	
+		
 		if linkList:
 			for link in linkList:
-				
-
-
+				# 初始化变量
+				votestate = "unvoted"
+				arrowUpStatus = 'up'
+				arrowDownStatus = 'down'
+				score = link.likecount - link.dislikecount
 				# 判断是否需要登录
 				if user :
 					# 判断是否投票
 					userVote = User_vote.queryByUserIdAndLinkId(user.uid, link.id)
-					if userVote:
+					if userVote :	
+						# print '------userVote------  ', 	userVote		
 						if userVote.type == 0 :
-							arrowUpStatus = 'up'
+							# print '------type------ 0 '
 							arrowDownStatus = 'downmod'
+							votestate = 'dislikes'
+							score += 1
 						else:
-							arrowUpStatus = 'upmod'
-							arrowDownStatus = 'down'
+							arrowUpStatus = 'upmod'							
+							votestate = 'likes'
+							score -= 1
 					ajaxlogin = "ajaxlogin" 
-					arrowup = "<i class=\"arrow up  \" onclick=\"AUTO.agree_vote(this, 'hi', %s);\"></i>" %(link.id)
-					arrowdown = "<i class=\"arrow down  \" onclick=\"AUTO.disAgree_vote(this, 'hi', %s);\"></i>" %(link.id)
+					arrowup = "<i class=\"arrow %s  \" onclick=\"AUTO.agree_vote(this, 'hi', %s);\"></i>" %(arrowUpStatus, link.id)
+					arrowdown = "<i class=\"arrow %s  \" onclick=\"AUTO.disAgree_vote(this, 'hi', %s);\"></i>" %(arrowDownStatus, link.id)
 				else :
 					ajaxlogin = " "
 					arrowup = "<i class=\"arrow up  ajaxlogin\" ></i>"
 					arrowdown = "<i class=\"arrow down  ajaxlogin\" ></i>"
-				linkinfo = linkmodel % (arrowup,link.likecount + 1, link.likecount , link.likecount - 1 , arrowdown, link.url, link.title)
+				linkinfo = linkmodel % (votestate, arrowup, score + 1, score , score - 1 , arrowdown, link.url, link.title, link.url)
 				# print linkinfo
 				html = html + linkinfo
 		# print html

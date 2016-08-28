@@ -211,10 +211,11 @@ if __name__ == "__main__":
 	# u = AutoUser.checkEmail("hellowego@gmail.com");
 	# u = Users.addUser('hi', 'aa1@a.com', '1')
 	# u = Users.addUser('hello', 'hellowego@gmail.com', '1')
-	u = Users.addUser('你好', 'hello@gmail.com', '1')
+	# u = Users.addUser('你好', 'hello@gmail.com', '1')
 	u = Users.queryByUserId(2)
 	if u:
 		print 'register'
+		print u
 	else:
 		print 'not register'
 

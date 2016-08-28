@@ -7,6 +7,7 @@ import sys
 import time
 import datetime
 import math
+from user_vote_model import User_vote
 
 sys.path.append("..")
 from db.dbSession import BaseModel, DBSession
@@ -65,29 +66,33 @@ class Link(BaseModel):
 
 	@classmethod
 	def queryCount(cls):
-		session = DBSession().count()
-		count = session.query(cls)
+		session = DBSession()
+		count = session.query(cls).count()
 		return count
 
 
 
 	@classmethod
-	def vote(cls, id, value):
+	def vote(cls, id, userid, value):
 		session = DBSession()
 		if 'unvoted2like' == value:
 			session.query(cls).filter(cls.id == id).update({cls.likecount:cls.likecount + 1})
+			User_vote.add(userid, id, 1)
 		elif 'unvoted2dislike' == value:
 			session.query(cls).filter(cls.id == id).update({cls.dislikecount:cls.dislikecount + 1})
+			User_vote.add(userid, id, 0)
 		elif 'like2dislike' == value:
-			session.query(cls).filter(cls.id == id).update({cls.likecount:cls.likecount - 1})
-			session.query(cls).filter(cls.id == id).update({cls.dislikecount:cls.dislikecount + 1})
+			session.query(cls).filter(cls.id == id).update({cls.likecount:cls.likecount - 1, cls.dislikecount:cls.dislikecount + 1})
+			User_vote.updateByUserIdAndLinkId(userid, id, 0)
 		elif 'dislike2like' == value:
-			session.query(cls).filter(cls.id == id).update({cls.dislikecount:cls.dislikecount - 1})
-			session.query(cls).filter(cls.id == id).update({cls.likecount:cls.likecount + 1})
+			session.query(cls).filter(cls.id == id).update({cls.dislikecount:cls.dislikecount - 1, cls.likecount:cls.likecount + 1})
+			User_vote.updateByUserIdAndLinkId(userid, id, 1)
 		elif 'like2unvoted' == value:
 			session.query(cls).filter(cls.id == id).update({cls.likecount:cls.likecount - 1})
+			User_vote.deleteByUserIdAndLinkId(userid, id)
 		elif 'dislike2unvoted' == value:
 			session.query(cls).filter(cls.id == id).update({cls.dislikecount:cls.dislikecount - 1})
+			User_vote.deleteByUserIdAndLinkId(userid, id)
 
 
 		session.commit()

@@ -156,6 +156,45 @@
   color: #4959F7;
 }
 
+.domain {
+  color: #888;
+  font-size: x-small;
+  white-space: nowrap;
+}
+.domain a {
+  color: #888;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  max-width: 19em;
+}
+.domain a:hover {
+  text-decoration: underline;
+  max-width: none;
+}
+.spam .domain,
+.spam .domain a {
+  color: black;
+}
+
+.thing .title {
+  color: blue;
+  outline: none;
+  margin-right: .4em;
+  padding: 0px;
+  overflow: hidden;
+}
+.thing .title:visited,
+.thing.visited .title {
+  color: #551a8b;
+}
+.thing.stickied.link a.title {
+  font-weight: bold;
+  color: #228822;
+}
+
 
 /*logo*/
 .logo-icon{

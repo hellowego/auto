@@ -274,7 +274,7 @@ jQuery(function($) {
                         // console.log(data);
                         // 每次数据加载完，必须重置
                         me.resetload();
-                    }, 100);
+                    }, 1000);
                 },
                 error: function(xhr, type) {
                     console.log(type);
