@@ -40,8 +40,8 @@ class Link(BaseModel):
 	@classmethod
 	def queryById(cls, linkId):
 		session = DBSession()
-		answer = session.query(cls).filter(cls.id == linkId)
-		return answer
+		link = session.query(cls).filter(cls.id == linkId).first()
+		return link
 
 	@classmethod
 	def queryAll(cls):

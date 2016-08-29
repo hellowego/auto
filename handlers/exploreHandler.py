@@ -55,7 +55,7 @@ class ExploreHandler(BaseHandler):
 		# 总页数
 		pageCount = Link.queryPageCount(pagesize)
 		pageEnd = 0
-		print '-----pageCount-------', pageCount
+		
 		# 判断是否为尾页
 		if pageCount == pageNum + 1 :
 			pageEnd = 1
@@ -71,7 +71,7 @@ class ExploreHandler(BaseHandler):
 			    </div>
 			    <div class="cont thing">
 			        <p class="title">
-			        	<a href="%s" target="_blank">%s</a>
+			        	<a class="title" href="%s" target="_blank">%s</a>
 			        	<span class="domain">
 			        		(
 			        			<a>%s</a>
@@ -84,6 +84,9 @@ class ExploreHandler(BaseHandler):
 							<a href="http://baidu.com">hello</a>&nbsp;发表于&nbsp;28天1小时前
 							</span> &nbsp;&nbsp;
 			            <span>1&nbsp;阅读</span>
+			            <span>
+			            	<a href="/comment/%s">回复</a>
+			            </span>
 			        </div>
 			        
 			    </div>
@@ -124,7 +127,7 @@ class ExploreHandler(BaseHandler):
 					ajaxlogin = " "
 					arrowup = "<i class=\"arrow up  ajaxlogin\" ></i>"
 					arrowdown = "<i class=\"arrow down  ajaxlogin\" ></i>"
-				linkinfo = linkmodel % (votestate, arrowup, score + 1, score , score - 1 , arrowdown, link.url, link.title, link.url)
+				linkinfo = linkmodel % (votestate, arrowup, score + 1, score , score - 1 , arrowdown, link.url, link.title, link.url, link.id)
 				# print linkinfo
 				html = html + linkinfo
 		# print html
@@ -132,6 +135,19 @@ class ExploreHandler(BaseHandler):
 		# print result
 
 		self.write(result)
+
+
+class CommentHandler(BaseHandler):
+	"""docstring for CommentHandler"""
+	def get(self, linkId):
+		print 'linkid', linkId
+
+		link = Link.queryById(linkId)
+
+		self.render("explore/comment.html", link = link, get_time_format = Util.get_time_format)
+		# self.render("test/dropload.html")
+		# self.render("account/register.html")
+		
 		
 
 
