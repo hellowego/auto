@@ -16,7 +16,7 @@ from handlers.publishHandler import PublishQuestionHandler
 from handlers.submitHandler import SubmitHandler, SubmitLinkHandler
 from handlers.ajaxHandler import VoteHandler
 from handlers.captchaHandler import CaptchaHandler
-from handlers.testHandler import TestHandler
+from handlers.testHandler import TestHandler,TestCommentTreeHandler
 
 
 
@@ -42,7 +42,7 @@ urls = [
 	(r"/question/([0-9]$)", QuestionHandler),
 	(r"/profile/(.*)", ProfileHandler),
 	(r"/comment/(.*)", CommentHandler),
-	(r"/test", TestHandler),
+	
 
 
 	# ajax handler
@@ -56,6 +56,11 @@ urls = [
 
 
 	(r"/follow/ajax/follow_people/", FollowPeopleHandler),
+
+
+	# test
+	(r"/test/comment", TestCommentTreeHandler),
+	(r"/test", TestHandler),
 
 	]
 

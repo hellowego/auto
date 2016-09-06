@@ -5,8 +5,7 @@
                             <div class="score likes">{{link.likecount - link.dislikecount + 1}} </div>
                             <div class="score unvoted">{{link.likecount - link.dislikecount}}</div>
                             <div class="score dislikes">{{link.likecount - link.dislikecount - 1}} </div>
-                            
-                            <i class="arrow down " onclick="AUTO.disAgree_vote(this, 'hi', {{link.id}});"></i> 
+                            <i class="arrow down {% if not current_user %} ajaxlogin " {% else %} "  onclick="AUTO.agree_vote(this, 'hi', {{link.id}});"  {% end %}></i> 
                         </div>
                         <div class="cont">
                             <h3>[<a href="/news/category/5" class="category">搞笑系列</a>]<a href="{{link.url}}" target="_blank">{{ link.title }}</a></h3>
