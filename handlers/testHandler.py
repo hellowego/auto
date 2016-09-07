@@ -58,41 +58,30 @@ class CommentTree:
 		        continue
 
 		    if p_id and p_id not in cids:
-		        raise InconsistentCommentTreeError
+		        # raise InconsistentCommentTreeError
+		        print 'hi'
 
 		    cids.append(cid)
 		    tree.tree.setdefault(p_id, []).append(cid)
 		    depth[cid] = depth[p_id] + 1 if p_id else 0
+		    print p_id, '  ', depth[cid]
 		    parents[cid] = p_id
 
 
 
-
+class Comment(object):
+	"""docstring for Comment"""
+	def __init__(self, id, parent_id, name):
+		super(Comment, self).__init__()
+		self._id = id
+		self.parent_id = parent_id
+		self._name = name
+		
 
 
 class TestCommentTreeHandler(object):
 	def get(self):
-		comment1 = {}
-		comment1.parent_id = 0
-		comment1._id = 0
-		comment1._name = "动物"
-
-		comment2.parent_id = 0
-		comment2._id = 1
-		comment2._name = "野生动物"
-
-		comment3.parent_id = 1
-		comment3._id = 2
-		comment3._name = "猫科动物"
-
-		comment4.parent_id = 2
-		comment4._id = 3
-		comment4._name = "老虎"
-
-		comment5.parent_id = 2
-		comment5._id = 4
-		comment5._name = "狮子"
-
+		pass
 		# commentlist["生物"] = comment1
 
 
@@ -100,8 +89,15 @@ class TestCommentTreeHandler(object):
 
 if __name__ == "__main__":
 	tree = CommentTree(cids=[], tree={}, depth={}, parents={}, num_children={})
-	comment1 = {}
-	comment1.parent_id = 0
-	comment1._id = 0
-	comment1._name = "动物"
-	CommentTree.add_comments(tree, comment1)
+	# comment1 = {}
+	comment1 = Comment(1, None, "动物")
+	comment2 = Comment(2, 1, "野生动物")
+	comment3 = Comment(3, 2, "猫科动物")
+	comment6 = Comment(6, 2, "犬科动物")
+	comment4 = Comment(4, 3, "老虎")
+	comment5 = Comment(5, 3, "狮子")
+
+	comments = [comment1, comment2, comment3, comment4, comment5, comment6]
+	# comments.append(comment1)	
+	CommentTree.add_comments(tree, comments)
+	print tree.cids, '  ', tree.depth, '  ', tree.parents, '  ', tree.tree
