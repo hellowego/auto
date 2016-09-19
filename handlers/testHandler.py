@@ -3,21 +3,26 @@
 
 import sys
 import re
-# from baseHandler import BaseHandler
+from baseHandler import BaseHandler
 from tornado import gen
 import uuid
 sys.path.append("..")
 
 
 
-# class TestHandler(BaseHandler):
-# 	def get(self):
-# 		sessionId = str(uuid.uuid1())
-# 		print sessionId
+class TestHandler(BaseHandler):
+	def get(self):
+		sessionId = str(uuid.uuid1())
+		print sessionId
 
-# 		self.set_session_id()
-# 		# self.render("test/mylogin.html")
-# 		self.render("test/dropload.html")
+		self.set_session_id()
+		self.render("test/mylogin.html")
+		# self.render("test/dropload.html")
+
+
+class TestCommentTreeHandler(BaseHandler):
+	def get(self):
+		self.render("test/comment.html")
 
 
 
@@ -79,13 +84,10 @@ class Comment(object):
 		
 
 
-class TestCommentTreeHandler(object):
-	def get(self):
-		pass
-		# commentlist["生物"] = comment1
+
+		
 
 
-		# self.render("test/comment.html")
 
 if __name__ == "__main__":
 	tree = CommentTree(cids=[], tree={}, depth={}, parents={}, num_children={})
