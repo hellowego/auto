@@ -25,7 +25,7 @@ class Link(BaseModel):
 	"""
 	Link model
 	"""
-	__tablename__ = "Link"
+	__tablename__ = "link"
 
 	id = Column(Integer, primary_key = True, nullable = False)			# id 
 	uid = Column(Integer, nullable = True, default = 0)								# 用户id
