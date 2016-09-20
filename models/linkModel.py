@@ -46,7 +46,7 @@ class Link(BaseModel):
 	@classmethod
 	def queryAll(cls):
 		session = DBSession()
-		linkList = session.query(cls).order_by(cls.add_time.desc())[:3]
+		linkList = session.query(cls).order_by(cls.add_time.desc()).all()
 		return linkList
 
 	@classmethod
