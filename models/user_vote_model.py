@@ -44,6 +44,7 @@ class User_vote(BaseModel):
 	def queryByUserIdAndLinkId(cls, userId, linkid):
 		session = DBSession()
 		userVote = session.query(cls).filter(cls.user_id == userId, cls.link_id == linkid).first()
+		session.close()
 		if not userVote:
 			return False
 		else:
@@ -66,6 +67,7 @@ class User_vote(BaseModel):
 		session = DBSession()
 		session.query(cls).filter(cls.user_id == userId, cls.link_id == linkid).delete()
 		session.commit()
+		session.close()
 		return True
 		
 		
@@ -76,6 +78,7 @@ class User_vote(BaseModel):
 		session = DBSession()
 		session.query(cls).filter(cls.user_id == userId, cls.link_id == linkid).update({cls.type: type})
 		session.commit()
+		session.close()
 		return True
 
 

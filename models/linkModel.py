@@ -41,18 +41,21 @@ class Link(BaseModel):
 	def queryById(cls, linkId):
 		session = DBSession()
 		link = session.query(cls).filter(cls.id == linkId).first()
+		session.close()
 		return link
 
 	@classmethod
 	def queryAll(cls):
 		session = DBSession()
 		linkList = session.query(cls).order_by(cls.add_time.desc()).all()
+		session.close()
 		return linkList
 
 	@classmethod
 	def queryByPage(cls, offset, limit):
 		session = DBSession()
 		linkList = session.query(cls).order_by(cls.add_time.desc()).offset(offset).limit(limit)
+		session.close()
 		return linkList
 
 
@@ -62,12 +65,14 @@ class Link(BaseModel):
 		count = session.query(cls).count()
 		# 向上取整，如：3.2  取整后为 4
 		pageCount = int(math.ceil(count/int(pageSize)))
+		session.close()
 		return pageCount
 
 	@classmethod
 	def queryCount(cls):
 		session = DBSession()
 		count = session.query(cls).count()
+		session.close()
 		return count
 
 
