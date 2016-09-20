@@ -24,7 +24,7 @@ class User_vote(BaseModel):
 	"""
 	User_vote model
 	"""
-	__tablename__ = "User_vote"
+	__tablename__ = "user_vote"
 
 	
 	user_id = Column(Integer, primary_key = True, nullable = False)								# 用户id
