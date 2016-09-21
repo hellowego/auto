@@ -16,7 +16,7 @@ class TestHandler(BaseHandler):
 		print sessionId
 
 		self.set_session_id()
-		self.render("test/mylogin.html")
+		self.render("test/comment.html")
 		# self.render("test/dropload.html")
 
 

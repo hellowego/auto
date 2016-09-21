@@ -24,3 +24,8 @@ class LinkModule(tornado.web.UIModule):
 	def render(self, link, get_time_format):
 		return self.render_string("modules/linkList.html", link = link, get_time_format = get_time_format)
 		
+		
+class CommentModule(tornado.web.UIModule):
+	def render(self, link, get_time_format):
+		return self.render_string("modules/comment.html", link = link, get_time_format = get_time_format)
+		

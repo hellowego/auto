@@ -1,7 +1,6 @@
 					<li>
                         <div class = "vote midcol unvoted">
-                            <i class="arrow up {% if not current_user %} ajaxlogin " {% else %} "  onclick="AUTO.agree_vote(this, 'hi', {{link.id}});"  {% end %}></i> 
-                            
+                            <i class="arrow up {% if not current_user %} ajaxlogin " {% else %} "  onclick="AUTO.agree_vote(this, 'hi', {{link.id}});"  {% end %}></i>                             
                             <div class="score likes">{{link.likecount - link.dislikecount + 1}} </div>
                             <div class="score unvoted">{{link.likecount - link.dislikecount}}</div>
                             <div class="score dislikes">{{link.likecount - link.dislikecount - 1}} </div>
@@ -13,10 +12,7 @@
                                 <span class="author">
                                          <a href="{{link.url}}">hello</a>&nbsp;发表于&nbsp;{{get_time_format(link.add_time)}}
                                     </span> &nbsp;&nbsp;
-                                <span>{{link.readcount}}&nbsp;阅读</span>
-                               
+                                <span>{{link.readcount}}&nbsp;阅读</span>                               
                             </div>
-                            
-                          
                         </div>
                     </li>

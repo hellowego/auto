@@ -16,14 +16,12 @@ from models.question_models import Question
 from models.linkModel import Link
 from models.user_vote_model import User_vote
 from util import Util
+#import util
 
 class ExploreHandler(BaseHandler):	
 
-	def get(self):
-		# def get_time_format(poststamp):
-		# 	return Util.get_time_format(poststamp)
-		question = {'context': 123}
-		# print question.context
+	def get(self):		
+		question = {'context': 123}		
 		u = AutoUser.queryAllUsers()
 		q = Question.queryAllQuestions()
 		questions = {'hi','hello'}

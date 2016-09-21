@@ -54,13 +54,13 @@ class Util(object):
 
 		# 60秒之内
 		if spanStamp < 60:
-			return str(spanStamp) +  '秒前'
+			return str(spanStamp) +  u'秒前'
 		elif (spanStamp > 60 ) and (spanStamp <= 3600):
-			return str(int(spanStamp/60)) + '分钟前'
+			return str(int(spanStamp/60)) + u'分钟前'
 		elif (spanStamp > 3600) and (spanStamp < 86400):
-			return str(int(spanStamp/3600)) + '小时' + str(int(spanStamp/3600%60)) + '分钟前'
+			return str(int(spanStamp/3600)) + u'小时' + str(int(spanStamp/3600%60)) + u'分钟前'
 		elif (spanStamp >= 86400 ):
-			return str(int(spanStamp/86400)) + '天' +  str(int(spanStamp%86400/3600)) + '小时前'
+			return str(int(spanStamp/86400)) + u'天' +  str(int(spanStamp%86400/3600)) + u'小时前'
 
 
 		
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 		print Util.get_time_format(nowStamp -70)
 		print Util.get_time_format(nowStamp -3700)
 		print Util.get_time_format(nowStamp -186400)
-		print '天'
+		print u'天'
 		
 	# print os.getcwd()
 	# print os.path.exists('static/uploads/1.txt')
