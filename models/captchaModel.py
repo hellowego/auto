@@ -22,7 +22,7 @@ class Captcha(BaseModel):
 	"""docstring for Captcha"""
 	
 
-	__tablename__ = "Captcha"
+	__tablename__ = "captcha"
 
 
 	session_id = Column(String(64), nullable = False)							# 链接

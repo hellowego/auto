@@ -17,7 +17,7 @@ class User_action_history_data(BaseModel):
 	"""
 	User_action_history_data model
 	"""
-	__tablename__ = 'User_action_history_data'
+	__tablename__ = 'user_action_history_data'
 
 	history_id = Column(Integer, primary_key=True, nullable=False)
 	uid = Column(Integer, nullable=True) 

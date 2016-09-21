@@ -21,7 +21,7 @@ class Catalog(BaseModel):
 	"""
 	Catalog model
 	"""
-	__tablename__ = "Catalog"
+	__tablename__ = "catalog"
 
 	id = Column(Integer, primary_key = True, nullable = False)			# id 
 	name = Column(String(32), nullable = False)							# 名字

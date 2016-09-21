@@ -19,7 +19,7 @@ class Answer(BaseModel):
 	"""
 	Answer model
 	"""
-	__tablename__ = "Answer"
+	__tablename__ = "answer"
 
 	answer_id = Column(Integer, primary_key = True, nullable = False)	# id 
 	question_id = Column(Integer, nullable = False)						# 问题id
