@@ -1,0 +1,16 @@
+# ubuntu
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install python-dev
+sudo apt-get install mysql-server
+
+
+# python models
+sudo pip install tornado
+sudo pip install bcrypt
+sudo pip install futures
+sudo pip install torndb
+sudo pip install MySQL-python
+sudo pip install sqlalchemy
+sudo pip install pillow
+
+
