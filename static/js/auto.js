@@ -200,6 +200,21 @@ var AUTO =
 				selector.animate({ 'left': -10 }, 50);
 			}
 		}
+	},
+
+	//
+	reply: function(selector)
+	{
+		console.log("hiii");
+
+		var template = Hogan.compile(AUTO_TEMPLATE.loadingBox).render(
+		{
+			'answer_id': 100
+		});
+		var v=document.getElementById(selector);
+		var child = $(v).find('div.child').append(template);
+		// v.appendChild(template)
+		console.dirxml(v);
 	}
 
 };

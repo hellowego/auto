@@ -12908,7 +12908,7 @@ body:not(.loggedin) .comment-save-button,
 body:not(.loggedin) .give-gold-button,
 body:not(.loggedin) .reply-button,
 body:not(.loggedin) .report-button {
-  display: none;
+  /*display: none;*/
 }
 .sr-type-icon {
   display: inline-block;
