@@ -201,11 +201,20 @@ var AUTO =
 			}
 		}
 	},
-	
+
 	// 用户点击回复按钮，弹出回复框
-	reply: function(select)
+	reply: function(selector)
 	{
-		console.log("reply in1111");
+		console.log("hiii");
+
+		var template = Hogan.compile(AUTO_TEMPLATE.loadingBox).render(
+		{
+			'answer_id': 100
+		});
+		var v=document.getElementById(selector);
+		var child = $(v).find('div.child').append(template);
+		// v.appendChild(template)
+		console.dirxml(v);
 	}
 
 };
