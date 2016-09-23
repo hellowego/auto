@@ -200,6 +200,12 @@ var AUTO =
 				selector.animate({ 'left': -10 }, 50);
 			}
 		}
+	},
+	
+	// 用户点击回复按钮，弹出回复框
+	reply: function(select)
+	{
+		console.log("reply in1111");
 	}
 
 };
